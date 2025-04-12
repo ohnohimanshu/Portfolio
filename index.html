@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Sharma | Backend Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="js/navbar.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+
+
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #ccd6f6;
+            --text-light: #8892b0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #64ffda, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gradient-border {
+            border: 2px solid transparent;
+            background: linear-gradient(var(--primary), var(--primary)) padding-box,
+                       linear-gradient(90deg, #64ffda, #00bfff) border-box;
+            border-radius: 0.5rem;
+        }
+        
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card {
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.15);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+        
+        .glow-button {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .glow-button:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #64ffda, #00bfff);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow-button:hover:after {
+            opacity: 0.15;
+        }
+
+        /* Skill badge styling */
+        .skill-badge {
+            background: rgba(17, 34, 64, 0.9);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+            border-color: rgba(100, 255, 218, 0.6);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Modal styles */
+        .modal {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Floating input labels */
+        .float-label-input:focus-within label,
+        .float-label-input input:not(:placeholder-shown) + label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: var(--accent);
+        }
+
+        /* Animated underline for navigation */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #64ffda, #00bfff);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        /* Progress bar for scrolling */
+        .progress-container {
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+        }
+        
+        .progress-bar {
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #00bfff);
+            width: 0%;
+        }
+
+        /* Parallax background elements */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        #resumeContent {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #resumeBtn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #resumeBtn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #00bfff);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #resumeBtn:hover::after {
+            opacity: 0.15;
+        }
+
+        #resumeViewer {
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .float-label-input {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.float-label-input label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    color: var(--accent);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.float-label-input.focused label,
+.float-label-input input:not(:placeholder-shown) + label,
+.float-label-input textarea:not(:placeholder-shown) + label {
+    transform: translateY(-1.5rem) scale(0.85);
+    color: var(--accent);
+    opacity: 1;
+}
+
+.float-label-input input::placeholder,
+.float-label-input textarea::placeholder {
+    color: transparent;
+}
+
+.float-label-input input:focus,
+.float-label-input textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 2px 4px rgba(100, 255, 218, 0.1);
+}
+
+/* Form success message animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.text-center {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Add this inside your existing style tag */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+}
+    </style>
+</head>
+<body data-scroll-container>
+
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Background elements -->
+    <div class="bg-element" style="width: 300px; height: 300px; top: 10%; left: 5%; filter: blur(80px);"></div>
+    <div class="bg-element" style="width: 400px; height: 400px; top: 50%; right: 8%; filter: blur(100px);"></div>
+    <div class="bg-element" style="width: 250px; height: 250px; bottom: 15%; left: 10%; filter: blur(70px);"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-opacity-80 backdrop-filter backdrop-blur-lg bg-gray-900 transition-all duration-300 transform" id="navbar" style="transition: transform 0.3s ease-in-out, background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold">
+                    <a href="#" class="gradient-text">HS.</a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-white nav-link">About</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white nav-link">Projects</a>
+                    <a href="#resume" class="text-gray-300 hover:text-white nav-link">Resume</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white nav-link">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="menuBtn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-900 bg-opacity-95 py-4">
+            <div class="container mx-auto px-6 flex flex-col space-y-4">
+                <a href="#about" class="text-gray-300 hover:text-white py-2">About</a>
+                <a href="#projects" class="text-gray-300 hover:text-white py-2">Projects</a>
+                <a href="#resume" class="text-gray-300 hover:text-white py-2">Resume</a>
+                <a href="#contact" class="text-gray-300 hover:text-white py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center relative overflow-hidden pt-20">
+        <div class="container mx-auto px-6 md:px-12 z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-2/3 space-y-6">
+                    <p class="text-accent text-lg font-medium opacity-0" id="hero-intro">Hello, my name is</p>
+                    <h1 class="text-5xl md:text-7xl font-bold gradient-text opacity-0" id="hero-name">Himanshu Sharma</h1>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-text-light opacity-0" id="hero-title">Backend Developer | Cloud & AI Enthusiast</h2>
+                    <p class="text-xl text-text-light max-w-2xl opacity-0" id="hero-desc">
+                        Passionate about building scalable, AI-powered apps and real-time cloud systems.
+                    </p>
+                    <div class="pt-4 flex space-x-4 opacity-0" id="hero-buttons">
+                        <a href="#projects" class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center mt-12 md:mt-0">
+                    <div class="w-64 h-64 rounded-full border-4 border-accent relative overflow-hidden opacity-0" id="hero-image">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-300 opacity-60"></div>
+                        <img src="https://placehold.co/400x400/0a192f/64ffda?text=HS" alt="Himanshu Sharma" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-24 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>About Me</h2>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3 flex justify-center" data-scroll>
+                    <div class="w-64 h-64 rounded-full gradient-border overflow-hidden">
+                        <img src="https://placehold.co/400x400/0a192f/64ffda?text=HS" alt="Himanshu Sharma" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-2/3 space-y-6" data-scroll>
+                    <p class="text-lg">
+                        Hi, I'm Himanshu Sharma, currently pursuing a Bachelor's in Internet of Things (IoT) at Dayalbagh Educational Institute, Agra. I'm passionate about cloud computing, web development, and the intersection of hardware and software systems.
+                    </p>
+                    
+                    <p class="text-lg">
+                        With hands-on experience in building real-time web apps, deploying local AI solutions, and integrating embedded data visualizations, I enjoy crafting tech that's both smart and scalable. My toolkit includes Python, JavaScript, Django, AWS, and Docker, among others.
+                    </p>
+                    
+                    <p class="text-lg">
+                        Some notable projects I've worked on include:
+                    </p>
+                    
+                    <ul class="text-lg list-disc list-inside space-y-2 ml-4">
+                        <li>A device management web app for LoRa-based IoT devices</li>
+                        <li>A local chatbot using Django and Ollama</li>
+                        <li>A mood-based music streaming platform using natural language processing</li>
+                    </ul>
+                    
+                    <p class="text-lg">
+                        I've also built interactive systems using Arduino, ESP boards, MQTT, and Tailwind CSS to deliver responsive, engaging user experiences. Currently, I'm seeking an internship opportunity where I can apply my skills, collaborate on innovative projects, and continue to grow as a developer in the cloud and web tech space.
+                    </p>
+                    
+                    <h3 class="text-2xl font-semibold gradient-text">My Skills</h3>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Programming Languages -->
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-python text-blue-400"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-js text-yellow-400"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-html5 text-red-500"></i>
+                            <span>HTML</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-css3-alt text-blue-500"></i>
+                            <span>CSS</span>
+                        </div>
+                        
+                        <!-- Frameworks & Libraries -->
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-fire text-green-400"></i>
+                            <span>Django</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-server text-purple-400"></i>
+                            <span>REST API</span>
+                        </div>
+                        
+                        <!-- Tools -->
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-docker text-blue-400"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-git-alt text-red-400"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-css3 text-blue-400"></i>
+                            <span>TailwindCSS</span>
+                        </div>
+                        
+                        <!-- Cloud & AI -->
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-aws text-yellow-500"></i>
+                            <span>Amazon EC2</span>
+
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-aws text-yellow-500"></i>
+                            <span>Amazon Lambda</span>
+
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fab fa-aws text-yellow-500"></i>
+                            <span>Amazon S3</span>
+
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-brain text-purple-400"></i>
+                            <span>AI Agent</span>
+                        </div>
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-terminal text-green-400"></i>
+                            <span>Bash Scripting</span>
+                        </div>
+
+                        
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-robot text-teal-400"></i>
+                            <span>Virtual Machines</span>
+                        </div>
+                      
+                        
+                        <!-- IoT -->
+                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
+                            <i class="fas fa-wifi text-blue-300"></i>
+                            <span>IoT</span>
+                        </div>
+                     
+
+                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-gray-900 bg-opacity-30 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>My Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
+                    <div class="relative h-48">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-400 opacity-70"></div>
+                        <img 
+                            src="primary-source.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/0a192f/64ffda?text=Project';" 
+                            alt="Project Preview" 
+                            class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold gradient-text">AI-Driven Website Builder</h3>
+                        <p class="text-text-light">An intelligent builder that uses the Google Gemini API to create website content and layouts.</p>
+                        
+                        <div class="space-y-2">
+                            <div class="text-sm font-medium text-accent">Features:</div>
+                            <ul class="text-sm text-text-light space-y-1 feature-list">
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Dashboard</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Template Switching</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-Time Preview</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> REST API</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Google Gemini API</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">HTML</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">JS</span>
+                        </div>
+                        
+                        <a href="https://github.com/ohnohimanshu/Web-Builder" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
+                    <div class="relative h-48">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-400 opacity-70"></div>
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="ABC Lighting Conversational Chatbot" class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold gradient-text">ABC Lighting Conversational Chatbot</h3>
+                        <p class="text-text-light">A Django-based chatbot for a solar light company. Rich UI with animated chat and REST API support.</p>
+                        
+                        <div class="space-y-2">
+                            <div class="text-sm font-medium text-accent">Features:</div>
+                            <ul class="text-sm text-text-light space-y-1 feature-list">
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Smart Product Queries</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Django Admin</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Product Image Responses</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">REST</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">TailwindCSS</span>
+                        </div>
+                        
+                        <a href="https://github.com/ohnohimanshu/ABC-Lightning-Bot" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
+                    <div class="relative h-48">
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-teal-400 opacity-70"></div>
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="AI-Powered Resume Analyzer" class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold gradient-text">AI-Powered Resume Analyzer</h3>
+                        <p class="text-text-light">Enhances resumes with AI-generated feedback (LLM/NLP-based)</p>
+                        
+                        <div class="space-y-2">
+                            <div class="text-sm font-medium text-accent">Features:</div>
+                            <ul class="text-sm text-text-light space-y-1 feature-list">
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Resume Analysis</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> PDF/DOCX Support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> LLM-powered NLP</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Google Gemini API</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">PyMuPDF</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
+                        </div>
+                        
+                        <a href="https://github.com/ohnohimanshu/ResumePro-AI" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
+                    <div class="relative h-48">
+                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-400 opacity-70"></div>
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="Device Management Dashboard" class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold gradient-text">Device Management Dashboard</h3>
+                        <p class="text-text-light">LoRa sensor monitoring with charts, real-time MQTT data, role-based login</p>
+                        
+                        <div class="space-y-2">
+                            <div class="text-sm font-medium text-accent">Features:</div>
+                            <ul class="text-sm text-text-light space-y-1 feature-list">
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time Charts</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> MQTT Integration</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Multi-role Login</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Tailwind</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">MQTT</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
+                        </div>
+                        
+                        <a href="https://github.com/ohnohimanshu/IoT-Management-webapp" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
+                    <div class="relative h-48">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-500 opacity-70"></div>
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="Chatbot with Ollama" class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold gradient-text">Chatbot with Ollama</h3>
+                        <p class="text-text-light">Local LLM-based chatbot with real-time WebSocket support</p>
+                        
+                        <div class="space-y-2">
+                            <div class="text-sm font-medium text-accent">Features:</div>
+                            <ul class="text-sm text-text-light space-y-1 feature-list">
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Local LLM Integration</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> WebSocket Support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Privacy-focused</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django Channels</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Ollama</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Tailwind</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
+                        </div>
+                        
+                        <a href="https://github.com/ohnohimanshu/HMX-Chatbot" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
+                    <div class="relative h-48">
+                        <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-400 opacity-70"></div>
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="Music Mood Streaming App" class="w-full h-full object-cover mix-blend-overlay">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold gradient-text">Music Mood Streaming App</h3>
+                        <p class="text-text-light">Detects user mood from lyrics and plays relevant music using HuggingFace Transformers.</p>
+                        
+                        <div class="space-y-2">
+                            <div class="text-sm font-medium text-accent">Features:</div>
+                            <ul class="text-sm text-text-light space-y-1 feature-list">
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Mood Detection</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Music Recommendations</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time Streaming</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">AJAX</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">HuggingFace</span>
+                            <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
+                        </div>
+                        
+                        <a href="https://github.com/ohnohimanshu/mood-music" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-900 bg-opacity-30 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Mail For Freelance Work</h2>
+            
+            <div class="max-w-2xl mx-auto glass-card p-8 rounded-lg">
+                <form id="contactForm" class="space-y-6" data-scroll>
+                    <div class="float-label-input relative">
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder=" "
+                            class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white"
+                            required>
+                        <label for="name" class="absolute left-0 -top-3.5 text-sm text-accent">Name</label>
+                    </div>
+                    
+                    <div class="float-label-input relative">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder=" "
+                            class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white"
+                            required>
+                        <label for="email" class="absolute left-0 -top-3.5 text-sm text-accent">Email</label>
+                    </div>
+                    
+                    <div class="float-label-input relative">
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder=" " 
+                            rows="4"
+                            class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white resize-none"
+                            required></textarea>
+                        <label for="message" class="absolute left-0 -top-3.5 text-sm text-accent">Message</label>
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        class="w-full py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button flex items-center justify-center">
+                        <span id="submitText">Send Message</span>
+                        <div id="submitSpinner" class="hidden">
+                            <i class="fas fa-circle-notch fa-spin ml-2"></i>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="py-24 relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Resume</h2>
+            
+            <div class="flex justify-center">
+                <button id="resumeBtn" class="px-8 py-4 gradient-border text-accent hover:glow-effect transition duration-300 flex items-center space-x-2">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    <span>View Resume</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div id="resumeModal" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex items-center justify-center backdrop-blur-sm">
+        <div class="w-full max-w-5xl mx-4 transition-all duration-500 ease-out transform scale-95 opacity-0" id="resumeContent">
+            <div class="bg-gray-900 rounded-lg overflow-hidden shadow-2xl border border-accent border-opacity-20">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center p-4 border-b border-accent border-opacity-20">
+                    <h3 class="text-xl font-bold gradient-text">My Resume</h3>
+                    <div class="flex items-center space-x-4">
+                        <a href="assets/resume.pdf" download class="text-accent hover:text-white transition-colors duration-300">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <button id="closeResumeBtn" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Resume Content -->
+                <div class="h-[80vh]">
+                    <div class="w-full h-full bg-white rounded-b-lg">
+                        <iframe 
+                            src="assets/resume.pdf#toolbar=0" 
+                            class="w-full h-full"
+                            title="Resume Preview">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/resume.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
+
+
