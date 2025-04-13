@@ -357,9 +357,15 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>About Me</h2>
             
             <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/3 flex justify-center" data-scroll>
-                    <div class="w-64 h-64 rounded-full gradient-border overflow-hidden">
-                        <img src="https://placehold.co/400x400/0a192f/64ffda?text=HS" alt="Himanshu Sharma" class="w-full h-full object-cover">
+               <div class="w-full md:w-1/2 sticky top-24" data-scroll>
+               
+                    <div class="w-full relative" style="height: 500px;">
+                        <div class="absolute bottom-0 right-0 bg-primary z-10 px-3 py-1 rounded"></div>
+                        <spline-viewer 
+                            url="https://prod.spline.design/KibUfnTIqpvEOIjh/scene.splinecode" 
+                            style="width: 100%; height: 100%;"
+                            loading="lazy">
+                        </spline-viewer>
                     </div>
                 </div>
                 
@@ -785,6 +791,7 @@
   
 
     <!-- Scripts -->
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
     <script src="js/main.js"></script>
     <script src="js/resume.js"></script>
     <script src="js/contact.js"></script>
