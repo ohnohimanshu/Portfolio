@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
@@ -59,7 +60,8 @@
         }
 
         .project-card {
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .project-card:hover {
@@ -98,12 +100,11 @@
         .skill-badge {
             background: rgba(17, 34, 64, 0.9);
             border: 1px solid rgba(100, 255, 218, 0.2);
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .skill-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
             border-color: rgba(100, 255, 218, 0.6);
         }
 
@@ -186,6 +187,8 @@
             position: absolute;
             border-radius: 50%;
             background: rgba(100, 255, 218, 0.05);
+            transition: transform 0.05s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         #resumeContent {
@@ -322,8 +325,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center relative overflow-hidden pt-20">
-        <div class="container mx-auto px-6 md:px-12 z-10">
+    <section id="hero" class="min-h-screen flex items-start relative overflow-hidden pt-12">
+        <div class="container mx-auto px-6 md:px-12 z-10 mt-16">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-2/3 space-y-6">
                     <p class="text-accent text-lg font-medium opacity-0" id="hero-intro">Hello, my name is</p>
@@ -369,7 +372,8 @@
                     </div>
                 </div>
                 
-                <div class="w-full md:w-2/3 space-y-6" data-scroll>
+                
+                <div class="w-full md:w-1/2 space-y-6" data-scroll>
                     <p class="text-lg">
                         Hi, I'm Himanshu Sharma, currently pursuing a Bachelor's in Internet of Things (IoT) at Dayalbagh Educational Institute, Agra. I'm passionate about cloud computing, web development, and the intersection of hardware and software systems.
                     </p>
@@ -742,6 +746,22 @@
                         </div>
                     </button>
                 </form>
+                
+                <!-- Social Links -->
+                <div class="mt-12 text-center" data-scroll>
+                    <h3 class="text-xl font-semibold mb-6 gradient-text">Connect With Me</h3>
+                    <div class="flex justify-center space-x-8">
+                        <a href="mailto:himanshusharma8888@gmail.com" class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://github.com/ohnohimanshu" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/himanshu-sharma-b6b0b7227/" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -797,5 +817,3 @@
     <script src="js/contact.js"></script>
 </body>
 </html>
-
-
