@@ -80,5 +80,33 @@ class ParallaxEffect {
 document.addEventListener('DOMContentLoaded', () => {
     new SmoothScroll();
     new ParallaxEffect();
-    new FloatingAnimation();
+    // Add this function to your animations.js file
+    function FloatingAnimation() {
+        const bgElements = document.querySelectorAll('.bg-element');
+        
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            bgElements.forEach((element, index) => {
+                // Different movement factor for each element
+                const moveFactor = 0.02 - (index * 0.005);
+                
+                // Calculate new position
+                const moveX = (mouseX - window.innerWidth / 2) * moveFactor;
+                const moveY = (mouseY - window.innerHeight / 2) * moveFactor;
+                
+                // Apply transform with some delay based on index
+                element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    }
+    
+    // Make sure this is called when the document is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Your existing code...
+        
+        // Initialize the floating animation
+        FloatingAnimation();
+    });
 });
