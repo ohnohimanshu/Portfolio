@@ -923,24 +923,149 @@ i enjoy working at the intersection of embedded tech , web development and cloud
     <script src="js/game.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const hideSplineBranding = () => {
-        document.querySelectorAll('spline-viewer').forEach(viewer => {
-          const shadow = viewer.shadowRoot;
-          if (shadow) {
-            const branding = shadow.querySelector('[slot="branding"], .branding, a[aria-label="Built with Spline"]');
-            if (branding) {
-              branding.style.display = "none";
+document.addEventListener("DOMContentLoaded", () => {
+  // configuration for overlay fallback (adjust size/position as needed)
+  const overlayConfig = {
+    bottom: 8,   // px from bottom
+    right: 8,    // px from right
+    width: 140,  // px width of overlay
+    height: 40,  // px height of overlay
+    borderRadius: 6,
+    background: 'transparent', // try transparent first; change to match background if needed
+    backdropFilter: 'blur(6px)', // subtle blur can hide logo while keeping scene visible
+    zIndex: 9999
+  };
+
+  function createOverlayFor(viewer) {
+    // only add if not already added
+    if (viewer._splineBrandOverlay) return;
+    const overlay = document.createElement('div');
+    overlay.style.position = 'absolute';
+    overlay.style.pointerEvents = 'none'; // allow clicks to pass through
+    overlay.style.zIndex = overlayConfig.zIndex;
+    overlay.style.bottom = overlayConfig.bottom + 'px';
+    overlay.style.right = overlayConfig.right + 'px';
+    overlay.style.width = overlayConfig.width + 'px';
+    overlay.style.height = overlayConfig.height + 'px';
+    overlay.style.borderRadius = overlayConfig.borderRadius + 'px';
+    overlay.style.background = overlayConfig.background;
+    overlay.style.backdropFilter = overlayConfig.backdropFilter;
+    // ensure it's positioned relative to viewer's container
+    // place overlay as sibling of viewer and position absolute within same positioned ancestor
+    const wrapper = viewer.parentElement || document.body;
+    // make wrapper a positioned container if it's not
+    const computed = getComputedStyle(wrapper);
+    if (computed.position === 'static') wrapper.style.position = 'relative';
+    overlay.classList.add('spline-brand-overlay');
+    wrapper.appendChild(overlay);
+    viewer._splineBrandOverlay = overlay;
+  }
+
+  function tryHideBranding(viewer) {
+    try {
+      const shadow = viewer.shadowRoot;
+      if (!shadow) return false;
+      // adjust queries to anything Spline might use
+      const selectors = [
+        '[slot="branding"]',
+        '.branding',
+        'a[aria-label*="Spline"]',
+        'a[aria-label*="Built with Spline"]',
+        'a[title*="Spline"]'
+      ];
+      let removed = false;
+      selectors.forEach(sel => {
+        const el = shadow.querySelector(sel);
+        if (el) {
+          // hide it, remove it, whatever you prefer
+          el.style.display = 'none';
+          // also remove in case display none is reset later
+          try { el.remove(); } catch(e) {}
+          removed = true;
+        }
+      });
+      // If Spline places an iframe or different element, try generic approach:
+      // hide any small anchor/branding near bottom-right inside shadow
+      const anchors = shadow.querySelectorAll('a');
+      anchors.forEach(a => {
+        const rect = a.getBoundingClientRect ? a.getBoundingClientRect() : null;
+        // heuristic: small element
+        if (!rect || (rect.width <= 180 && rect.height <= 60)) {
+          a.style.display = 'none';
+          try { a.remove(); } catch(e){}
+          removed = true;
+        }
+      });
+      return removed;
+    } catch (err) {
+      // likely closed shadow root or access blocked
+      return false;
+    }
+  }
+
+  // For robustness, observe added spline-viewer elements and content changes
+  function watchAndHide() {
+    // first attempt for any existing viewers
+    document.querySelectorAll('spline-viewer').forEach(viewer => {
+      const ok = tryHideBranding(viewer);
+      if (!ok) createOverlayFor(viewer);
+    });
+
+    // observe for new spline-viewer elements being added to DOM
+    const docObserver = new MutationObserver(muts => {
+      muts.forEach(m => {
+        m.addedNodes && m.addedNodes.forEach(node => {
+          if (node.nodeType !== 1) return;
+          if (node.matches && node.matches('spline-viewer')) {
+            const succeeded = tryHideBranding(node);
+            if (!succeeded) createOverlayFor(node);
+          } else {
+            // maybe a viewer nested inside the added subtree
+            const found = node.querySelector && node.querySelector('spline-viewer');
+            if (found) {
+              const succeeded = tryHideBranding(found);
+              if (!succeeded) createOverlayFor(found);
             }
           }
         });
-      };
-      // Try to hide immediately and also after a delay (in case Spline loads late)
-      hideSplineBranding();
-      setTimeout(hideSplineBranding, 1000);
-      setTimeout(hideSplineBranding, 3000);
+      });
     });
-    </script>
+
+    docObserver.observe(document.body, { childList: true, subtree: true });
+
+    // Also observe each existing viewer's shadow / subtree changes (best-effort)
+    document.querySelectorAll('spline-viewer').forEach(viewer => {
+      // try to watch internal changes if shadowRoot is accessible
+      try {
+        if (viewer.shadowRoot) {
+          const ro = new MutationObserver(() => {
+            const ok = tryHideBranding(viewer);
+            if (!ok) createOverlayFor(viewer);
+          });
+          ro.observe(viewer.shadowRoot, { childList: true, subtree: true });
+        }
+      } catch (e) {
+        // ignore - closed shadow root
+      }
+    });
+
+    // periodic retries in case Spline does late-inits (small interval, stops after N tries)
+    let tries = 0;
+    const maxTries = 8;
+    const interval = setInterval(() => {
+      tries++;
+      document.querySelectorAll('spline-viewer').forEach(viewer => {
+        const ok = tryHideBranding(viewer);
+        if (!ok) createOverlayFor(viewer);
+      });
+      if (tries >= maxTries) clearInterval(interval);
+    }, 700);
+  }
+
+  watchAndHide();
+});
+</script>
+
 
  
 </body>
