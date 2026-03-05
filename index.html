@@ -1,1320 +1,1576 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en" class="scroll-smooth dark">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Himanshu Sharma — AI Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=Shippori+Mincho:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-<style>
-/* ============================================================
-   SUMI NOIR — ROOT & RESET
-   ============================================================ */
-:root {
-  --bg:       #07060A;
-  --bg2:      #0E0C12;
-  --ink:      #F0EBE0;
-  --mist:     #6B6560;
-  --red:      #D94035;
-  --gold:     #C9A84C;
-  --border:   rgba(240,235,224,0.07);
-  --ff-disp:  'Cormorant Garamond', serif;
-  --ff-jp:    'Shippori Mincho', serif;
-  --ff-mono:  'Space Mono', monospace;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--ff-jp);
-  font-weight: 400;
-  overflow-x: hidden;
-  cursor: none;
-}
-
-/* ── CUSTOM CURSOR ── */
-#cursor-dot {
-  position: fixed; top: 0; left: 0; z-index: 9999;
-  width: 8px; height: 8px;
-  background: var(--red);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.05s linear, width 0.3s, height 0.3s, background 0.3s;
-}
-#cursor-ring {
-  position: fixed; top: 0; left: 0; z-index: 9998;
-  width: 36px; height: 36px;
-  border: 1px solid rgba(217,64,53,0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.12s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
-}
-body:has(a:hover) #cursor-ring,
-body:has(.tilt:hover) #cursor-ring { width: 60px; height: 60px; border-color: var(--red); }
-
-/* ── GRAIN OVERLAY ── */
-body::after {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9997;
-}
-
-/* ── LOADING SCREEN ── */
-#loader {
-  position: fixed; inset: 0; z-index: 9996;
-  background: var(--red);
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 1rem;
-  transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1);
-  clip-path: inset(0 0 0 0);
-}
-#loader.done { clip-path: inset(0 0 100% 0); pointer-events: none; }
-#loader-kanji {
-  font-family: var(--ff-jp);
-  font-size: clamp(3rem, 10vw, 6rem);
-  font-weight: 800;
-  color: rgba(7,6,10,0.9);
-  letter-spacing: 0.3em;
-  animation: loader-pulse 0.6s ease infinite alternate;
-}
-#loader-name {
-  font-family: var(--ff-mono);
-  font-size: 0.7rem;
-  color: rgba(7,6,10,0.6);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-@keyframes loader-pulse { from { opacity: 0.5; } to { opacity: 1; } }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--red); }
-
-/* ── NAVIGATION ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  padding: 1.5rem 3rem;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: padding 0.4s, background 0.4s, backdrop-filter 0.4s;
-}
-nav.scrolled {
-  padding: 1rem 3rem;
-  background: rgba(7,6,10,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo {
-  font-family: var(--ff-jp);
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  color: var(--ink);
-  text-decoration: none;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.nav-logo .hanko {
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--red);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem; color: var(--red); font-weight: 700;
-  font-family: var(--ff-mono);
-  transition: background 0.2s;
-}
-.nav-logo:hover .hanko { background: var(--red); color: var(--bg); }
-.nav-links { display: flex; align-items: center; gap: 2.5rem; }
-.nav-links a {
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mist);
-  text-decoration: none;
-  transition: color 0.2s;
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute; bottom: -3px; left: 0;
-  width: 0; height: 1px;
-  background: var(--red);
-  transition: width 0.25s ease;
-}
-.nav-links a:hover { color: var(--ink); }
-.nav-links a:hover::after { width: 100%; }
-.nav-resume {
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.5rem 1.25rem;
-  border: 1px solid var(--red);
-  color: var(--red);
-  text-decoration: none;
-  transition: all 0.25s;
-}
-.nav-resume:hover { background: var(--red); color: var(--bg); }
-
-/* ── HERO ── */
-#hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 8rem 3rem 4rem;
-  position: relative; overflow: hidden;
-}
-.hero-bg-kanji {
-  position: absolute;
-  right: -2rem; top: 50%; transform: translateY(-50%);
-  font-family: var(--ff-jp);
-  font-size: clamp(16rem, 30vw, 28rem);
-  font-weight: 800;
-  color: rgba(240,235,224,0.02);
-  line-height: 1;
-  pointer-events: none; user-select: none;
-  writing-mode: vertical-rl;
-  letter-spacing: -0.05em;
-}
-.hero-label {
-  display: flex; align-items: center; gap: 1rem;
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 2rem;
-  opacity: 0; transform: translateY(16px);
-  animation: fadeUp 0.8s 1.2s forwards;
-}
-.hero-label::before {
-  content: '';
-  display: block; width: 3rem; height: 1px; background: var(--red);
-}
-.hero-name {
-  font-family: var(--ff-disp);
-  font-size: clamp(5rem, 13vw, 12rem);
-  font-weight: 300;
-  line-height: 0.88;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-  opacity: 0; transform: translateY(30px);
-  animation: fadeUp 1s 1.4s forwards;
-}
-.hero-name em {
-  font-style: italic;
-  color: var(--red);
-}
-.hero-surname {
-  font-family: var(--ff-disp);
-  font-size: clamp(5rem, 13vw, 12rem);
-  font-weight: 300;
-  line-height: 0.88;
-  letter-spacing: -0.02em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(240,235,224,0.2);
-  margin-bottom: 3rem;
-  opacity: 0; transform: translateY(30px);
-  animation: fadeUp 1s 1.55s forwards;
-}
-.hero-desc {
-  font-family: var(--ff-jp);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--mist);
-  max-width: 460px;
-  line-height: 1.9;
-  margin-bottom: 3rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 1.8s forwards;
-}
-.hero-ctas {
-  display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.8s 2s forwards;
-}
-.cta-primary {
-  padding: 1rem 2.5rem;
-  background: var(--red);
-  color: var(--bg);
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.cta-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(217,64,53,0.35);
-}
-.cta-ghost {
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mist);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.cta-ghost:hover { color: var(--ink); border-color: var(--ink); }
-
-.hero-scroll-hint {
-  position: absolute; bottom: 3rem; left: 3rem;
-  display: flex; align-items: center; gap: 1rem;
-  font-family: var(--ff-mono); font-size: 0.6rem;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist);
-  opacity: 0; animation: fadeUp 0.8s 2.3s forwards;
-}
-.hero-scroll-line {
-  width: 2px; height: 40px; background: var(--mist);
-  animation: grow-line 1.5s 2.5s ease infinite alternate;
-}
-@keyframes grow-line { from { height: 20px; } to { height: 50px; } }
-
-/* Stats bar */
-.hero-stats {
-  position: absolute; right: 3rem; bottom: 3rem;
-  display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-end;
-  opacity: 0; animation: fadeUp 0.8s 2.1s forwards;
-}
-.stat-item { text-align: right; }
-.stat-num {
-  font-family: var(--ff-disp);
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1;
-}
-.stat-num span { color: var(--red); }
-.stat-label {
-  font-family: var(--ff-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mist);
-}
-
-/* ── MARQUEE ── */
-.marquee-wrap {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
-  overflow: hidden;
-  background: var(--bg2);
-}
-.marquee-track {
-  display: flex; gap: 3rem;
-  width: max-content;
-  animation: marquee 30s linear infinite;
-}
-.marquee-track span {
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mist);
-  white-space: nowrap;
-}
-.marquee-track span.dot { color: var(--red); font-size: 0.5rem; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ── SECTIONS COMMON ── */
-section { padding: 8rem 3rem; position: relative; }
-.sec-header {
-  display: flex; align-items: center; gap: 1.5rem;
-  margin-bottom: 5rem;
-}
-.sec-num {
-  font-family: var(--ff-jp);
-  font-size: 0.75rem;
-  color: var(--red);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-.sec-title {
-  font-family: var(--ff-disp);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: var(--ink);
-}
-.sec-sub {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mist);
-  margin-left: auto;
-}
-.sec-line {
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-
-/* ── REVEAL ANIMATION ── */
-.reveal {
-  opacity: 0;
-  clip-path: inset(0 0 100% 0);
-  transform: translateY(20px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  clip-path: inset(0 0 0% 0);
-  transform: translateY(0);
-}
-
-/* Ensure content displays if JavaScript is disabled or delayed */
-body.loaded .reveal,
-.reveal[data-visible="true"] {
-  opacity: 1;
-  clip-path: inset(0 0 0% 0);
-  transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
-
-/* ── ABOUT ── */
-#about { background: var(--bg2); border-top: 1px solid var(--border); }
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 6rem;
-  align-items: start;
-}
-.about-left { position: relative; }
-.about-big-kanji {
-  font-family: var(--ff-jp);
-  font-size: clamp(6rem, 14vw, 11rem);
-  font-weight: 800;
-  color: rgba(240,235,224,0.03);
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
-  margin-bottom: -3rem;
-}
-.about-subtitle {
-  font-family: var(--ff-disp);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.3;
-  color: var(--ink);
-  margin-bottom: 2rem;
-}
-.about-meta {
-  display: flex; flex-direction: column; gap: 0.6rem;
-}
-.about-meta-item {
-  display: flex; align-items: center; gap: 0.75rem;
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: var(--mist);
-}
-.about-meta-item::before {
-  content: '—';
-  color: var(--red);
-  font-size: 0.8rem;
-}
-.about-right { display: flex; flex-direction: column; gap: 2rem; }
-.about-dropcap {
-  font-size: 1.05rem;
-  line-height: 1.9;
-  color: rgba(240,235,224,0.75);
-  font-weight: 400;
-}
-.about-dropcap::first-letter {
-  font-family: var(--ff-disp);
-  font-size: 4.5rem;
-  font-weight: 600;
-  float: left;
-  line-height: 0.75;
-  margin-right: 0.15em;
-  color: var(--red);
-}
-.about-p {
-  font-size: 1rem;
-  line-height: 1.9;
-  color: rgba(240,235,224,0.45);
-}
-
-/* ── SKILLS TICKER (horizontal pills) ── */
-.skills-section {
-  margin-top: 4rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--border);
-}
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 2rem;
-}
-.skill-group h4 {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 1rem;
-}
-.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.stag {
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
-  padding: 0.35rem 0.8rem;
-  border: 1px solid var(--border);
-  color: var(--mist);
-  transition: all 0.2s;
-  cursor: default;
-}
-.stag:hover { border-color: var(--red); color: var(--red); background: rgba(217,64,53,0.06); }
-
-/* ── EXPERIENCE ── */
-#experience { background: var(--bg); border-top: 1px solid var(--border); }
-.exp-list { display: flex; flex-direction: column; gap: 0; }
-.exp-item {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 3rem;
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
-}
-.exp-item:first-child { border-top: 1px solid var(--border); }
-.exp-item:hover { background: rgba(240,235,224,0.01); }
-.exp-date {
-  font-family: var(--ff-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: var(--mist);
-  margin-bottom: 0.5rem;
-}
-.exp-company {
-  font-family: var(--ff-disp);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--red);
-  line-height: 1.3;
-}
-.exp-role {
-  font-family: var(--ff-disp);
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  margin-bottom: 1.25rem;
-}
-.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-.exp-bullets li {
-  display: flex; gap: 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: rgba(240,235,224,0.45);
-}
-.exp-bullets li::before { content: '—'; color: var(--red); flex-shrink: 0; }
-
-/* ── PROJECTS ── */
-#projects { background: var(--bg2); border-top: 1px solid var(--border); }
-
-/* Bento grid */
-.bento {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-  gap: 2px;
-  background: var(--border);
-}
-.bcard {
-  background: var(--bg);
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s;
-  cursor: default;
-}
-.bcard.span-7 { grid-column: span 7; }
-.bcard.span-5 { grid-column: span 5; }
-.bcard.span-6 { grid-column: span 6; }
-.bcard.span-4 { grid-column: span 4; }
-.bcard.span-8 { grid-column: span 8; }
-
-/* 3D tilt */
-.tilt { transform-style: preserve-3d; transition: transform 0.1s ease; }
-
-.bcard:hover { background: var(--bg2); }
-.bcard-num {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  color: var(--mist);
-  letter-spacing: 0.15em;
-  margin-bottom: 1rem;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.bcard-badge {
-  font-family: var(--ff-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border: 1px solid var(--red);
-  color: var(--red);
-}
-.bcard-title {
-  font-family: var(--ff-disp);
-  font-size: clamp(1.3rem, 2vw, 1.9rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-.bcard-desc {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: rgba(240,235,224,0.4);
-  margin-bottom: 1.5rem;
-}
-.bcard-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
-.bcard-tech span {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.6rem;
-  background: rgba(240,235,224,0.04);
-  border: 1px solid var(--border);
-  color: var(--mist);
-}
-.bcard-link {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--red);
-  text-decoration: none;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  transition: gap 0.2s;
-}
-.bcard-link:hover { gap: 0.8rem; }
-.bcard-link::after { content: '→'; }
-
-/* Featured card large bg text */
-.bcard-bg {
-  position: absolute;
-  bottom: -1rem; right: -1rem;
-  font-family: var(--ff-jp);
-  font-size: 7rem;
-  font-weight: 800;
-  color: rgba(240,235,224,0.025);
-  pointer-events: none; user-select: none;
-  line-height: 1;
-}
-
-/* Red line on featured */
-.bcard.featured::before {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: var(--red);
-}
-
-/* ── ACHIEVEMENTS ── */
-#achievements {
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  padding: 6rem 3rem;
-}
-.ach-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2px;
-  background: var(--border);
-}
-.ach-card {
-  background: var(--bg2);
-  padding: 2.5rem;
-  display: flex;
-  gap: 1.5rem;
-  transition: background 0.3s;
-}
-.ach-card:hover { background: rgba(217,64,53,0.04); }
-.ach-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-  width: 3rem;
-}
-.ach-card h4 {
-  font-family: var(--ff-disp);
-  font-size: 1.3rem;
-  font-weight: 300;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-}
-.ach-card p {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: var(--mist);
-}
-
-/* ── CONTACT ── */
-#contact {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  min-height: 70vh;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  padding: 8rem 3rem;
-}
-.contact-small {
-  font-family: var(--ff-jp);
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
-  color: var(--mist);
-  margin-bottom: 2rem;
-}
-.contact-title {
-  font-family: var(--ff-disp);
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-.contact-title em { font-style: italic; color: var(--red); }
-.contact-sub {
-  font-size: 0.9rem;
-  color: var(--mist);
-  max-width: 380px;
-  line-height: 1.8;
-  margin: 0 auto 3.5rem;
-}
-.contact-email {
-  font-family: var(--ff-disp);
-  font-size: clamp(1.3rem, 3.5vw, 2.5rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(240,235,224,0.15);
-  padding-bottom: 4px;
-  transition: color 0.25s, border-color 0.25s;
-  display: inline-block;
-  margin-bottom: 4rem;
-}
-.contact-email:hover { color: var(--red); border-color: var(--red); }
-.contact-socials {
-  display: flex; gap: 3rem; justify-content: center;
-}
-.contact-socials a {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mist);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.contact-socials a:hover { color: var(--red); }
-
-/* ── FOOTER ── */
-footer {
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  padding: 2rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-footer p {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  color: var(--mist);
-}
-footer span {
-  font-family: var(--ff-jp);
-  font-size: 0.7rem;
-  color: rgba(240,235,224,0.15);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── MOBILE ── */
-@media (max-width: 900px) {
-  nav { padding: 1.25rem 1.5rem; }
-  .nav-links { display: none; }
-  #hero { padding: 6rem 1.5rem 3rem; }
-  section { padding: 5rem 1.5rem; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
-  .bcard.span-7, .bcard.span-5,
-  .bcard.span-6, .bcard.span-4,
-  .bcard.span-8 { grid-column: span 12; }
-  .hero-stats { display: none; }
-  .hero-bg-kanji { display: none; }
-  footer, .contact-socials { flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
-}
-
-/* text scramble chars */
-.scramble-char { display: inline-block; }
-
-/* Pulsing dot for currently learning */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.7); }
-}
-</style>
-</head>
-<body>
-
-<!-- LOADER -->
-<div id="loader">
-  <div id="loader-kanji">AI開発</div>
-  <div id="loader-name">himanshu sharma · generative ai engineer</div>
-</div>
-
-<!-- CUSTOM CURSOR -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
-
-<!-- ════════ NAV ════════ -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">
-    <div class="hanko">HS</div>
-    <span>Portfolio</span>
-  </a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-    <a href="https://drive.google.com/file/d/1Q2Dd284Y1AtnIl-8lOy8ii3nKsiurrhn/view?usp=drive_link" target="_blank" class="nav-resume">Resume</a>
-  </div>
-</nav>
-
-<!-- ════════ HERO ════════ -->
-<section id="hero">
-  <div class="hero-bg-kanji">技術</div>
-
-  <div class="hero-label">生成AI開発者 · GenAI Engineer · RAG · LLM · Agents</div>
-
-  <h1 class="hero-name" id="scramble-name">Himanshu</h1>
-  <div class="hero-surname">Sharma</div>
-
-  <p class="hero-desc">
-    Generative AI Engineer building production-grade RAG pipelines, LLM agents,
-    and AI-powered systems — with real backend and IoT depth behind every project.
-  </p>
-
-  <div class="hero-ctas">
-    <a href="#projects" class="cta-primary">View Projects</a>
-    <a href="#contact" class="cta-ghost">Get In Touch</a>
-    <a href="https://github.com/ohnohimanshu" target="_blank" class="cta-ghost">GitHub</a>
-  </div>
-
-  <div class="hero-scroll-hint">
-    <div class="hero-scroll-line"></div>
-    Scroll
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num" data-count="3">0<span>+</span></div>
-      <div class="stat-label">AI Projects Shipped</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="8.1">0<span></span></div>
-      <div class="stat-label">CGPA · B.Voc IoT</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-count="2">0<span>+</span></div>
-      <div class="stat-label">Years Building</div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ MARQUEE ════════ -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>RAG Pipelines</span><span class="dot">●</span>
-    <span>LangChain</span><span class="dot">●</span>
-    <span>LLM Agents</span><span class="dot">●</span>
-    <span>Ollama</span><span class="dot">●</span>
-    <span>ChromaDB</span><span class="dot">●</span>
-    <span>n8n</span><span class="dot">●</span>
-    <span>FastAPI</span><span class="dot">●</span>
-    <span>Django</span><span class="dot">●</span>
-    <span>Python</span><span class="dot">●</span>
-    <span>Docker</span><span class="dot">●</span>
-    <span>AWS EC2</span><span class="dot">●</span>
-    <span>Prompt Engineering</span><span class="dot">●</span>
-    <span>Vector DBs</span><span class="dot">●</span>
-    <span>LLMOps</span><span class="dot">●</span>
-    <span>LoRa · ESP32</span><span class="dot">●</span>
-    <span>MQTT</span><span class="dot">●</span>
-    <!-- repeat -->
-    <span>RAG Pipelines</span><span class="dot">●</span>
-    <span>LangChain</span><span class="dot">●</span>
-    <span>LLM Agents</span><span class="dot">●</span>
-    <span>Ollama</span><span class="dot">●</span>
-    <span>ChromaDB</span><span class="dot">●</span>
-    <span>n8n</span><span class="dot">●</span>
-    <span>FastAPI</span><span class="dot">●</span>
-    <span>Django</span><span class="dot">●</span>
-    <span>Python</span><span class="dot">●</span>
-    <span>Docker</span><span class="dot">●</span>
-    <span>AWS EC2</span><span class="dot">●</span>
-    <span>Prompt Engineering</span><span class="dot">●</span>
-    <span>Vector DBs</span><span class="dot">●</span>
-    <span>LLMOps</span><span class="dot">●</span>
-    <span>LoRa · ESP32</span><span class="dot">●</span>
-    <span>MQTT</span><span class="dot">●</span>
-  </div>
-</div>
-
-<!-- ════════ ABOUT ════════ -->
-<section id="about">
-  <div class="sec-header reveal">
-    <span class="sec-num">一</span>
-    <h2 class="sec-title">About</h2>
-    <span class="sec-line"></span>
-    <span class="sec-sub">序文</span>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-left reveal">
-      <div class="about-big-kanji">AI開発</div>
-      <div class="about-subtitle">
-        Building the<br/>Future with<br/><em style="color:var(--red)">Generative AI</em>
-      </div>
-      <div class="about-meta">
-        <div class="about-meta-item">Agra, India · Open to Japan</div>
-        <div class="about-meta-item">B.Voc IoT · CGPA 8.1</div>
-        <div class="about-meta-item">GenAI · RAG · Agents · LLMOps</div>
-        <div class="about-meta-item">himanshuxdei@gmail.com</div>
-      </div>
-    </div>
-
-    <div class="about-right">
-      <p class="about-dropcap reveal reveal-delay-1">
-        Generative AI Engineer specializing in RAG pipelines, LLM agents, and production-grade AI systems. Pursuing B.Voc in IoT at Dayalbagh Educational Institute, Agra (CGPA 8.1). I build AI applications that go beyond demos — with real backend engineering, containerized deployments, and cloud infrastructure behind every project.
-      </p>
-      <p class="about-p reveal reveal-delay-2">
-        My rare edge: I combine deep GenAI knowledge (RAG, LangChain, Ollama, local LLMs) with real full-stack backend skills (Django, FastAPI, Docker, AWS) and two years of production IoT development. Most AI engineers can't deploy. Most backend devs can't build RAG. I do both — and that matters for the Japanese market especially.
-      </p>
-
-      <!-- Currently Learning Banner -->
-      <div class="reveal reveal-delay-3" style="border:1px solid rgba(217,64,53,0.3);background:rgba(217,64,53,0.05);padding:1.5rem 2rem;margin-top:0.5rem;">
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse-dot 1.5s ease infinite;flex-shrink:0;"></span>
-          <span style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);">Currently Learning — This Month</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.6rem;">
-          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>Python for AI & Agents (Dave Ebbelaar)</div>
-          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>FastAPI Full Course (Corey Schafer)</div>
-          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>Intro to LLMs (Andrej Karpathy)</div>
-          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>RAG Crash Course (Krish Naik)</div>
-          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>AI Agents Course (Marina Wyss)</div>
-          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>What is LLMOps? (Shantanu)</div>
-        </div>
-      </div>
-
-      <div class="skills-section reveal reveal-delay-3">
-        <div class="skills-grid">
-          <div class="skill-group">
-            <h4>GenAI / LLM</h4>
-            <div class="skill-tags">
-              <span class="stag">RAG Pipelines</span>
-              <span class="stag">LangChain</span>
-              <span class="stag">Ollama</span>
-              <span class="stag">AI Agents</span>
-              <span class="stag">n8n</span>
-              <span class="stag">ChromaDB</span>
-              <span class="stag">Prompt Eng.</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h4>Backend</h4>
-            <div class="skill-tags">
-              <span class="stag">Python</span>
-              <span class="stag">Django</span>
-              <span class="stag">FastAPI</span>
-              <span class="stag">REST API</span>
-              <span class="stag">WebSockets</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h4>Cloud / DevOps</h4>
-            <div class="skill-tags">
-              <span class="stag">AWS EC2</span>
-              <span class="stag">S3</span>
-              <span class="stag">Lambda</span>
-              <span class="stag">Docker</span>
-              <span class="stag">NGINX</span>
-              <span class="stag">CI/CD</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h4>IoT & Hardware</h4>
-            <div class="skill-tags">
-              <span class="stag">LoRa SX1278</span>
-              <span class="stag">ESP32</span>
-              <span class="stag">MQTT</span>
-              <span class="stag">Raspberry Pi</span>
-              <span class="stag">Arduino</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h4>Frontend</h4>
-            <div class="skill-tags">
-              <span class="stag">JavaScript</span>
-              <span class="stag">HTML/CSS</span>
-              <span class="stag">TailwindCSS</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h4>Tools</h4>
-            <div class="skill-tags">
-              <span class="stag">Git</span>
-              <span class="stag">Linux</span>
-              <span class="stag">Bash</span>
-              <span class="stag">VMs</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ EXPERIENCE ════════ -->
-<section id="experience">
-  <div class="sec-header reveal">
-    <span class="sec-num">二</span>
-    <h2 class="sec-title">Experience</h2>
-    <span class="sec-line"></span>
-    <span class="sec-sub">経験</span>
-  </div>
-
-  <div class="exp-list">
-
-    <div class="exp-item reveal">
-      <div class="exp-left">
-        <div class="exp-date">Nov 2025 – Present</div>
-        <div class="exp-company">Dayalbagh<br/>Educational<br/>Institute</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Intern — 5G Virtual Lab</div>
-        <ul class="exp-bullets">
-          <li>Developing a 5G Virtual Lab under the national Virtual Labs initiative, enabling practical experimentation through simulation and remote access.</li>
-          <li>Implementing lab modules covering 5G architecture, protocols, performance metrics, and real-world use cases.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item reveal">
-      <div class="exp-left">
-        <div class="exp-date">May 2024 – Oct 2025</div>
-        <div class="exp-company">Dayalbagh<br/>Educational<br/>Institute</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Project Intern — Web Dev & IoT</div>
-        <ul class="exp-bullets">
-          <li>Built production-deployed web applications using Django and AWS under direct faculty mentorship across 18 months.</li>
-          <li>Developed cloud-integrated IoT solutions using LoRa, Raspberry Pi, ESP32, and Arduino — systems deployed in real college laboratory environments.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════ PROJECTS ════════ -->
-<section id="projects">
-  <div class="sec-header reveal">
-    <span class="sec-num">三</span>
-    <h2 class="sec-title">Projects</h2>
-    <span class="sec-line"></span>
-    <span class="sec-sub">作品</span>
-  </div>
-
-  <div class="bento">
-
-    <!-- 01 - AI Smart Learning - Large featured -->
-    <div class="bcard span-7 featured tilt reveal">
-      <div class="bcard-bg">知能</div>
-      <div class="bcard-num">
-        <span>01</span>
-        <span class="bcard-badge">Featured · GenAI</span>
-      </div>
-      <h3 class="bcard-title">AI-Powered Smart Learning Platform</h3>
-      <p class="bcard-desc">Adaptive learning platform with local LLM + RAG pipeline. Generates personalized courses based on user goals and skill level. Privacy-first — runs entirely locally with zero external API dependency. Semantic search with vector embeddings.</p>
-      <div class="bcard-tech">
-        <span>Django</span><span>Ollama</span><span>RAG</span><span>LangChain</span><span>ChromaDB</span><span>Python</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-    <!-- 02 - HMX Chatbot -->
-    <div class="bcard span-5 featured tilt reveal reveal-delay-1">
-      <div class="bcard-bg">話す</div>
-      <div class="bcard-num">
-        <span>02</span>
-        <span class="bcard-badge">Local LLM</span>
-      </div>
-      <h3 class="bcard-title">HMX Chatbot — Local LLM</h3>
-      <p class="bcard-desc">Privacy-first chatbot powered by Ollama. Real-time WebSocket conversations with zero cloud dependency — everything runs locally on your hardware.</p>
-      <div class="bcard-tech">
-        <span>Django Channels</span><span>Ollama</span><span>WebSockets</span><span>TailwindCSS</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu/HMX-Chatbot" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-    <!-- 03 - Resume Analyzer -->
-    <div class="bcard span-6 featured tilt reveal reveal-delay-2">
-      <div class="bcard-bg">文書</div>
-      <div class="bcard-num">
-        <span>03</span>
-        <span class="bcard-badge">AI · Cloud</span>
-      </div>
-      <h3 class="bcard-title">AI Resume Analyzer</h3>
-      <p class="bcard-desc">Gemini-powered PDF/DOCX resume analysis with intelligent NLP feedback. Deployed on AWS EC2 with Docker. Provides structured improvement suggestions with LLM scoring.</p>
-      <div class="bcard-tech">
-        <span>Django</span><span>Gemini API</span><span>PyMuPDF</span><span>Docker</span><span>AWS EC2</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu/ResumePro-AI" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-    <!-- 04 - Smart Lab IoT - still featured as differentiator -->
-    <div class="bcard span-6 tilt reveal reveal-delay-3">
-      <div class="bcard-bg">工場</div>
-      <div class="bcard-num">
-        <span>04</span>
-        <span class="bcard-badge">Deployed · IoT</span>
-      </div>
-      <h3 class="bcard-title">Smart Lab Monitoring System</h3>
-      <p class="bcard-desc">Hybrid Wi-Fi + LoRa IoT platform deployed in real college labs. Dual gateways for fault tolerance, real-time MQTT dashboards, role-based access control.</p>
-      <div class="bcard-tech">
-        <span>Django</span><span>MQTT</span><span>LoRa SX1278</span><span>ESP32</span><span>Docker</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu/IoT-management" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-    <!-- 05 - Face Recognition -->
-    <div class="bcard span-4 tilt reveal reveal-delay-2">
-      <div class="bcard-num"><span>05</span></div>
-      <h3 class="bcard-title">Face Recognition Platform</h3>
-      <p class="bcard-desc">Real-time security system — multiple IP cameras, instant email alerts with face snapshots via OpenCV + Redis.</p>
-      <div class="bcard-tech">
-        <span>OpenCV</span><span>Django</span><span>WebSockets</span><span>Redis</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-    <!-- 06 - AI Website Builder -->
-    <div class="bcard span-4 tilt reveal reveal-delay-3">
-      <div class="bcard-num"><span>06</span></div>
-      <h3 class="bcard-title">AI Website Builder</h3>
-      <p class="bcard-desc">Gemini-driven builder generating website layouts and content with real-time preview and template switching.</p>
-      <div class="bcard-tech">
-        <span>Django</span><span>Gemini API</span><span>HTML</span><span>JavaScript</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu/Web-Builder" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-    <!-- 07 - ABC bot -->
-    <div class="bcard span-4 tilt reveal reveal-delay-4">
-      <div class="bcard-num"><span>07</span></div>
-      <h3 class="bcard-title">ABC Lighting Chatbot</h3>
-      <p class="bcard-desc">Django-based conversational chatbot for a solar company. Animated UI, product image responses, Django Admin integration.</p>
-      <div class="bcard-tech">
-        <span>Django</span><span>REST API</span><span>JavaScript</span><span>TailwindCSS</span>
-      </div>
-      <a href="https://github.com/ohnohimanshu/ABC-Lightning-Bot" target="_blank" class="bcard-link">View on GitHub</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════ ACHIEVEMENTS ════════ -->
-<section id="achievements">
-  <div class="sec-header reveal">
-    <span class="sec-num">四</span>
-    <h2 class="sec-title">Achievements</h2>
-    <span class="sec-line"></span>
-    <span class="sec-sub">実績</span>
-  </div>
-
-  <div class="ach-grid">
-    <div class="ach-card reveal">
-      <div class="ach-icon">🏅</div>
-      <div>
-        <h4>Smart India Hackathon 2024</h4>
-        <p>Led Team Neon_Nexus to 4th place at the Internal Smart India Hackathon at Dayalbagh Educational Institute. Competed against top engineering teams.</p>
-      </div>
-    </div>
-    <div class="ach-card reveal reveal-delay-1">
-      <div class="ach-icon">☁️</div>
-      <div>
-        <h4>AWS AWSome Day Conference</h4>
-        <p>Attended AWSome Day Online Conference by Amazon Web Services, gaining deeper expertise in cloud architecture and AWS services ecosystem.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ CONTACT ════════ -->
-<section id="contact">
-  <!-- Brushstroke SVG -->
-  <svg width="160" height="24" viewBox="0 0 160 24" fill="none" style="margin-bottom:2.5rem;">
-    <path d="M8 12 Q40 5 80 12 Q120 19 152 12" stroke="#D94035" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
-    <path d="M30 18 Q60 14 90 18" stroke="#D94035" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.3"/>
-  </svg>
-
-  <p class="contact-small reveal">五 · お問い合わせ</p>
-  <h2 class="contact-title reveal reveal-delay-1">
-    Let's Build<br/><em>Something Great.</em>
-  </h2>
-  <p class="contact-sub reveal reveal-delay-2">
-    Open to Generative AI, Full-Stack & IoT roles.<br/>
-    Especially interested in opportunities in <strong style="color:var(--ink)">Japan</strong>.
-  </p>
-  <a href="mailto:himanshuxdei@gmail.com" class="contact-email reveal reveal-delay-3">
-    himanshuxdei@gmail.com
-  </a>
-  <div class="contact-socials reveal reveal-delay-4">
-    <a href="https://github.com/ohnohimanshu" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/ohnohimanshu/" target="_blank">LinkedIn</a>
-    <a href="tel:+919457139175">+91 945 713 9175</a>
-  </div>
-</section>
-
-<!-- ════════ FOOTER ════════ -->
-<footer>
-  <p>© 2025 Himanshu Sharma · 開発者 · Agra, India</p>
-  <span>技術 · 創造 · 革新</span>
-</footer>
-
-<!-- ════════ SCRIPTS ════════ -->
-<script>
-/* ── CURSOR ── */
-const dot = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-function animCursor() {
-  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-  requestAnimationFrame(animCursor);
-}
-animCursor();
-
-/* ── LOADER ── */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('done');
-  }, 1400);
-});
-
-/* ── TEXT SCRAMBLE on name ── */
-const CHARS = 'アイウエオカキクケコ日本語技術開発！@#$%&';
-function scramble(el, finalText, duration = 1200) {
-  let start = null;
-  const chars = finalText.split('');
-  function step(ts) {
-    if (!start) start = ts;
-    const prog = Math.min((ts - start) / duration, 1);
-    const revealIdx = Math.floor(prog * chars.length);
-    el.textContent = chars.map((c, i) => {
-      if (i < revealIdx) return c;
-      return CHARS[Math.floor(Math.random() * CHARS.length)];
-    }).join('');
-    if (prog < 1) requestAnimationFrame(step);
-    else el.textContent = finalText;
-  }
-  requestAnimationFrame(step);
-}
-setTimeout(() => scramble(document.getElementById('scramble-name'), 'Himanshu', 1600), 1500);
-
-/* ── SCROLL REVEAL ── */
-const reveals = document.querySelectorAll('.reveal');
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-reveals.forEach(r => revObs.observe(r));
-
-/* ── NAV SCROLL ── */
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-});
-
-/* ── COUNTER ANIMATION ── */
-function animCount(el) {
-  const target = parseFloat(el.dataset.count);
-  const isFloat = target % 1 !== 0;
-  const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
-  let start = 0, duration = 1500, begin = null;
-  function step(ts) {
-    if (!begin) begin = ts;
-    const prog = Math.min((ts - begin) / duration, 1);
-    const eased = 1 - Math.pow(1 - prog, 3);
-    const val = start + (target - start) * eased;
-    el.innerHTML = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
-    if (prog < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-const counters = document.querySelectorAll('[data-count]');
-const cntObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); cntObs.unobserve(e.target); }});
-}, { threshold: 0.5 });
-counters.forEach(c => cntObs.observe(c));
-
-/* ── 3D CARD TILT ── */
-document.querySelectorAll('.tilt').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(8px)`;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
-  });
-});
-
-/* ── FALLBACK: Show all content if animations haven't completed ── */
-setTimeout(() => {
-  document.querySelectorAll('.reveal').forEach(el => {
-    if (!el.classList.contains('visible')) {
-      el.classList.add('visible');
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himanshu Sharma | Generative AI Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Noto+Serif+JP:wght@200;300;400;700;900&family=Fragment+Mono:ital@0;1&family=JetBrains+Mono:wght@300;400&family=Inter:wght@200;300;400;600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background-light": "#F2EDE4",
+            "background-dark": "#000000",
+            accent: "#F2EDE4",
+            "text-ghost": "rgba(242, 237, 228, 0.03)",
+            "text-dim": "rgba(242, 237, 228, 0.4)",
+            "border-faint": "rgba(242, 237, 228, 0.08)",
+            "border-dark": "#1A1A1C",
+            "text-muted": "#888888",
+          },
+          fontFamily: {
+            display: ["'IM Fell English'", "serif"],
+            mono: ["'Fragment Mono'", "monospace"],
+            japanese: ["'Noto Serif JP'", "serif"],
+            body: ["'Inter'", "sans-serif"],
+            sans: ["'Inter'", "sans-serif"],
+            cinzel: ["'Cinzel'", "serif"],
+            serif: ["'Cormorant Garamond'", "serif"],
+            playfair: ["'Playfair Display'", "serif"],
+            jetbrains: ["'JetBrains Mono'", "monospace"],
+          },
+          letterSpacing: {
+            'widest-jp': '0.6em',
+            'ui': '0.2em',
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #000000;
+      color: #F2EDE4;
+      overflow-x: hidden;
+      letter-spacing: 0.02em;
     }
-  });
-}, 5000);
-</script>
+
+    /* Scoped styles will be appended here */
+    /* Styles from stitch_loader_navigation.html */
+
+    .loader-kanji {
+      color: rgba(242, 237, 228, 0.08);
+      font-weight: 200;
+    }
+
+    .nav-link {
+      color: rgba(242, 237, 228, 0.4);
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: rgba(242, 237, 228, 1);
+    }
+
+    .hanko {
+      border: 1px solid rgba(242, 237, 228, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+    }
+
+    to {
+      opacity: 1;
+    }
+
+
+    to {
+      width: 200px;
+    }
+
+    /* Styles from stitch_hero_section.html */
+
+    .outline-text {
+      -webkit-text-stroke: 1px rgba(242, 237, 228, 0.15);
+      color: transparent;
+    }
+
+    .clamp-name {
+      font-size: clamp(4rem, 13vw, 11rem);
+      line-height: 0.9;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, #B8312F);
+      animation: scroll-anim 2s infinite ease-in-out;
+    }
+
+    @keyframes scroll-anim {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.03;
+      z-index: 50;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    }
+
+    .japanese-bg {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 25vw;
+      color: rgba(242, 237, 228, 0.03);
+      font-family: 'Noto Serif JP', serif;
+      z-index: -1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+
+    /* Styles from stitch_about_philosophy.html */
+    .ghost-numeral {
+      font-size: 65vh;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .kanji-vertical {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 0.5em;
+    }
+
+    .drop-cap::first-letter {
+      float: left;
+      font-family: 'IM Fell English', serif;
+      font-size: 4.5rem;
+      line-height: 1;
+      margin-right: 0.75rem;
+      color: #B8312F;
+    }
+
+
+    /* Styles from stitch_technical_stack.html */
+
+    .kerning-wide {
+      letter-spacing: 0.2em;
+    }
+
+    .skill-pill {
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .skill-pill:hover {
+      border-color: rgba(242, 237, 228, 0.2);
+      color: rgba(242, 237, 228, 0.8);
+      background: rgba(242, 237, 228, 0.02);
+    }
+
+    .section-line {
+      height: 1px;
+      width: 1rem;
+      background-color: #E23E28;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.75rem;
+    }
+
+
+    /* Styles from stitch_experience_chronology.html */
+
+    .im-fell {
+      font-family: 'IM Fell English', serif;
+    }
+
+    .japanese-text {
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .fragment-mono {
+      font-family: 'Fragment Mono', monospace;
+    }
+
+    .hairline-separator {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #1A1A1C, transparent);
+    }
+
+    .experience-entry:hover .role-title {
+      color: #A82B2B;
+      transition: color 0.4s ease;
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Styles from stitch_projects_track.html */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .project-card {
+      background: #09090A;
+      border: 1px solid rgba(242, 237, 228, 0.07);
+      transition: border-color 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .project-card:hover {
+      border-color: rgba(242, 237, 228, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .ghost-kanji {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-size: 180px;
+      opacity: 0.03;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .featured-border {
+      border-top: 2px solid #E53E3E;
+    }
+
+    .drag-track {
+      cursor: grab;
+    }
+
+    .drag-track:active {
+      cursor: grabbing;
+    }
+
+
+
+    /* Styles from stitch_continuous_growth.html */
+    @keyframes pulse-red {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
+      }
+    }
+
+    .pulse-dot {
+      animation: pulse-red 2s infinite;
+    }
+
+    .dimmed-text {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .course-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background-color 0.4s ease-out, padding-left 0.4s ease-out;
+    }
+
+    .course-item:hover {
+      background: rgba(255, 255, 255, 0.02);
+      padding-left: 0.5rem;
+    }
+
+    .red-italic-arrow {
+      font-style: italic;
+      color: #E53E3E;
+      margin-right: 1rem;
+    }
+
+    .japanese-sub {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      position: absolute;
+      left: -4rem;
+      top: 0;
+      font-family: serif;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 2.5rem;
+    }
+
+
+    /* Styles from stitch_contact_footer.html */
+
+    .kanji-bg {
+      font-size: 40vw;
+      line-height: 1;
+      color: rgba(242, 237, 228, 0.018);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .email-link {
+      position: relative;
+      display: inline-block;
+    }
+
+    .email-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: rgba(242, 237, 228, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .email-link:hover::after {
+      background-color: #E23E28;
+    }
+
+    .social-link {
+      font-variant: small-caps;
+      letter-spacing: 0.1em;
+      transition: opacity 0.3s ease;
+    }
+
+    .social-link:hover {
+      opacity: 1 !important;
+    }
+
+    .sound-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+
+    .sound-bar {
+      width: 1px;
+      background-color: currentColor;
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+
+      0%,
+      100% {
+        height: 4px;
+      }
+
+      50% {
+        height: 12px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+</head>
+
+<body class="bg-background-dark text-[#F2EDE4] selection:bg-[#E53E3E] selection:text-white">
+  <!-- Global Noise Overlay -->
+  <div class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-[0.03] z-50 mix-blend-overlay"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');">
+  </div>
+
+  <!-- SECTION: loader_navigation -->
+  <section id="loader_navigation" class="fixed inset-0 z-[100] w-full h-screen bg-background-dark overflow-hidden">
+    <nav
+      class="absolute top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference opacity-0 gs-reveal">
+      <div class="flex items-center space-x-4">
+        <div class="hanko">
+          <span class="font-mono text-[8px] tracking-tighter">HS</span>
+        </div>
+        <span class="font-display text-[10px] tracking-[0.2em] uppercase opacity-80">Himanshu</span>
+      </div>
+      <div class="flex space-x-8">
+        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">序文</a>
+        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">経験</a>
+        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">作品</a>
+        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">連絡</a>
+      </div>
+    </nav>
+    <main class="relative h-screen w-full flex flex-col items-center justify-center">
+      <div class="loader-kanji font-display text-8xl md:text-9xl tracking-widest-jp mb-12 opacity-0 gs-reveal">
+        聖域
+      </div>
+      <div class="h-[1px] bg-[#f2ede4] opacity-20 gs-line w-0"></div>
+      <div class="mt-12 text-center opacity-0 gs-reveal">
+        <p class="font-mono text-[10px] tracking-[0.4em] opacity-40 uppercase">Generative AI Engineer</p>
+      </div>
+    </main>
+    <div
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 font-mono text-[8px] tracking-[0.5em] uppercase pointer-events-none gs-reveal">
+      Scroll to Begin
+    </div>
+    <div id="loader-sound-toggle"
+      class="absolute bottom-8 right-8 flex items-center space-x-6 mix-blend-difference opacity-0 hover:opacity-100 transition-opacity cursor-pointer gs-reveal">
+      <span class="font-display text-[10px] tracking-widest">Sound</span>
+      <div class="flex space-x-3 font-mono text-[8px] tracking-widest uppercase">
+        <span class="loader-sound-on opacity-100">On</span>
+        <span class="loader-sound-off opacity-30">Off</span>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-8 mix-blend-difference opacity-0 gs-reveal">
+      <span class="font-mono text-[8px] tracking-widest uppercase">Delhi / Tokyo</span>
+    </div>
+  </section>
+  <div data-scroll-container>
+    <!-- SECTION: hero_section -->
+    <section id="hero_section" class="relative w-full min-h-screen overflow-hidden">
+      <div class="japanese-bg">術技</div>
+      <main class="relative min-h-screen w-full flex flex-col justify-center px-8 md:px-20 lg:px-32">
+        <header class="absolute top-12 left-8 md:left-20 lg:left-32 flex flex-col gap-1">
+          <span class="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#B8312F]">
+            生成AI開発者 · Generative AI Engineer
+          </span>
+        </header>
+        <div class="z-10 mt-12">
+          <h1 class="font-display clamp-name tracking-tight mb-2">
+            Himanshu
+          </h1>
+          <h2 class="font-display italic outline-text clamp-name tracking-tight">
+            Sharma
+          </h2>
+          <div class="mt-12 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+            <p class="font-japanese text-sm md:text-base tracking-widest text-accent/80 font-extralight">
+              RAG Pipelines · LLM Agents · IoT Systems · Open to Japan 🇯🇵
+            </p>
+            <div class="h-[1px] w-12 bg-[#B8312F]/40 hidden md:block"></div>
+            <div class="flex gap-6 font-mono text-[0.7rem] uppercase tracking-widest text-accent/50">
+              <a class="hover:text-[#B8312F] transition-colors" href="#">Projects</a>
+              <a class="hover:text-[#B8312F] transition-colors" href="#">Stack</a>
+              <a class="hover:text-[#B8312F] transition-colors" href="#">Connect</a>
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-12 right-8 md:right-20 lg:right-32 flex flex-col items-center gap-6">
+          <span
+            class="font-mono text-[0.55rem] uppercase tracking-[0.4em] rotate-180 [writing-mode:vertical-lr] text-accent/40">
+            Scroll to explore
+          </span>
+          <div class="scroll-line"></div>
+        </div>
+        <div class="absolute bottom-12 left-8 md:left-20 lg:left-32">
+          <div class="w-8 h-8 border border-accent/10 flex items-center justify-center">
+            <span class="font-mono text-[0.6rem] text-accent/30">01</span>
+          </div>
+        </div>
+      </main>
+      <section class="min-h-screen px-8 md:px-20 lg:px-32 py-32 flex flex-col justify-start">
+        <div class="max-w-4xl">
+          <h3 class="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#B8312F] mb-8">About — 概要</h3>
+          <p class="font-display text-4xl md:text-5xl leading-tight text-accent/90 mb-12">
+            I build production-grade <span class="text-[#B8312F] italic">Generative AI</span> architectures that
+            bridge the gap between cloud intelligence and edge reality.
+          </p>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-16 font-body text-sm text-accent/60 leading-relaxed font-light">
+            <p>
+              Specializing in RAG pipelines and LLM agents, I integrate advanced reasoning capabilities into
+              complex systems. My background in IoT allows me to extend AI reach from data centers to the
+              physical world.
+            </p>
+            <p>
+              Deeply inspired by Japanese craftsmanship and minimalist engineering, I strive for code that is
+              as performant as it is elegant. Currently seeking opportunities to contribute to the Tokyo tech
+              ecosystem.
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer class="p-12 border-t border-accent/5 flex justify-between items-center">
+        <span class="font-mono text-[0.6rem] text-accent/20 uppercase tracking-widest">© 2024 Himanshu Sharma</span>
+        <div class="flex gap-4">
+          <div class="w-1.5 h-1.5 rounded-full bg-[#B8312F] animate-pulse"></div>
+        </div>
+      </footer>
+    </section><!-- SECTION: about_philosophy -->
+    <section id="about_philosophy" class="relative w-full min-h-screen overflow-hidden">
+      <main class="relative min-h-screen flex items-center justify-center px-8 md:px-20 py-20">
+        <div
+          class="absolute left-0 top-0 h-full w-1/2 flex items-center justify-center opacity-20 md:opacity-100 overflow-hidden pointer-events-none">
+          <div
+            class="ghost-numeral font-display italic text-[#00000008] dark:text-[rgba(242,237,228,0.04)] absolute left-10 md:left-20 top-1/2 -translate-y-1/2">
+            I
+          </div>
+          <div
+            class="kanji-vertical absolute left-12 md:left-40 top-1/2 -translate-y-1/2 font-display text-2xl md:text-3xl tracking-widest text-[#B8312F]/40 dark:text-[#B8312F]/30 uppercase">
+            自己紹介
+          </div>
+        </div>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 relative z-10">
+          <div class="hidden md:block md:col-span-5"></div>
+          <div class="md:col-span-7 flex flex-col justify-center space-y-8 max-w-2xl">
+            <div
+              class="font-mono text-xs uppercase tracking-[0.3em] text-stone-500 dark:text-stone-500 flex items-center gap-4">
+              <span>一 · About</span>
+              <div class="h-[1px] w-12 bg-stone-300 dark:bg-stone-800"></div>
+            </div>
+            <h2 class="font-display text-4xl md:text-6xl text-stone-900 dark:text-stone-100 leading-tight">
+              Crafting the Future of <span class="text-[#B8312F] italic">GenAI</span>
+            </h2>
+            <div class="space-y-6 text-lg md:text-xl font-light leading-relaxed text-stone-600 dark:text-stone-400">
+              <p class="drop-cap">
+                Generative AI Engineer specializing in RAG pipelines, LLM agents, and production-grade AI
+                systems. Pursuing B.Voc in IoT at Dayalbagh Educational Institute, Agra. I build AI
+                applications that go beyond demos—with real backend engineering, containerized deployments,
+                and cloud infrastructure behind every project.
+              </p>
+              <p>
+                My rare edge: I combine deep GenAI knowledge (RAG, LangChain, Ollama, local LLMs) with real
+                full-stack backend skills (Django, FastAPI, Docker, AWS) and two years of production IoT
+                development. Most AI engineers can’t deploy. Most backend devs can’t build RAG. I do both —
+                and that matters for the Japanese market especially.
+              </p>
+            </div>
+            <div
+              class="pt-12 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-12 border-t border-stone-200 dark:border-stone-800">
+              <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
+                <span class="text-[#B8312F]">—</span>
+                <span class="text-stone-700 dark:text-stone-300 uppercase">Agra, India</span>
+              </div>
+              <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
+                <span class="text-[#B8312F]">—</span>
+                <span class="text-stone-700 dark:text-stone-300 uppercase">B.Voc IoT · CGPA 8.1</span>
+              </div>
+              <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
+                <span class="text-[#B8312F]">—</span>
+                <span class="text-stone-700 dark:text-stone-300 uppercase">GenAI · RAG · LLMops</span>
+              </div>
+              <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
+                <span class="text-[#B8312F]">—</span>
+                <span class="text-stone-700 dark:text-stone-300 uppercase">himanshuxdei@gmail.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute top-20 right-20 pointer-events-none opacity-10">
+          <svg class="stroke-stone-900 dark:stroke-stone-100" fill="none" height="200" viewBox="0 0 100 100" width="200"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke-dasharray="2 4" stroke-width="0.5"></circle>
+            <path d="M50 0V100M0 50H100" stroke-width="0.2"></path>
+          </svg>
+        </div>
+      </main>
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer group">
+        <span class="font-mono text-[10px] uppercase tracking-[0.5em]">Scroll to Experience</span>
+        <div class="w-[1px] h-8 bg-stone-900 dark:bg-stone-100 group-hover:h-12 transition-all duration-500"></div>
+      </div>
+    </section><!-- SECTION: technical_stack -->
+    <section id="technical_stack" class="relative w-full min-h-screen overflow-hidden">
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+        <h1 class="font-display text-[20vw] text-text-ghost whitespace-nowrap leading-none">
+          技術スタック
+        </h1>
+      </div>
+      <main class="relative z-10 w-full h-screen flex flex-col justify-center px-8 md:px-24 lg:px-40">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-20 max-w-7xl mx-auto w-full">
+          <section>
+            <div class="flex items-center mb-6">
+              <span class="section-line"></span>
+              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Generative AI</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">RAG
+                Pipelines</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">LangChain</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Ollama</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">ChromaDB</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">LLM
+                Agents</span>
+            </div>
+          </section>
+          <section>
+            <div class="flex items-center mb-6">
+              <span class="section-line"></span>
+              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Backend API</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Python</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Django</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">FastAPI</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">REST
+                API</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">WebSockets</span>
+            </div>
+          </section>
+          <section>
+            <div class="flex items-center mb-6">
+              <span class="section-line"></span>
+              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Cloud DevOps</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">AWS
+                EC2</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">S3</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Lambda</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Docker</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Nginx</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">CI/CD</span>
+            </div>
+          </section>
+          <section>
+            <div class="flex items-center mb-6">
+              <span class="section-line"></span>
+              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">IoT Hardware</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">LoRa
+                SX1278</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">ESP32</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">MQTT</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Raspberry
+                Pi</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Arduino</span>
+            </div>
+          </section>
+          <section>
+            <div class="flex items-center mb-6">
+              <span class="section-line"></span>
+              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Frontend</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">JavaScript</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">TailwindCSS</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">HTML/CSS</span>
+            </div>
+          </section>
+          <section>
+            <div class="flex items-center mb-6">
+              <span class="section-line"></span>
+              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Tools</h2>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Git</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Linux</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Bash</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">VMs</span>
+              <span
+                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Prompt
+                Eng.</span>
+            </div>
+          </section>
+        </div>
+      </main>
+      <div class="absolute bottom-12 left-0 w-full flex justify-center pointer-events-none">
+        <p class="font-mono text-[0.5rem] uppercase tracking-[0.4em] text-text-dim opacity-50">
+          Build with intention — © 2024
+        </p>
+      </div>
+    </section><!-- SECTION: experience_chronology -->
+    <section id="experience_chronology" class="relative w-full min-h-screen overflow-hidden">
+      <div class="absolute left-8 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800 hidden lg:block opacity-30"></div>
+      <div class="absolute right-8 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800 hidden lg:block opacity-30"></div>
+      <main class="min-h-screen flex flex-col justify-center items-center px-6 lg:px-24 py-20 relative">
+        <div class="w-full max-w-5xl mb-24 ">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="fragment-mono text-[10px] tracking-[0.3em] uppercase text-[#A82B2B]">06</span>
+            <div class="h-px w-8 bg-[#A82B2B]"></div>
+          </div>
+          <div class="flex justify-between items-baseline border-b border-zinc-200 dark:border-zinc-800 pb-8">
+            <h2 class="im-fell text-4xl md:text-6xl text-slate-900 dark:text-zinc-100 italic">
+              <span class="japanese-text not-italic mr-4 text-2xl md:text-3xl opacity-50">三 ·</span>
+              Experience
+            </h2>
+            <p class="fragment-mono text-[10px] tracking-widest hidden md:block">CHRONOLOGY / 2024 — PRESENT</p>
+          </div>
+        </div>
+        <div class="w-full max-w-5xl space-y-0 " style="animation-delay: 0.2s;">
+          <article class="experience-entry group py-12 border-b border-zinc-200 dark:border-zinc-800">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+              <div class="md:col-span-4 space-y-2">
+                <div class="flex items-center gap-3">
+                  <span
+                    class="fragment-mono text-[10px] border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-sm">NOV
+                    2025 — PRESENT</span>
+                </div>
+                <h3
+                  class="role-title im-fell text-2xl md:text-3xl text-slate-900 dark:text-zinc-100 transition-colors duration-500">
+                  Intern — 5G Virtual Lab
+                </h3>
+                <p class="japanese-text text-[#A82B2B] text-sm font-light tracking-wide">
+                  Dayalbagh Educational Institute
+                </p>
+              </div>
+              <div class="md:col-span-8 md:pl-12">
+                <ul class="space-y-6 text-sm md:text-base leading-relaxed max-w-2xl">
+                  <li class="flex gap-4">
+                    <span class="text-[#A82B2B] mt-1">—</span>
+                    <span>Developing a 5G Virtual Lab under the national Virtual Labs initiative,
+                      enabling practical experimentation through simulation and remote access.</span>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="text-[#A82B2B] mt-1">—</span>
+                    <span>Implementing lab modules covering 5G architecture, protocols, performance
+                      metrics, and real-world use cases.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="experience-entry group py-12 border-b border-zinc-200 dark:border-zinc-800">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+              <div class="md:col-span-4 space-y-2">
+                <div class="flex items-center gap-3">
+                  <span
+                    class="fragment-mono text-[10px] border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-sm">MAY
+                    2024 — OCT 2025</span>
+                </div>
+                <h3
+                  class="role-title im-fell text-2xl md:text-3xl text-slate-900 dark:text-zinc-100 transition-colors duration-500">
+                  Project Intern — Web Dev &amp; IoT
+                </h3>
+                <p class="japanese-text text-[#A82B2B] text-sm font-light tracking-wide">
+                  Dayalbagh Educational Institute
+                </p>
+              </div>
+              <div class="md:col-span-8 md:pl-12">
+                <ul class="space-y-6 text-sm md:text-base leading-relaxed max-w-2xl">
+                  <li class="flex gap-4">
+                    <span class="text-[#A82B2B] mt-1">—</span>
+                    <span>Built production-deployed web applications using Django and AWS under direct
+                      faculty mentorship across 18 months.</span>
+                  </li>
+                  <li class="flex gap-4">
+                    <span class="text-[#A82B2B] mt-1">—</span>
+                    <span>Developed cloud-integrated IoT solutions using LoRa, Raspberry Pi, ESP32, and
+                      Arduino — systems deployed in real college laboratory environments.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="w-full max-w-5xl mt-24 flex justify-between items-center " style="animation-delay: 0.4s;">
+          <div class="group cursor-pointer flex items-center gap-4">
+            <span
+              class="fragment-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-[#A82B2B] transition-colors">PREVIOUS
+              — 05</span>
+          </div>
+          <div class="group cursor-pointer flex items-center gap-4 text-right">
+            <span
+              class="fragment-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-[#A82B2B] transition-colors">NEXT
+              — 07 PROJECTS</span>
+          </div>
+        </div>
+      </main>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.02] dark:opacity-[0.03] select-none">
+        <span class="japanese-text text-[30vw] leading-none font-bold">開発</span>
+      </div>
+      <div
+        class="absolute inset-0 pointer-events-none opacity-[0.015] dark:opacity-[0.03] contrast-150 brightness-100 mix-blend-overlay">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <filter id="noise">
+            <feTurbulence baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" type="fractalNoise">
+            </feTurbulence>
+          </filter>
+          <rect filter="url(#noise)" height="100%" width="100%"></rect>
+        </svg>
+      </div>
+    </section><!-- SECTION: projects_track -->
+    <section id="projects_track" class="relative w-full min-h-screen overflow-hidden">
+      <header
+        class="pt-24 pb-12 px-8 md:px-20 max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <span class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 mb-2 block">Section 03</span>
+          <h1 class="text-6xl md:text-8xl font-display italic leading-none dark:text-[#F2EDE4]">
+            Selected Work
+          </h1>
+        </div>
+        <div class="font-mono text-[11px] tracking-widest uppercase opacity-40 flex items-center gap-4">
+          <span class="material-icons text-sm">west</span>
+          drag to explore
+          <span class="material-icons text-sm">east</span>
+        </div>
+      </header>
+      <main class="relative w-full overflow-hidden select-none" id="scroll-track">
+        <div class="flex gap-8 px-8 md:px-20 pb-24 min-w-max">
+          <article
+            class="project-card featured-border relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">知</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">01 / FEATURED</span>
+                <div class="flex gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#E53E3E] animate-pulse"></span>
+                  <span class="font-mono text-[10px] tracking-widest text-[#E53E3E]">LIVE</span>
+                </div>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">AI Smart Learning
+                Platform</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Adaptive learning platform powered by a full RAG pipeline. Generates personalized courses
+                based on user goals and skill level.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">LangChain</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">ChromaDB</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Python</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex items-center justify-between">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="#">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+              <span class="material-icons opacity-10 text-4xl transform -rotate-45">auto_awesome</span>
+            </div>
+          </article>
+          <article
+            class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">話</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">02 / LOCAL LLM</span>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">HMX Chatbot — Private
+                Intelligence</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Privacy-first chatbot powered by Ollama. Real-time WebSocket conversations with zero cloud
+                dependency — everything runs locally on your hardware.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Ollama</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Django</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">WebSockets</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="#">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+            </div>
+          </article>
+          <article
+            class="project-card featured-border relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">計</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">03 / IOT &amp; HW</span>
+                <div class="flex gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span class="font-mono text-[10px] tracking-widest text-emerald-500 opacity-60">STABLE</span>
+                </div>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Smart Lab Monitoring
+                System</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Hybrid Wi-Fi + LoRa IoT platform deployed in real college laboratories for fault tolerance,
+                real-time MQTT dashboards, and role-based access control.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">LoRa</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">MQTT</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">ESP32</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="#">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+            </div>
+          </article>
+          <article
+            class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">解</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">04 / CLOUD AI</span>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">AI Resume Analyzer</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Gemini-powered PDF/DOCX resume analysis with intelligent NLP feedback. Deployed on AWS EC2
+                with Docker. Provides structured improvement suggestions.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Gemini
+                  API</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Docker</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">AWS
+                  EC2</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="#">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+            </div>
+          </article>
+          <article
+            class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">像</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">05 / COMPUTER VISION</span>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Face Recognition
+                Platform</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Real-time security system supporting multiple IP cameras. Instant email alerts with face
+                snapshots via OpenCV and Redis. Scalable multi-camera architecture.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">OpenCV</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Redis</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Python</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="#">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </main>
+      <footer class="mt-12 mb-32 px-8 md:px-20 max-w-[1440px] mx-auto flex flex-col items-center">
+        <div class="h-px w-full max-w-[400px] bg-stone-200 dark:bg-white/10 mb-12"></div>
+        <p class="font-display italic text-2xl md:text-3xl opacity-80 text-center max-w-2xl leading-relaxed">
+          "Merging the precision of low-level hardware with the boundless creativity of Generative AI."
+        </p>
+        <div class="mt-12 flex gap-8">
+          <a class="group flex items-center gap-3" href="#">
+            <span
+              class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Contact</span>
+            <span
+              class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+          <a class="group flex items-center gap-3" href="#">
+            <span
+              class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Resume</span>
+            <span
+              class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+      </footer>
+      <aside class="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-12 z-50">
+        <span
+          class="font-mono text-[9px] vertical-text tracking-[0.5em] opacity-30 uppercase whitespace-nowrap">Himanshu
+          Sharma Portfolio</span>
+        <div class="flex flex-col gap-4 items-center">
+          <div class="w-0.5 h-12 bg-[#E53E3E]/20 relative">
+            <div class="absolute top-0 left-0 w-full h-1/3 bg-[#E53E3E]"></div>
+          </div>
+          <span class="font-mono text-[10px] text-[#E53E3E]">03</span>
+        </div>
+      </aside>
+      <script>
+
+      </script>
+      <style>
+        .vertical-text {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
+      </style>
+    </section><!-- SECTION: continuous_growth -->
+    <section id="continuous_growth" class="relative w-full min-h-screen overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]">
+        </div>
+        <div
+          class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
+        </div>
+      </div>
+      <main class="relative z-10 w-full max-w-5xl px-8 py-24 md:py-32">
+        <header class="mb-20 relative">
+          <div class="japanese-sub hidden lg:block select-none">継続的な成長</div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-2 h-2 rounded-full bg-[#E53E3E] pulse-dot"></div>
+            <span
+              class="font-serif italic text-lg tracking-widest text-[#E53E3E] dark:text-[#E53E3E] uppercase opacity-90">
+              五 · Currently Learning
+            </span>
+          </div>
+          <h1 class="font-serif text-5xl md:text-7xl font-light tracking-tight leading-tight">
+            Leveling <span class="font-playfair italic text-[#E53E3E] dark:text-[#E53E3E]">Up</span> — <br
+              class="md:hidden" />
+            <span class="opacity-80">This Month</span>
+          </h1>
+          <div class="h-px w-24 bg-[#E53E3E]/40 mt-10"></div>
+        </header>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
+          <div class="space-y-0">
+            <div class="course-item flex items-center py-6 group">
+              <span class="red-italic-arrow text-xl">→</span>
+              <div>
+                <h3
+                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
+                  Python for AI &amp; Agents</h3>
+                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Dave Ebbelaar
+                </p>
+              </div>
+            </div>
+            <div class="course-item flex items-center py-6 group">
+              <span class="red-italic-arrow text-xl">→</span>
+              <div>
+                <h3
+                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
+                  Intro to LLMs</h3>
+                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Andrej
+                  Karpathy</p>
+              </div>
+            </div>
+            <div class="course-item flex items-center py-6 group border-b-0 md:border-b">
+              <span class="red-italic-arrow text-xl">→</span>
+              <div>
+                <h3
+                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
+                  AI Agents Course</h3>
+                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Marina Wyss
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-0">
+            <div class="course-item flex items-center py-6 group">
+              <span class="red-italic-arrow text-xl">→</span>
+              <div>
+                <h3
+                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
+                  FastAPI Full Course</h3>
+                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Corey Schafer
+                </p>
+              </div>
+            </div>
+            <div class="course-item flex items-center py-6 group">
+              <span class="red-italic-arrow text-xl">→</span>
+              <div>
+                <h3
+                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
+                  RAG Crash Course</h3>
+                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Krish Naik</p>
+              </div>
+            </div>
+            <div class="course-item flex items-center py-6 group border-b">
+              <span class="red-italic-arrow text-xl">→</span>
+              <div>
+                <h3
+                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
+                  What is LLMOps?</h3>
+                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Shantanu</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer
+          class="mt-24 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-t border-white/5 pt-12">
+          <div class="font-serif italic text-sm opacity-40">
+            Continuous pursuit of knowledge in the age of intelligence.
+          </div>
+          <div class="flex items-center gap-8">
+            <a class="font-mono text-[0.65rem] uppercase tracking-[0.3em] opacity-60 hover:opacity-100 hover:text-[#E53E3E] transition-all duration-300"
+              href="#">Previous / Project</a>
+            <a class="font-mono text-[0.65rem] uppercase tracking-[0.3em] opacity-60 hover:opacity-100 hover:text-[#E53E3E] transition-all duration-300 underline underline-offset-8 decoration-[#E53E3E]/50"
+              href="#">Next / Achievement</a>
+          </div>
+        </footer>
+      </main>
+      <div class="absolute top-8 left-8 mix-blend-difference pointer-events-none">
+        <span class="font-display text-xs tracking-[0.5em] text-white opacity-80">MILEZ</span>
+      </div>
+      <div class="absolute bottom-8 left-8 mix-blend-difference pointer-events-none">
+        <span class="font-mono text-[0.6rem] tracking-widest text-white opacity-40">08 / CONTINUOUS GROWTH</span>
+      </div>
+      <div
+        class="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-[0.02] select-none">
+        <span class="font-serif text-[40rem] leading-none text-white">学</span>
+      </div>
+    </section><!-- SECTION: contact_footer -->
+    <section id="contact_footer" class="relative w-full min-h-screen overflow-hidden">
+      <main class="relative h-screen w-full flex flex-col items-center justify-center px-6 overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center z-0">
+          <span class="kanji-bg font-display font-bold">連絡</span>
+        </div>
+        <div class="relative z-10 text-center flex flex-col items-center max-w-4xl">
+          <p class="font-mono text-[10px] uppercase tracking-[0.3em] opacity-40 mb-12">五 ・ お問い合わせ</p>
+          <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-extralight leading-tight mb-8">
+            Let's Build <br />
+            <span class="italic text-[#E23E28]">Something</span> Great.
+          </h1>
+          <div class="max-w-md mx-auto mb-16">
+            <p class="font-display font-extralight text-sm md:text-base opacity-60 leading-relaxed">
+              Open to Generative AI, Full-Stack &amp; IoT roles.<br />
+              Especially interested in opportunities in <span class="opacity-100">Japan</span>
+            </p>
+          </div>
+          <div class="mb-20">
+            <a class="email-link font-display italic text-2xl md:text-4xl font-extralight tracking-tight hover:text-[#E23E28] transition-colors duration-500"
+              href="mailto:himanshuxdei@gmail.com">
+              himanshuxdei@gmail.com
+            </a>
+          </div>
+          <nav class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="#">Github</a>
+            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="#">LinkedIn</a>
+            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="#">+91 945
+              753 6575</a>
+          </nav>
+        </div>
+        <footer
+          class="absolute bottom-0 left-0 w-full px-8 py-10 flex flex-col md:flex-row justify-between items-end md:items-center">
+          <div class="flex flex-col gap-1 order-2 md:order-1 mt-6 md:mt-0">
+            <p class="font-mono text-[9px] opacity-30 uppercase tracking-widest">
+              © 2025 Himanshu Sharma — 開発者
+            </p>
+            <p class="font-mono text-[9px] opacity-30 uppercase tracking-widest">
+              Agra, India
+            </p>
+          </div>
+          <div class="flex items-center gap-12 order-1 md:order-2">
+            <div class="hidden md:block">
+              <span class="font-display text-[10px] opacity-[0.08] tracking-[0.5em] whitespace-nowrap">
+                技術 · 創造 · 革新
+              </span>
+            </div>
+            <button aria-label="Toggle Sound" class="flex items-center gap-3 group focus:outline-none">
+              <span
+                class="font-mono text-[9px] opacity-40 uppercase tracking-widest group-hover:opacity-100 transition-opacity">Sound
+                On</span>
+              <div class="sound-wave text-[#F2EDE4] opacity-40 group-hover:opacity-100 transition-opacity">
+                <div class="sound-bar" style="animation-delay: 0.1s"></div>
+                <div class="sound-bar" style="animation-delay: 0.3s"></div>
+                <div class="sound-bar" style="animation-delay: 0.2s"></div>
+                <div class="sound-bar" style="animation-delay: 0.4s"></div>
+              </div>
+            </button>
+          </div>
+        </footer>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
+          <div class="w-[1px] h-12 bg-[#F2EDE4]"></div>
+        </div>
+      </main>
+      <!-- Background Audio -->
+      <audio id="bg-audio" src="Naruto Soundtrack- Sadness and Sorrow (FULL VERSION) - TheSideralninja.mp3" loop
+        autoplay></audio>
+
+      <script>
+        // Sound Toggle Interaction and Autoplay Fix
+        const bgAudio = document.getElementById('bg-audio');
+        bgAudio.volume = 0.4; // Slightly lower volume initially
+
+        // Footer Sound Button
+        const soundBtnFooter = document.querySelector('button[aria-label="Toggle Sound"]');
+        const soundTextFooter = soundBtnFooter.querySelector('span');
+        const soundBarsFooter = soundBtnFooter.querySelectorAll('.sound-bar');
+
+        // Loader Sound Button
+        const loaderSoundToggle = document.getElementById('loader-sound-toggle');
+        const loaderSoundOn = document.querySelector('.loader-sound-on');
+        const loaderSoundOff = document.querySelector('.loader-sound-off');
+
+        let isPlaying = true; // Assume true since we set autoplay
+
+        // Browsers often block autoplay. Force it on first interaction.
+        const startAudio = () => {
+          if (isPlaying) {
+            bgAudio.play().catch(e => {
+              console.log("Autoplay prevented by browser. Audio will play on first interaction.");
+              isPlaying = false;
+              updateUI();
+            });
+          }
+          document.removeEventListener('click', startAudio);
+          document.removeEventListener('touchstart', startAudio);
+          document.removeEventListener('scroll', startAudio);
+        };
+        document.addEventListener('click', startAudio);
+        document.addEventListener('touchstart', startAudio);
+        document.addEventListener('scroll', startAudio);
+
+        function updateUI() {
+          // Update Footer Button
+          if (soundTextFooter && soundBarsFooter) {
+            soundTextFooter.textContent = isPlaying ? 'Sound On' : 'Sound Off';
+            soundBarsFooter.forEach(bar => {
+              bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+              bar.style.height = isPlaying ? '' : '2px';
+            });
+          }
+
+          // Update Loader Button
+          if (loaderSoundOn && loaderSoundOff) {
+            if (isPlaying) {
+              loaderSoundOn.classList.replace('opacity-30', 'opacity-100');
+              loaderSoundOff.classList.replace('opacity-100', 'opacity-30');
+            } else {
+              loaderSoundOn.classList.replace('opacity-100', 'opacity-30');
+              loaderSoundOff.classList.replace('opacity-30', 'opacity-100');
+            }
+          }
+        }
+
+        function toggleAudio(e) {
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation(); // prevent startAudio listener from immediately stopping it again
+          }
+          isPlaying = !isPlaying;
+          if (isPlaying) {
+            bgAudio.play();
+          } else {
+            bgAudio.pause();
+          }
+          updateUI();
+        }
+
+        if (soundBtnFooter) soundBtnFooter.addEventListener('click', toggleAudio);
+        if (loaderSoundToggle) loaderSoundToggle.addEventListener('click', toggleAudio);
+
+      </script>
+    </section>
+
+  </div>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const locoScroll = new LocomotiveScroll({
+        el: document.querySelector("[data-scroll-container]"),
+        smooth: true,
+        lerp: 0.08, // Adjust for smoothness
+        multiplier: 1, // Adjust scroll speed
+        tablet: { smooth: true },
+        smartphone: { smooth: true }
+      });
+      locoScroll.on("scroll", ScrollTrigger.update);
+      ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+        scrollTop(value) {
+          return arguments.length ? locoScroll.scrollTo(value, 0, 0) : locoScroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+        pinType: document.querySelector("[data-scroll-container]").style.transform ? "transform" : "fixed"
+      });
+      ScrollTrigger.defaults({ scroller: "[data-scroll-container]" });
+
+
+      // --- Loader Sequence ---
+      const loaderAnim = gsap.timeline({
+        onComplete: () => {
+          locoScroll.start();
+          // Hide loader completely from DOM flow after animation
+          document.getElementById('loader_navigation').style.display = 'none';
+        }
+      });
+
+      gsap.set("#loader_navigation", { display: "block" });
+      gsap.set(".gs-reveal", { opacity: 0, y: 20 });
+      gsap.set(".gs-line", { width: 0 });
+      locoScroll.stop(); // Prevent scroll during loader
+
+      loaderAnim
+        .to(".loader-kanji", { duration: 1.5, opacity: 1, y: 0, ease: "power3.out", delay: 0.5 })
+        .to(".gs-line", { duration: 1.2, width: "200px", ease: "power4.inOut" }, "-=0.8")
+        .to(".gs-reveal", { duration: 1, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" }, "-=0.4")
+        .to("#loader_navigation", { duration: 1.2, yPercent: -100, ease: "power4.inOut", delay: 0.8 })
+
+        // Hero entrace overlapping with loader exit
+        .from("#hero_section .japanese-bg", { duration: 1.5, opacity: 0, scale: 0.9, ease: "power3.out" }, "-=0.8")
+        .from("#hero_section header", { duration: 1, opacity: 0, x: -30, ease: "power3.out" }, "-=1")
+        .from("#hero_section h1", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=0.8")
+        .from("#hero_section h2", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=0.8")
+        .from("#hero_section p, #hero_section .flex.gap-6", { duration: 1, opacity: 0, y: 20, stagger: 0.2, ease: "power3.out" }, "-=0.6")
+        .from("#hero_section .absolute.bottom-12", { duration: 1, opacity: 0, y: 30, ease: "power3.out" }, "-=0.4");
+
+      // --- ScrollTriggers ---
+
+      // About / Philosophy Section
+      gsap.to(".ghost-numeral", {
+        scrollTrigger: {
+          trigger: "#about_philosophy",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        y: 100,
+        opacity: 0.08
+      });
+
+      gsap.to(".kanji-vertical", {
+        scrollTrigger: {
+          trigger: "#about_philosophy",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        y: -50
+      });
+
+      gsap.from("#about_philosophy h2, #about_philosophy p.drop-cap, #about_philosophy p:not(.drop-cap)", {
+        scrollTrigger: {
+          trigger: "#about_philosophy",
+          start: "top 70%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+
+      gsap.from("#about_philosophy .grid > div", {
+        scrollTrigger: {
+          trigger: "#about_philosophy .grid",
+          start: "top 85%",
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+      // Technical Stack
+      gsap.from("#technical_stack h1", {
+        scrollTrigger: {
+          trigger: "#technical_stack",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        x: "-10%"
+      });
+
+      const techSections = gsap.utils.toArray("#technical_stack section");
+      techSections.forEach((sec) => {
+        let tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sec,
+            start: "top 85%"
+          }
+        });
+        tl.from(sec, { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" })
+          .from(sec.querySelectorAll('.skill-pill'), { scale: 0.8, opacity: 0, duration: 0.5, stagger: 0.05, ease: "back.out(1.5)" }, "-=0.4");
+      });
+
+      // Experience Chronology
+      gsap.from("#experience_chronology .japanese-text.text-\\[30vw\\]", {
+        scrollTrigger: {
+          trigger: "#experience_chronology",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        scale: 1.1,
+        opacity: 0.04
+      });
+
+      gsap.from("#experience_chronology h2", {
+        scrollTrigger: {
+          trigger: "#experience_chronology",
+          start: "top 75%"
+        },
+        x: -50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      const entries = gsap.utils.toArray(".experience-entry");
+      entries.forEach((entry) => {
+        gsap.from(entry, {
+          scrollTrigger: {
+            trigger: entry,
+            start: "top 85%"
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out"
+        });
+      });
+
+      // Projects Track - Horizontal Scroll Pin
+      let projectContainer = document.getElementById("scroll-track");
+      let projectSlider = projectContainer.querySelector(".flex");
+
+      let projTween = gsap.to(projectSlider, {
+        x: () => -(projectSlider.scrollWidth - window.innerWidth + 100), // 100px buffer to ensure we can see the end
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#projects_track",
+          pin: true,
+          scrub: 1,
+          end: () => "+=" + (projectSlider.scrollWidth - window.innerWidth)
+        }
+      });
+
+      // Animate cards on appear inside the pinned section
+      gsap.fromTo(".project-card",
+        { y: 100, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: "#projects_track",
+            start: "top 50%", // Trigger slightly earlier
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+          clearProps: "y,opacity"
+        }
+      );
+
+      // Continuous Growth
+      gsap.from("#continuous_growth h1", {
+        scrollTrigger: {
+          trigger: "#continuous_growth",
+          start: "top 75%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      const courses = gsap.utils.toArray(".course-item");
+      courses.forEach((course, i) => {
+        gsap.from(course, {
+          scrollTrigger: {
+            trigger: course,
+            start: "top 90%"
+          },
+          x: -30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: i % 2 === 0 ? 0 : 0.2
+        });
+      });
+
+      // Contact
+      gsap.from("#contact_footer h1, #contact_footer p:not(.opacity-30)", {
+        scrollTrigger: {
+          trigger: "#contact_footer",
+          start: "top 70%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+
+      gsap.from(".kanji-bg", {
+        scrollTrigger: {
+          trigger: "#contact_footer",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        scale: 1.2,
+        opacity: 0.03
+      });
+
+      // Refresh ScrollTrigger and LocomotiveScroll
+      ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+      ScrollTrigger.refresh();
+
+      // Update locomotive on window resize
+      window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+      });
+    });
+
+  </script>
 </body>
+
 </html>
