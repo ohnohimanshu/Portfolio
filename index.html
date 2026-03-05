@@ -1,1336 +1,1320 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himanshu Sharma | Backend Developer</title>
-    <link rel="preload" href="https://prod.spline.design/KibUfnTIqpvEOIjh/scene.splinecode" as="fetch" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js" as="script"
-        crossorigin>
-    <link rel="preload" href="https://prod.spline.design/KibUfnTIqpvEOIjh/scene.splinecode" as="fetch" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js" as="script"
-        crossorigin>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/animations.js"></script>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
-        :root {
-            --primary: #0a192f;
-            --secondary: #112240;
-            --accent: #64ffda;
-            --text: #ccd6f6;
-            --text-light: #8892b0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--primary);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #64ffda, #00bfff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .gradient-border {
-            border: 2px solid transparent;
-            background: linear-gradient(var(--primary), var(--primary)) padding-box,
-                linear-gradient(90deg, #64ffda, #00bfff) border-box;
-            border-radius: 0.5rem;
-        }
-
-        .glass-card {
-            background: rgba(17, 34, 64, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.15);
-        }
-
-        .glow-effect {
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
-        }
-
-        .glow-button {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .glow-button:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, #64ffda, #00bfff);
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
-
-        .glow-button:hover:after {
-            opacity: 0.15;
-        }
-
-        /* Skill badge styling */
-        .skill-badge {
-            background: rgba(17, 34, 64, 0.9);
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-badge:hover {
-            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
-            border-color: rgba(100, 255, 218, 0.6);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--secondary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
-
-        /* Modal styles */
-        .modal {
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s, opacity 0.3s ease;
-        }
-
-        .modal.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        /* Floating input labels */
-        .float-label-input:focus-within label,
-        .float-label-input input:not(:placeholder-shown)+label {
-            transform: translateY(-1.5rem) scale(0.85);
-            color: var(--accent);
-        }
-
-        /* Animated underline for navigation */
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #64ffda, #00bfff);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover:after {
-            width: 100%;
-        }
-
-        /* Progress bar for scrolling */
-        .progress-container {
-            width: 100%;
-            height: 3px;
-            background: transparent;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 50;
-        }
-
-        .progress-bar {
-            height: 3px;
-            background: linear-gradient(90deg, #64ffda, #00bfff);
-            width: 0%;
-        }
-
-        /* Parallax background elements */
-        .bg-element {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(100, 255, 218, 0.05);
-            transition: transform 0.05s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-
-        #resumeContent {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        #resumeBtn {
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Add these animations to your existing style tag */
-        @keyframes rotate-gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        #hero-image {
-            background-size: 200% 200%;
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        #hero-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.5);
-        }
-
-        .float-label-input input:focus,
-        .float-label-input textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 4px 8px rgba(100, 255, 218, 0.2);
-            transform: translateX(5px);
-        }
-
-        /* Add these animations to your existing style tag */
-        @keyframes rotate-gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        #hero-image {
-            background-size: 200% 200%;
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        #hero-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.5);
-        }
-
-        .float-label-input input:focus,
-        .float-label-input textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 4px 8px rgba(100, 255, 218, 0.2);
-            transform: translateX(5px);
-        }
-
-        #resumeBtn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #64ffda, #00bfff);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #resumeBtn:hover::after {
-            opacity: 0.15;
-        }
-
-        #resumeViewer {
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
-        }
-
-        .float-label-input {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        position: relative;
-        margin-bottom: 1.5rem;
-        }
-
-        .float-label-input label {
-            position: absolute;
-            left: 0;
-            top: 0;
-            transform: translateY(0);
-            transition: all 0.3s ease;
-            color: var(--accent);
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .float-label-input label {
-            position: absolute;
-            left: 0;
-            top: 0;
-            transform: translateY(0);
-            transition: all 0.3s ease;
-            color: var(--accent);
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .float-label-input.focused label,
-        .float-label-input input:not(:placeholder-shown)+label,
-        .float-label-input textarea:not(:placeholder-shown)+label {
-            transform: translateY(-1.5rem) scale(0.85);
-            color: var(--accent);
-            opacity: 1;
-        }
-
-        .float-label-input.focused label,
-        .float-label-input input:not(:placeholder-shown)+label,
-        .float-label-input textarea:not(:placeholder-shown)+label {
-            transform: translateY(-1.5rem) scale(0.85);
-            color: var(--accent);
-            opacity: 1;
-        }
-
-        .float-label-input input::placeholder,
-        .float-label-input textarea::placeholder {
-            color: transparent;
-        }
-
-        .float-label-input input::placeholder,
-        .float-label-input textarea::placeholder {
-            color: transparent;
-        }
-
-        .float-label-input input:focus,
-        .float-label-input textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 2px 4px rgba(100, 255, 218, 0.1);
-        }
-
-        .float-label-input input:focus,
-        .float-label-input textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 2px 4px rgba(100, 255, 218, 0.1);
-        }
-
-        /* Form success message animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Form success message animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .text-center {
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .text-center {
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        /* Add this inside your existing style tag */
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Add this inside your existing style tag */
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fade-in 0.3s ease-out forwards;
-        }
-
-        .animate-fade-in {
-            animation: fade-in 0.3s ease-out forwards;
-        }
-
-        /* Add to your existing style tag */
-        .animate-pulse {
-            animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        /* Add to your existing style tag */
-        .animate-pulse {
-            animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        #gameBoard button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--accent);
-        }
-
-        #gameBoard button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--accent);
-        }
-
-        #playerSequence button {
-            margin: 0 4px;
-        }
-
-        spline-viewer::part(branding) {
-            display: none !important;
-        }
-
-        #playerSequence button {
-            margin: 0 4px;
-        }
-
-        spline-viewer::part(branding) {
-            display: none !important;
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Himanshu Sharma — AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=Shippori+Mincho:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   SUMI NOIR — ROOT & RESET
+   ============================================================ */
+:root {
+  --bg:       #07060A;
+  --bg2:      #0E0C12;
+  --ink:      #F0EBE0;
+  --mist:     #6B6560;
+  --red:      #D94035;
+  --gold:     #C9A84C;
+  --border:   rgba(240,235,224,0.07);
+  --ff-disp:  'Cormorant Garamond', serif;
+  --ff-jp:    'Shippori Mincho', serif;
+  --ff-mono:  'Space Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ff-jp);
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear, width 0.3s, height 0.3s, background 0.3s;
+}
+#cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 9998;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(217,64,53,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+}
+body:has(a:hover) #cursor-ring,
+body:has(.tilt:hover) #cursor-ring { width: 60px; height: 60px; border-color: var(--red); }
+
+/* ── GRAIN OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9997;
+}
+
+/* ── LOADING SCREEN ── */
+#loader {
+  position: fixed; inset: 0; z-index: 9996;
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1rem;
+  transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+  clip-path: inset(0 0 0 0);
+}
+#loader.done { clip-path: inset(0 0 100% 0); pointer-events: none; }
+#loader-kanji {
+  font-family: var(--ff-jp);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  color: rgba(7,6,10,0.9);
+  letter-spacing: 0.3em;
+  animation: loader-pulse 0.6s ease infinite alternate;
+}
+#loader-name {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: rgba(7,6,10,0.6);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+@keyframes loader-pulse { from { opacity: 0.5; } to { opacity: 1; } }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--red); }
+
+/* ── NAVIGATION ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 1.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: padding 0.4s, background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+  padding: 1rem 3rem;
+  background: rgba(7,6,10,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--ff-jp);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.nav-logo .hanko {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--red);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: var(--red); font-weight: 700;
+  font-family: var(--ff-mono);
+  transition: background 0.2s;
+}
+.nav-logo:hover .hanko { background: var(--red); color: var(--bg); }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; }
+.nav-links a {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--red);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+.nav-resume {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--red);
+  color: var(--red);
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.nav-resume:hover { background: var(--red); color: var(--bg); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 3rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-bg-kanji {
+  position: absolute;
+  right: -2rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--ff-jp);
+  font-size: clamp(16rem, 30vw, 28rem);
+  font-weight: 800;
+  color: rgba(240,235,224,0.02);
+  line-height: 1;
+  pointer-events: none; user-select: none;
+  writing-mode: vertical-rl;
+  letter-spacing: -0.05em;
+}
+.hero-label {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 2rem;
+  opacity: 0; transform: translateY(16px);
+  animation: fadeUp 0.8s 1.2s forwards;
+}
+.hero-label::before {
+  content: '';
+  display: block; width: 3rem; height: 1px; background: var(--red);
+}
+.hero-name {
+  font-family: var(--ff-disp);
+  font-size: clamp(5rem, 13vw, 12rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 1s 1.4s forwards;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--red);
+}
+.hero-surname {
+  font-family: var(--ff-disp);
+  font-size: clamp(5rem, 13vw, 12rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240,235,224,0.2);
+  margin-bottom: 3rem;
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 1s 1.55s forwards;
+}
+.hero-desc {
+  font-family: var(--ff-jp);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--mist);
+  max-width: 460px;
+  line-height: 1.9;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.8s forwards;
+}
+.hero-ctas {
+  display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 2s forwards;
+}
+.cta-primary {
+  padding: 1rem 2.5rem;
+  background: var(--red);
+  color: var(--bg);
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(217,64,53,0.35);
+}
+.cta-ghost {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.cta-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 3rem; left: 3rem;
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--ff-mono); font-size: 0.6rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist);
+  opacity: 0; animation: fadeUp 0.8s 2.3s forwards;
+}
+.hero-scroll-line {
+  width: 2px; height: 40px; background: var(--mist);
+  animation: grow-line 1.5s 2.5s ease infinite alternate;
+}
+@keyframes grow-line { from { height: 20px; } to { height: 50px; } }
+
+/* Stats bar */
+.hero-stats {
+  position: absolute; right: 3rem; bottom: 3rem;
+  display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-end;
+  opacity: 0; animation: fadeUp 0.8s 2.1s forwards;
+}
+.stat-item { text-align: right; }
+.stat-num {
+  font-family: var(--ff-disp);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+}
+.stat-num span { color: var(--red); }
+.stat-label {
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  overflow: hidden;
+  background: var(--bg2);
+}
+.marquee-track {
+  display: flex; gap: 3rem;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track span {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+  white-space: nowrap;
+}
+.marquee-track span.dot { color: var(--red); font-size: 0.5rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTIONS COMMON ── */
+section { padding: 8rem 3rem; position: relative; }
+.sec-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+.sec-num {
+  font-family: var(--ff-jp);
+  font-size: 0.75rem;
+  color: var(--red);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.sec-title {
+  font-family: var(--ff-disp);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.sec-sub {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-left: auto;
+}
+.sec-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  clip-path: inset(0 0 0% 0);
+  transform: translateY(0);
+}
+
+/* Ensure content displays if JavaScript is disabled or delayed */
+body.loaded .reveal,
+.reveal[data-visible="true"] {
+  opacity: 1;
+  clip-path: inset(0 0 0% 0);
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ── ABOUT ── */
+#about { background: var(--bg2); border-top: 1px solid var(--border); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-left { position: relative; }
+.about-big-kanji {
+  font-family: var(--ff-jp);
+  font-size: clamp(6rem, 14vw, 11rem);
+  font-weight: 800;
+  color: rgba(240,235,224,0.03);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: -3rem;
+}
+.about-subtitle {
+  font-family: var(--ff-disp);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+.about-meta {
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.about-meta-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--mist);
+}
+.about-meta-item::before {
+  content: '—';
+  color: var(--red);
+  font-size: 0.8rem;
+}
+.about-right { display: flex; flex-direction: column; gap: 2rem; }
+.about-dropcap {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(240,235,224,0.75);
+  font-weight: 400;
+}
+.about-dropcap::first-letter {
+  font-family: var(--ff-disp);
+  font-size: 4.5rem;
+  font-weight: 600;
+  float: left;
+  line-height: 0.75;
+  margin-right: 0.15em;
+  color: var(--red);
+}
+.about-p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(240,235,224,0.45);
+}
+
+/* ── SKILLS TICKER (horizontal pills) ── */
+.skills-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem;
+}
+.skill-group h4 {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.stag {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border);
+  color: var(--mist);
+  transition: all 0.2s;
+  cursor: default;
+}
+.stag:hover { border-color: var(--red); color: var(--red); background: rgba(217,64,53,0.06); }
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--bg); border-top: 1px solid var(--border); }
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-item:hover { background: rgba(240,235,224,0.01); }
+.exp-date {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--mist);
+  margin-bottom: 0.5rem;
+}
+.exp-company {
+  font-family: var(--ff-disp);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--red);
+  line-height: 1.3;
+}
+.exp-role {
+  font-family: var(--ff-disp);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.exp-bullets li {
+  display: flex; gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(240,235,224,0.45);
+}
+.exp-bullets li::before { content: '—'; color: var(--red); flex-shrink: 0; }
+
+/* ── PROJECTS ── */
+#projects { background: var(--bg2); border-top: 1px solid var(--border); }
+
+/* Bento grid */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 2px;
+  background: var(--border);
+}
+.bcard {
+  background: var(--bg);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+  cursor: default;
+}
+.bcard.span-7 { grid-column: span 7; }
+.bcard.span-5 { grid-column: span 5; }
+.bcard.span-6 { grid-column: span 6; }
+.bcard.span-4 { grid-column: span 4; }
+.bcard.span-8 { grid-column: span 8; }
+
+/* 3D tilt */
+.tilt { transform-style: preserve-3d; transition: transform 0.1s ease; }
+
+.bcard:hover { background: var(--bg2); }
+.bcard-num {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  color: var(--mist);
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.bcard-badge {
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+.bcard-title {
+  font-family: var(--ff-disp);
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.bcard-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(240,235,224,0.4);
+  margin-bottom: 1.5rem;
+}
+.bcard-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+.bcard-tech span {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  background: rgba(240,235,224,0.04);
+  border: 1px solid var(--border);
+  color: var(--mist);
+}
+.bcard-link {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: gap 0.2s;
+}
+.bcard-link:hover { gap: 0.8rem; }
+.bcard-link::after { content: '→'; }
+
+/* Featured card large bg text */
+.bcard-bg {
+  position: absolute;
+  bottom: -1rem; right: -1rem;
+  font-family: var(--ff-jp);
+  font-size: 7rem;
+  font-weight: 800;
+  color: rgba(240,235,224,0.025);
+  pointer-events: none; user-select: none;
+  line-height: 1;
+}
+
+/* Red line on featured */
+.bcard.featured::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--red);
+}
+
+/* ── ACHIEVEMENTS ── */
+#achievements {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 6rem 3rem;
+}
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2px;
+  background: var(--border);
+}
+.ach-card {
+  background: var(--bg2);
+  padding: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  transition: background 0.3s;
+}
+.ach-card:hover { background: rgba(217,64,53,0.04); }
+.ach-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 3rem;
+}
+.ach-card h4 {
+  font-family: var(--ff-disp);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.ach-card p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--mist);
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  min-height: 70vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 8rem 3rem;
+}
+.contact-small {
+  font-family: var(--ff-jp);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--mist);
+  margin-bottom: 2rem;
+}
+.contact-title {
+  font-family: var(--ff-disp);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.contact-title em { font-style: italic; color: var(--red); }
+.contact-sub {
+  font-size: 0.9rem;
+  color: var(--mist);
+  max-width: 380px;
+  line-height: 1.8;
+  margin: 0 auto 3.5rem;
+}
+.contact-email {
+  font-family: var(--ff-disp);
+  font-size: clamp(1.3rem, 3.5vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,235,224,0.15);
+  padding-bottom: 4px;
+  transition: color 0.25s, border-color 0.25s;
+  display: inline-block;
+  margin-bottom: 4rem;
+}
+.contact-email:hover { color: var(--red); border-color: var(--red); }
+.contact-socials {
+  display: flex; gap: 3rem; justify-content: center;
+}
+.contact-socials a {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-socials a:hover { color: var(--red); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+footer p {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--mist);
+}
+footer span {
+  font-family: var(--ff-jp);
+  font-size: 0.7rem;
+  color: rgba(240,235,224,0.15);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 1.5rem; }
+  .nav-links { display: none; }
+  #hero { padding: 6rem 1.5rem 3rem; }
+  section { padding: 5rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+  .bcard.span-7, .bcard.span-5,
+  .bcard.span-6, .bcard.span-4,
+  .bcard.span-8 { grid-column: span 12; }
+  .hero-stats { display: none; }
+  .hero-bg-kanji { display: none; }
+  footer, .contact-socials { flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+}
+
+/* text scramble chars */
+.scramble-char { display: inline-block; }
+
+/* Pulsing dot for currently learning */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+</style>
 </head>
+<body>
 
-<body data-scroll-container>
-    <!-- Progress bar -->
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div id="loader-kanji">AI開発</div>
+  <div id="loader-name">himanshu sharma · generative ai engineer</div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ════════ NAV ════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="hanko">HS</div>
+    <span>Portfolio</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="https://drive.google.com/file/d/1Q2Dd284Y1AtnIl-8lOy8ii3nKsiurrhn/view?usp=drive_link" target="_blank" class="nav-resume">Resume</a>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section id="hero">
+  <div class="hero-bg-kanji">技術</div>
+
+  <div class="hero-label">生成AI開発者 · GenAI Engineer · RAG · LLM · Agents</div>
+
+  <h1 class="hero-name" id="scramble-name">Himanshu</h1>
+  <div class="hero-surname">Sharma</div>
+
+  <p class="hero-desc">
+    Generative AI Engineer building production-grade RAG pipelines, LLM agents,
+    and AI-powered systems — with real backend and IoT depth behind every project.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#projects" class="cta-primary">View Projects</a>
+    <a href="#contact" class="cta-ghost">Get In Touch</a>
+    <a href="https://github.com/ohnohimanshu" target="_blank" class="cta-ghost">GitHub</a>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" data-count="3">0<span>+</span></div>
+      <div class="stat-label">AI Projects Shipped</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-count="8.1">0<span></span></div>
+      <div class="stat-label">CGPA · B.Voc IoT</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-count="2">0<span>+</span></div>
+      <div class="stat-label">Years Building</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ MARQUEE ════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>RAG Pipelines</span><span class="dot">●</span>
+    <span>LangChain</span><span class="dot">●</span>
+    <span>LLM Agents</span><span class="dot">●</span>
+    <span>Ollama</span><span class="dot">●</span>
+    <span>ChromaDB</span><span class="dot">●</span>
+    <span>n8n</span><span class="dot">●</span>
+    <span>FastAPI</span><span class="dot">●</span>
+    <span>Django</span><span class="dot">●</span>
+    <span>Python</span><span class="dot">●</span>
+    <span>Docker</span><span class="dot">●</span>
+    <span>AWS EC2</span><span class="dot">●</span>
+    <span>Prompt Engineering</span><span class="dot">●</span>
+    <span>Vector DBs</span><span class="dot">●</span>
+    <span>LLMOps</span><span class="dot">●</span>
+    <span>LoRa · ESP32</span><span class="dot">●</span>
+    <span>MQTT</span><span class="dot">●</span>
+    <!-- repeat -->
+    <span>RAG Pipelines</span><span class="dot">●</span>
+    <span>LangChain</span><span class="dot">●</span>
+    <span>LLM Agents</span><span class="dot">●</span>
+    <span>Ollama</span><span class="dot">●</span>
+    <span>ChromaDB</span><span class="dot">●</span>
+    <span>n8n</span><span class="dot">●</span>
+    <span>FastAPI</span><span class="dot">●</span>
+    <span>Django</span><span class="dot">●</span>
+    <span>Python</span><span class="dot">●</span>
+    <span>Docker</span><span class="dot">●</span>
+    <span>AWS EC2</span><span class="dot">●</span>
+    <span>Prompt Engineering</span><span class="dot">●</span>
+    <span>Vector DBs</span><span class="dot">●</span>
+    <span>LLMOps</span><span class="dot">●</span>
+    <span>LoRa · ESP32</span><span class="dot">●</span>
+    <span>MQTT</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- ════════ ABOUT ════════ -->
+<section id="about">
+  <div class="sec-header reveal">
+    <span class="sec-num">一</span>
+    <h2 class="sec-title">About</h2>
+    <span class="sec-line"></span>
+    <span class="sec-sub">序文</span>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <div class="about-big-kanji">AI開発</div>
+      <div class="about-subtitle">
+        Building the<br/>Future with<br/><em style="color:var(--red)">Generative AI</em>
+      </div>
+      <div class="about-meta">
+        <div class="about-meta-item">Agra, India · Open to Japan</div>
+        <div class="about-meta-item">B.Voc IoT · CGPA 8.1</div>
+        <div class="about-meta-item">GenAI · RAG · Agents · LLMOps</div>
+        <div class="about-meta-item">himanshuxdei@gmail.com</div>
+      </div>
     </div>
 
-    <!-- Background elements -->
-    <div class="bg-element" style="width: 300px; height: 300px; top: 10%; left: 5%; filter: blur(80px);"></div>
-    <div class="bg-element" style="width: 400px; height: 400px; top: 50%; right: 8%; filter: blur(100px);"></div>
-    <div class="bg-element" style="width: 250px; height: 250px; bottom: 15%; left: 10%; filter: blur(70px);"></div>
+    <div class="about-right">
+      <p class="about-dropcap reveal reveal-delay-1">
+        Generative AI Engineer specializing in RAG pipelines, LLM agents, and production-grade AI systems. Pursuing B.Voc in IoT at Dayalbagh Educational Institute, Agra (CGPA 8.1). I build AI applications that go beyond demos — with real backend engineering, containerized deployments, and cloud infrastructure behind every project.
+      </p>
+      <p class="about-p reveal reveal-delay-2">
+        My rare edge: I combine deep GenAI knowledge (RAG, LangChain, Ollama, local LLMs) with real full-stack backend skills (Django, FastAPI, Docker, AWS) and two years of production IoT development. Most AI engineers can't deploy. Most backend devs can't build RAG. I do both — and that matters for the Japanese market especially.
+      </p>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-opacity-80 backdrop-filter backdrop-blur-lg bg-gray-900 transition-all duration-300 transform"
-        id="navbar"
-        style="transition: transform 0.3s ease-in-out, background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold">
-                    <a href="#" class="gradient-text">HS.</a>
-                </div>
+      <!-- Currently Learning Banner -->
+      <div class="reveal reveal-delay-3" style="border:1px solid rgba(217,64,53,0.3);background:rgba(217,64,53,0.05);padding:1.5rem 2rem;margin-top:0.5rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse-dot 1.5s ease infinite;flex-shrink:0;"></span>
+          <span style="font-family:var(--ff-mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);">Currently Learning — This Month</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.6rem;">
+          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>Python for AI & Agents (Dave Ebbelaar)</div>
+          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>FastAPI Full Course (Corey Schafer)</div>
+          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>Intro to LLMs (Andrej Karpathy)</div>
+          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>RAG Crash Course (Krish Naik)</div>
+          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>AI Agents Course (Marina Wyss)</div>
+          <div style="font-size:0.8rem;color:rgba(240,235,224,0.55);display:flex;align-items:flex-start;gap:0.5rem;"><span style="color:var(--red);flex-shrink:0;">→</span>What is LLMOps? (Shantanu)</div>
+        </div>
+      </div>
 
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-300 hover:text-white nav-link">About</a>
-                    <a href="#projects" class="text-gray-300 hover:text-white nav-link">Projects</a>
-                    <a href="#resume" class="text-gray-300 hover:text-white nav-link">Resume</a>
-                    <a href="#contact" class="text-gray-300 hover:text-white nav-link">Contact</a>
-                    <a href="#game" class="text-gray-300 hover:text-white nav-link">Game</a>
-                </div>
-
-                <div class="md:hidden">
-                    <button id="menuBtn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+      <div class="skills-section reveal reveal-delay-3">
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>GenAI / LLM</h4>
+            <div class="skill-tags">
+              <span class="stag">RAG Pipelines</span>
+              <span class="stag">LangChain</span>
+              <span class="stag">Ollama</span>
+              <span class="stag">AI Agents</span>
+              <span class="stag">n8n</span>
+              <span class="stag">ChromaDB</span>
+              <span class="stag">Prompt Eng.</span>
             </div>
-        </div>
-
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-gray-900 bg-opacity-95 py-4">
-            <div class="container mx-auto px-6 flex flex-col space-y-4">
-                <a href="#about" class="text-gray-300 hover:text-white py-2">About</a>
-                <a href="#projects" class="text-gray-300 hover:text-white py-2">Projects</a>
-                <a href="#resume" class="text-gray-300 hover:text-white py-2">Resume</a>
-                <a href="#contact" class="text-gray-300 hover:text-white py-2">Contact</a>
+          </div>
+          <div class="skill-group">
+            <h4>Backend</h4>
+            <div class="skill-tags">
+              <span class="stag">Python</span>
+              <span class="stag">Django</span>
+              <span class="stag">FastAPI</span>
+              <span class="stag">REST API</span>
+              <span class="stag">WebSockets</span>
             </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-start relative overflow-hidden pt-12">
-        <div class="container mx-auto px-6 md:px-12 z-10 mt-16">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="w-full md:w-2/3 space-y-6">
-                    <p class="text-accent text-lg font-medium opacity-0" id="hero-intro">Hello, my name is</p>
-                    <h1 class="text-5xl md:text-7xl font-bold gradient-text opacity-0" id="hero-name">Himanshu Sharma
-                    </h1>
-                    <h2 class="text-3xl md:text-4xl font-semibold text-text-light opacity-0" id="hero-title">Fullstack
-                        Developer | IoT Engineer | Cloud Enthusiast</h2>
-                    <h2 class="text-3xl md:text-4xl font-semibold text-text-light opacity-0" id="hero-title">Backend
-                        Developer | Cloud & IoT Enthusiast</h2>
-                    <p class="text-xl text-text-light max-w-2xl opacity-0" id="hero-desc">
-                        Passionate about building scalable, AI-powered apps and real-time IoT & cloud systems.
-                    </p>
-                    <div class="pt-4 flex space-x-4 opacity-0" id="hero-buttons">
-                        <a href="#projects"
-                            class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button">
-                            View My Work
-                        </a>
-                        <a href="#contact"
-                            class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
-                            Contact Me
-                        </a>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 flex justify-center mt-12 md:mt-0">
-                    <div class="w-[100] h-[100] rounded-full border-6 border-accent relative overflow-hidden opacity-0"
-                        id="hero-image">
-
-                        <img src="assets/images/pfp.jpg" alt="Himanshu Sharma" class="w-full h-full object-cover">
-                    </div>
-                </div>
+          </div>
+          <div class="skill-group">
+            <h4>Cloud / DevOps</h4>
+            <div class="skill-tags">
+              <span class="stag">AWS EC2</span>
+              <span class="stag">S3</span>
+              <span class="stag">Lambda</span>
+              <span class="stag">Docker</span>
+              <span class="stag">NGINX</span>
+              <span class="stag">CI/CD</span>
             </div>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="py-24 relative">
-        <div class="container mx-auto px-6 md:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>About Me</h2>
-
-            <div class="flex flex-col md:flex-row items-start gap-12">
-                <div class="w-full md:w-1/2 md:sticky md:top-32" data-scroll>
-                    <div class="w-full relative" style="height: 600px;">
-                        <div class="absolute bottom-0 right-0 bg-primary z-10 px-3 py-1 rounded"></div>
-                        <spline-viewer url="https://prod.spline.design/Qs1PpD94YtTyjK99/scene.splinecode"
-                            style="width: 100%; height: 100%; position: relative;" loading="eager"
-                            events-target="canvas" camera-position="0,0,0" camera-target="0,0,0" shadow-intensity="0.5"
-                            shadow-type="soft" render-mode="optimized">
-                            loading="eager"
-                            events-target="canvas"
-                            camera-position="0,0,0"
-                            camera-target="0,0,0"
-                            shadow-intensity="0.5"
-                            shadow-type="soft"
-                            render-mode="optimized">
-                        </spline-viewer>
-                    </div>
-                </div>
-
-
-                <div class="w-full md:w-1/2 space-y-6" data-scroll>
-                    <p class="text-lg">
-                        Hi, I'm Himanshu Sharma — a Cloud-Connected IoT and Full-Stack Web Developer currently pursuing
-                        a Bachelor's in Internet of Things (IoT) at Dayalbagh Educational Institute, Agra. I specialize
-                        in building scalable systems that seamlessly connect embedded hardware, cloud services, and
-                        user-facing web dashboards.
-                    </p>
-
-                    <p class="text-lg">
-                        I work extensively at the intersection of embedded systems, cloud computing, and full-stack
-                        development. My expertise includes Python, Django, MQTT, LoRa, Docker, AWS (EC2, S3, Lambda),
-                        ESP32, Raspberry Pi, and real-time communication systems. I love building end-to-end IoT
-                        products — from hardware prototypes to cloud infrastructure to production-ready web
-                        applications.
-                    </p>
-
-                    <p class="text-lg">
-                        Some notable projects I've built include:
-                    </p>
-
-                    <ul class="text-lg list-disc list-inside space-y-2 ml-4">
-                        <li>
-                            <strong>IoT Device Management Platform</strong> — A college-deployed system built with
-                            Django, LoRa, MQTT, and Docker for real-time device monitoring, role-based access, sensor
-                            dashboards, and GPIO control.
-                        </li>
-                        <li>
-                            <strong>AI-Powered Resume Analyzer</strong> — A Gemini-based NLP application hosted on AWS
-                            EC2 that analyzes PDFs/DOCX files and provides intelligent suggestions for improvement.
-                        </li>
-                        <li>
-                            <strong>Multi-Camera Face Recognition Platform</strong> — A real-time security system using
-                            OpenCV, Django, Redis, and WebSockets to detect faces from multiple IP cameras and send
-                            instant email alerts.
-                        </li>
-                    </ul>
-
-                    <p class="text-lg">
-                        Over the past two years, I have worked under a faculty mentor on real-world IoT and cloud
-                        projects involving LoRa, ESP32, Raspberry Pi, AWS, and Django, giving me hands-on experience
-                        with both backend systems and embedded development.
-                    </p>
-
-                    <p class="text-lg">
-                        I’m now seeking an internship or developer role where I can contribute to IoT product
-                        development, cloud infrastructure, or full-stack engineering — and continue growing through
-                        impactful real-world projects.
-                    </p>
-
-
-                    <h3 class="text-2xl font-semibold gradient-text">My Skills</h3>
-
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <!-- Programming Languages -->
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-python text-blue-400"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-js text-yellow-400"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-html5 text-red-500"></i>
-                            <span>HTML</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-css3-alt text-blue-500"></i>
-                            <span>CSS</span>
-                        </div>
-
-                        <!-- Frameworks & Libraries -->
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-fire text-green-400"></i>
-                            <span>Django</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-server text-purple-400"></i>
-                            <span>REST API</span>
-                        </div>
-
-                        <!-- Tools -->
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-docker text-blue-400"></i>
-                            <span>Docker</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-git-alt text-red-400"></i>
-                            <span>Git</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-css3 text-blue-400"></i>
-                            <span>TailwindCSS</span>
-                        </div>
-
-                        <!-- Cloud & AI -->
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-database text-green-500"></i>
-                            <span>MongoDB</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-aws text-yellow-500"></i>
-                            <span>Amazon EC2</span>
-
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-aws text-yellow-500"></i>
-                            <span>Amazon Lambda</span>
-
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fab fa-aws text-yellow-500"></i>
-                            <span>Amazon S3</span>
-
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-brain text-purple-400"></i>
-                            <span>AI Agent</span>
-                        </div>
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-terminal text-green-400"></i>
-                            <span>Bash Scripting</span>
-                        </div>
-
-
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-robot text-teal-400"></i>
-                            <span>Virtual Machines</span>
-                        </div>
-
-
-                        <!-- IoT -->
-                        <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
-                            <i class="fas fa-wifi text-blue-300"></i>
-                            <span>IoT</span>
-                        </div>
-
-
-
-                    </div>
-                </div>
+          </div>
+          <div class="skill-group">
+            <h4>IoT & Hardware</h4>
+            <div class="skill-tags">
+              <span class="stag">LoRa SX1278</span>
+              <span class="stag">ESP32</span>
+              <span class="stag">MQTT</span>
+              <span class="stag">Raspberry Pi</span>
+              <span class="stag">Arduino</span>
             </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-gray-900 bg-opacity-30 relative">
-        <div class="container mx-auto px-6 md:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>My Projects</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
-                    <div class="relative h-48">
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=AI+Website+Builder"
-                            src="https://placehold.co/600x400/0a192f/64ffda?text=AI+Website+Builder"
-                            alt="Project Preview" class="w-full h-full object-cover mix-blend-overlay">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-bold gradient-text">AI-Driven Website Builder</h3>
-                        <p class="text-text-light">An intelligent builder that uses the Google Gemini API to create
-                            website content and layouts.</p>
-
-                        <div class="space-y-2">
-                            <div class="text-sm font-medium text-accent">Features:</div>
-                            <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Dashboard
-                                </li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Template
-                                    Switching</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-Time
-                                    Preview</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> REST API
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Google Gemini API</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">HTML</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">JS</span>
-                        </div>
-
-                        <a href="https://github.com/ohnohimanshu/Web-Builder"
-                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github mr-1"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
-                    <div class="relative h-48">
-                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=ABC Lighting Conversational Chatbot"
-                            alt="ABC Lighting Conversational Chatbot"
-                            class="w-full h-full object-cover mix-blend-overlay">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-bold gradient-text">ABC Lighting Conversational Chatbot</h3>
-                        <p class="text-text-light">A Django-based chatbot for a solar light company. Rich UI with
-                            animated chat and REST API support.</p>
-
-                        <div class="space-y-2">
-                            <div class="text-sm font-medium text-accent">Features:</div>
-                            <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Smart
-                                    Product Queries</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Django Admin
-                                </li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Product
-                                    Image Responses</li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">REST</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">TailwindCSS</span>
-                        </div>
-
-                        <a href="https://github.com/ohnohimanshu/ABC-Lightning-Bot"
-                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github mr-1"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
-                    <div class="relative h-48">
-                        <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-teal-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=AI-Powered Resume Analyzer"
-                            alt="AI-Powered Resume Analyzer" class="w-full h-full object-cover mix-blend-overlay">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-bold gradient-text">AI-Powered Resume Analyzer</h3>
-                        <p class="text-text-light">Enhances resumes with AI-generated feedback (LLM/NLP-based)</p>
-
-                        <div class="space-y-2">
-                            <div class="text-sm font-medium text-accent">Features:</div>
-                            <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Resume
-                                    Analysis</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> PDF/DOCX
-                                    Support</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> LLM-powered
-                                    NLP</li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Google Gemini API</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">PyMuPDF</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
-                        </div>
-
-                        <a href="https://github.com/ohnohimanshu/ResumePro-AI"
-                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github mr-1"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
-                    <div class="relative h-48">
-                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Device Management Web-app"
-                            alt="Device Management Dashboard" class="w-full h-full object-cover mix-blend-overlay">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-bold gradient-text">Device Management Dashboard</h3>
-                        <p class="text-text-light">LoRa sensor monitoring with charts, real-time MQTT data, role-based
-                            login</p>
-
-                        <div class="space-y-2">
-                            <div class="text-sm font-medium text-accent">Features:</div>
-                            <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time
-                                    Charts</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> MQTT
-                                    Integration</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Multi-role
-                                    Login</li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Tailwind</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">MQTT</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
-                        </div>
-
-                        <a href="https://github.com/ohnohimanshu/IoT-management"
-                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github mr-1"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-
-                <!-- Project 5 -->
-                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
-                    <div class="relative h-48">
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-500 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=HMX Chatbot" alt="Chatbot with Ollama"
-                            class="w-full h-full object-cover mix-blend-overlay">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-bold gradient-text">Chatbot with Ollama</h3>
-                        <p class="text-text-light">Local LLM-based chatbot with real-time WebSocket support</p>
-
-                        <div class="space-y-2">
-                            <div class="text-sm font-medium text-accent">Features:</div>
-                            <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Local LLM
-                                    Integration</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> WebSocket
-                                    Support</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>
-                                    Privacy-focused</li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django Channels</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Ollama</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Tailwind</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
-                        </div>
-
-                        <a href="https://github.com/ohnohimanshu/HMX-Chatbot"
-                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github mr-1"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
-                    <div class="relative h-48">
-                        <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Music Mood Streaming App"
-                            alt="Music Mood Streaming App" class="w-full h-full object-cover mix-blend-overlay">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-bold gradient-text">Music Mood Streaming App</h3>
-                        <p class="text-text-light">Detects user mood from lyrics and plays relevant music using
-                            HuggingFace Transformers.</p>
-
-                        <div class="space-y-2">
-                            <div class="text-sm font-medium text-accent">Features:</div>
-                            <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Mood
-                                    Detection</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Music
-                                    Recommendations</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time
-                                    Streaming</li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">AJAX</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">HuggingFace</span>
-                            <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
-                        </div>
-
-                        <a href="https://github.com/ohnohimanshu/Moodify"
-                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fab fa-github mr-1"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
+          </div>
+          <div class="skill-group">
+            <h4>Frontend</h4>
+            <div class="skill-tags">
+              <span class="stag">JavaScript</span>
+              <span class="stag">HTML/CSS</span>
+              <span class="stag">TailwindCSS</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Game Section -->
-    <section id="game" class="py-24 bg-gray-900 bg-opacity-30 relative">
-        <div class="container mx-auto px-6 md:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Take a Break!</h2>
-
-            <div class="max-w-2xl mx-auto glass-card p-8 rounded-lg">
-                <div class="text-center mb-8">
-                    <h3 class="text-xl font-bold text-accent mb-4">Code Break</h3>
-                    <p class="text-text-light mb-6">Crack the color code! Choose the correct sequence of colors.</p>
-
-                    <div class="flex justify-center space-x-4 mb-8">
-                        <div id="gameScore" class="text-accent">Score: 0</div>
-                        <div id="gameTime" class="text-accent">Time: 60s</div>
-                    </div>
-                </div>
-
-                <div id="gameBoard" class="grid grid-cols-4 gap-4 mb-8">
-                    <!-- Colors will be inserted here by JS -->
-                </div>
-
-                <div id="playerSequence" class="flex justify-center space-x-4 mb-8">
-                    <!-- Player's selected colors will appear here -->
-                </div>
-
-                <div class="flex justify-center space-x-4">
-                    <button id="startGame"
-                        class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
-                        Start Game
-                    </button>
-                    <button id="checkSequence"
-                        class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button"
-                        disabled>
-                        Check Sequence
-                    </button>
-                </div>
+          </div>
+          <div class="skill-group">
+            <h4>Tools</h4>
+            <div class="skill-tags">
+              <span class="stag">Git</span>
+              <span class="stag">Linux</span>
+              <span class="stag">Bash</span>
+              <span class="stag">VMs</span>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gray-900 bg-opacity-30 relative">
-        <div class="container mx-auto px-6 md:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Mail For Freelance
-                Work</h2>
+<!-- ════════ EXPERIENCE ════════ -->
+<section id="experience">
+  <div class="sec-header reveal">
+    <span class="sec-num">二</span>
+    <h2 class="sec-title">Experience</h2>
+    <span class="sec-line"></span>
+    <span class="sec-sub">経験</span>
+  </div>
 
-            <div class="max-w-2xl mx-auto glass-card p-8 rounded-lg">
-                <form id="contactForm" class="space-y-6" data-scroll>
-                    <div class="float-label-input relative">
-                        <input type="text" id="name" name="name" placeholder=" "
-                            class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white"
-                            required>
-                        <label for="name" class="absolute left-0 -top-3.5 text-sm text-accent">Name</label>
-                    </div>
+  <div class="exp-list">
 
-                    <div class="float-label-input relative">
-                        <input type="email" id="email" name="email" placeholder=" "
-                            class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white"
-                            required>
-                        <label for="email" class="absolute left-0 -top-3.5 text-sm text-accent">Email</label>
-                    </div>
-
-                    <div class="float-label-input relative">
-                        <textarea id="message" name="message" placeholder=" " rows="4"
-                            class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white resize-none"
-                            required></textarea>
-                        <label for="message" class="absolute left-0 -top-3.5 text-sm text-accent">Message</label>
-                    </div>
-
-                    <button type="submit"
-                        class="w-full py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button flex items-center justify-center">
-                        <span id="submitText">Send Message</span>
-                        <div id="submitSpinner" class="hidden">
-                            <i class="fas fa-circle-notch fa-spin ml-2"></i>
-                        </div>
-                    </button>
-                </form>
-
-                <!-- Social Links -->
-                <div class="mt-12 text-center" data-scroll>
-                    <h3 class="text-xl font-semibold mb-6 gradient-text">Connect With Me</h3>
-                    <div class="flex justify-center space-x-8">
-                        <a href="mailto:himanshusharma8888@gmail.com"
-                            class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://github.com/ohnohimanshu" target="_blank" rel="noopener noreferrer"
-                            class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/himanshu-sharma-b6b0b7227/" target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-accent hover:text-white transition-colors duration-300 text-2xl"
-                            title="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resume Section -->
-    <section id="resume" class="py-24 relative">
-        <div class="container mx-auto px-6 md:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Resume</h2>
-
-            <div class="flex justify-center">
-                <button id="resumeBtn"
-                    class="px-8 py-4 gradient-border text-accent hover:glow-effect transition duration-300 flex items-center space-x-2">
-                    <i class="fas fa-external-link-alt mr-2"></i>
-                    <span>View Resume</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <div id="resumeModal"
-        class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex items-center justify-center backdrop-blur-sm">
-        <div class="w-full max-w-5xl mx-4 transition-all duration-500 ease-out transform scale-95 opacity-0"
-            id="resumeContent">
-            <div class="bg-gray-900 rounded-lg overflow-hidden shadow-2xl border border-accent border-opacity-20">
-                <!-- Modal Header -->
-                <div class="flex justify-between items-center p-4 border-b border-accent border-opacity-20">
-                    <h3 class="text-xl font-bold gradient-text">My Resume</h3>
-                    <div class="flex items-center space-x-4">
-                        <a href="assets/resume.pdf" download
-                            class="text-accent hover:text-white transition-colors duration-300">
-                            <i class="fas fa-download"></i>
-                        </a>
-                        <button id="closeResumeBtn"
-                            class="text-gray-400 hover:text-white transition-colors duration-300">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- Resume Content -->
-                <div class="h-[80vh]">
-                    <div class="w-full h-full bg-white rounded-b-lg">
-                        <iframe src="assets/resume.pdf#toolbar=0" class="w-full h-full" title="Resume Preview">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-date">Nov 2025 – Present</div>
+        <div class="exp-company">Dayalbagh<br/>Educational<br/>Institute</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Intern — 5G Virtual Lab</div>
+        <ul class="exp-bullets">
+          <li>Developing a 5G Virtual Lab under the national Virtual Labs initiative, enabling practical experimentation through simulation and remote access.</li>
+          <li>Implementing lab modules covering 5G architecture, protocols, performance metrics, and real-world use cases.</li>
+        </ul>
+      </div>
     </div>
 
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-date">May 2024 – Oct 2025</div>
+        <div class="exp-company">Dayalbagh<br/>Educational<br/>Institute</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Project Intern — Web Dev & IoT</div>
+        <ul class="exp-bullets">
+          <li>Built production-deployed web applications using Django and AWS under direct faculty mentorship across 18 months.</li>
+          <li>Developed cloud-integrated IoT solutions using LoRa, Raspberry Pi, ESP32, and Arduino — systems deployed in real college laboratory environments.</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Scripts -->
+  </div>
+</section>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.71/build/spline-viewer.js"></script>
+<!-- ════════ PROJECTS ════════ -->
+<section id="projects">
+  <div class="sec-header reveal">
+    <span class="sec-num">三</span>
+    <h2 class="sec-title">Projects</h2>
+    <span class="sec-line"></span>
+    <span class="sec-sub">作品</span>
+  </div>
 
+  <div class="bento">
 
+    <!-- 01 - AI Smart Learning - Large featured -->
+    <div class="bcard span-7 featured tilt reveal">
+      <div class="bcard-bg">知能</div>
+      <div class="bcard-num">
+        <span>01</span>
+        <span class="bcard-badge">Featured · GenAI</span>
+      </div>
+      <h3 class="bcard-title">AI-Powered Smart Learning Platform</h3>
+      <p class="bcard-desc">Adaptive learning platform with local LLM + RAG pipeline. Generates personalized courses based on user goals and skill level. Privacy-first — runs entirely locally with zero external API dependency. Semantic search with vector embeddings.</p>
+      <div class="bcard-tech">
+        <span>Django</span><span>Ollama</span><span>RAG</span><span>LangChain</span><span>ChromaDB</span><span>Python</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+    <!-- 02 - HMX Chatbot -->
+    <div class="bcard span-5 featured tilt reveal reveal-delay-1">
+      <div class="bcard-bg">話す</div>
+      <div class="bcard-num">
+        <span>02</span>
+        <span class="bcard-badge">Local LLM</span>
+      </div>
+      <h3 class="bcard-title">HMX Chatbot — Local LLM</h3>
+      <p class="bcard-desc">Privacy-first chatbot powered by Ollama. Real-time WebSocket conversations with zero cloud dependency — everything runs locally on your hardware.</p>
+      <div class="bcard-tech">
+        <span>Django Channels</span><span>Ollama</span><span>WebSockets</span><span>TailwindCSS</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu/HMX-Chatbot" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
+    <!-- 03 - Resume Analyzer -->
+    <div class="bcard span-6 featured tilt reveal reveal-delay-2">
+      <div class="bcard-bg">文書</div>
+      <div class="bcard-num">
+        <span>03</span>
+        <span class="bcard-badge">AI · Cloud</span>
+      </div>
+      <h3 class="bcard-title">AI Resume Analyzer</h3>
+      <p class="bcard-desc">Gemini-powered PDF/DOCX resume analysis with intelligent NLP feedback. Deployed on AWS EC2 with Docker. Provides structured improvement suggestions with LLM scoring.</p>
+      <div class="bcard-tech">
+        <span>Django</span><span>Gemini API</span><span>PyMuPDF</span><span>Docker</span><span>AWS EC2</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu/ResumePro-AI" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
+    <!-- 04 - Smart Lab IoT - still featured as differentiator -->
+    <div class="bcard span-6 tilt reveal reveal-delay-3">
+      <div class="bcard-bg">工場</div>
+      <div class="bcard-num">
+        <span>04</span>
+        <span class="bcard-badge">Deployed · IoT</span>
+      </div>
+      <h3 class="bcard-title">Smart Lab Monitoring System</h3>
+      <p class="bcard-desc">Hybrid Wi-Fi + LoRa IoT platform deployed in real college labs. Dual gateways for fault tolerance, real-time MQTT dashboards, role-based access control.</p>
+      <div class="bcard-tech">
+        <span>Django</span><span>MQTT</span><span>LoRa SX1278</span><span>ESP32</span><span>Docker</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu/IoT-management" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/resume.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/game.js"></script>
+    <!-- 05 - Face Recognition -->
+    <div class="bcard span-4 tilt reveal reveal-delay-2">
+      <div class="bcard-num"><span>05</span></div>
+      <h3 class="bcard-title">Face Recognition Platform</h3>
+      <p class="bcard-desc">Real-time security system — multiple IP cameras, instant email alerts with face snapshots via OpenCV + Redis.</p>
+      <div class="bcard-tech">
+        <span>OpenCV</span><span>Django</span><span>WebSockets</span><span>Redis</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // configuration for overlay fallback (adjust size/position as needed)
-            const overlayConfig = {
-                bottom: 8,   // px from bottom
-                right: 8,    // px from right
-                width: 140,  // px width of overlay
-                height: 40,  // px height of overlay
-                borderRadius: 6,
-                background: 'transparent', // try transparent first; change to match background if needed
-                backdropFilter: 'blur(6px)', // subtle blur can hide logo while keeping scene visible
-                zIndex: 9999
-            };
+    <!-- 06 - AI Website Builder -->
+    <div class="bcard span-4 tilt reveal reveal-delay-3">
+      <div class="bcard-num"><span>06</span></div>
+      <h3 class="bcard-title">AI Website Builder</h3>
+      <p class="bcard-desc">Gemini-driven builder generating website layouts and content with real-time preview and template switching.</p>
+      <div class="bcard-tech">
+        <span>Django</span><span>Gemini API</span><span>HTML</span><span>JavaScript</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu/Web-Builder" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
-            function createOverlayFor(viewer) {
-                // only add if not already added
-                if (viewer._splineBrandOverlay) return;
-                const overlay = document.createElement('div');
-                overlay.style.position = 'absolute';
-                overlay.style.pointerEvents = 'none'; // allow clicks to pass through
-                overlay.style.zIndex = overlayConfig.zIndex;
-                overlay.style.bottom = overlayConfig.bottom + 'px';
-                overlay.style.right = overlayConfig.right + 'px';
-                overlay.style.width = overlayConfig.width + 'px';
-                overlay.style.height = overlayConfig.height + 'px';
-                overlay.style.borderRadius = overlayConfig.borderRadius + 'px';
-                overlay.style.background = overlayConfig.background;
-                overlay.style.backdropFilter = overlayConfig.backdropFilter;
-                // ensure it's positioned relative to viewer's container
-                // place overlay as sibling of viewer and position absolute within same positioned ancestor
-                const wrapper = viewer.parentElement || document.body;
-                // make wrapper a positioned container if it's not
-                const computed = getComputedStyle(wrapper);
-                if (computed.position === 'static') wrapper.style.position = 'relative';
-                overlay.classList.add('spline-brand-overlay');
-                wrapper.appendChild(overlay);
-                viewer._splineBrandOverlay = overlay;
-            }
+    <!-- 07 - ABC bot -->
+    <div class="bcard span-4 tilt reveal reveal-delay-4">
+      <div class="bcard-num"><span>07</span></div>
+      <h3 class="bcard-title">ABC Lighting Chatbot</h3>
+      <p class="bcard-desc">Django-based conversational chatbot for a solar company. Animated UI, product image responses, Django Admin integration.</p>
+      <div class="bcard-tech">
+        <span>Django</span><span>REST API</span><span>JavaScript</span><span>TailwindCSS</span>
+      </div>
+      <a href="https://github.com/ohnohimanshu/ABC-Lightning-Bot" target="_blank" class="bcard-link">View on GitHub</a>
+    </div>
 
-            function tryHideBranding(viewer) {
-                try {
-                    const shadow = viewer.shadowRoot;
-                    if (!shadow) return false;
-                    // adjust queries to anything Spline might use
-                    const selectors = [
-                        '[slot="branding"]',
-                        '.branding',
-                        'a[aria-label*="Spline"]',
-                        'a[aria-label*="Built with Spline"]',
-                        'a[title*="Spline"]'
-                    ];
-                    let removed = false;
-                    selectors.forEach(sel => {
-                        const el = shadow.querySelector(sel);
-                        if (el) {
-                            // hide it, remove it, whatever you prefer
-                            el.style.display = 'none';
-                            // also remove in case display none is reset later
-                            try { el.remove(); } catch (e) { }
-                            removed = true;
-                        }
-                    });
-                    // If Spline places an iframe or different element, try generic approach:
-                    // hide any small anchor/branding near bottom-right inside shadow
-                    const anchors = shadow.querySelectorAll('a');
-                    anchors.forEach(a => {
-                        const rect = a.getBoundingClientRect ? a.getBoundingClientRect() : null;
-                        // heuristic: small element
-                        if (!rect || (rect.width <= 180 && rect.height <= 60)) {
-                            a.style.display = 'none';
-                            try { a.remove(); } catch (e) { }
-                            removed = true;
-                        }
-                    });
-                    return removed;
-                } catch (err) {
-                    // likely closed shadow root or access blocked
-                    return false;
-                }
-            }
+  </div>
+</section>
 
-            // For robustness, observe added spline-viewer elements and content changes
-            function watchAndHide() {
-                // first attempt for any existing viewers
-                document.querySelectorAll('spline-viewer').forEach(viewer => {
-                    const ok = tryHideBranding(viewer);
-                    if (!ok) createOverlayFor(viewer);
-                });
+<!-- ════════ ACHIEVEMENTS ════════ -->
+<section id="achievements">
+  <div class="sec-header reveal">
+    <span class="sec-num">四</span>
+    <h2 class="sec-title">Achievements</h2>
+    <span class="sec-line"></span>
+    <span class="sec-sub">実績</span>
+  </div>
 
-                // observe for new spline-viewer elements being added to DOM
-                const docObserver = new MutationObserver(muts => {
-                    muts.forEach(m => {
-                        m.addedNodes && m.addedNodes.forEach(node => {
-                            if (node.nodeType !== 1) return;
-                            if (node.matches && node.matches('spline-viewer')) {
-                                const succeeded = tryHideBranding(node);
-                                if (!succeeded) createOverlayFor(node);
-                            } else {
-                                // maybe a viewer nested inside the added subtree
-                                const found = node.querySelector && node.querySelector('spline-viewer');
-                                if (found) {
-                                    const succeeded = tryHideBranding(found);
-                                    if (!succeeded) createOverlayFor(found);
-                                }
-                            }
-                        });
-                    });
-                });
+  <div class="ach-grid">
+    <div class="ach-card reveal">
+      <div class="ach-icon">🏅</div>
+      <div>
+        <h4>Smart India Hackathon 2024</h4>
+        <p>Led Team Neon_Nexus to 4th place at the Internal Smart India Hackathon at Dayalbagh Educational Institute. Competed against top engineering teams.</p>
+      </div>
+    </div>
+    <div class="ach-card reveal reveal-delay-1">
+      <div class="ach-icon">☁️</div>
+      <div>
+        <h4>AWS AWSome Day Conference</h4>
+        <p>Attended AWSome Day Online Conference by Amazon Web Services, gaining deeper expertise in cloud architecture and AWS services ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                docObserver.observe(document.body, { childList: true, subtree: true });
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <!-- Brushstroke SVG -->
+  <svg width="160" height="24" viewBox="0 0 160 24" fill="none" style="margin-bottom:2.5rem;">
+    <path d="M8 12 Q40 5 80 12 Q120 19 152 12" stroke="#D94035" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M30 18 Q60 14 90 18" stroke="#D94035" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.3"/>
+  </svg>
 
-                // Also observe each existing viewer's shadow / subtree changes (best-effort)
-                document.querySelectorAll('spline-viewer').forEach(viewer => {
-                    // try to watch internal changes if shadowRoot is accessible
-                    try {
-                        if (viewer.shadowRoot) {
-                            const ro = new MutationObserver(() => {
-                                const ok = tryHideBranding(viewer);
-                                if (!ok) createOverlayFor(viewer);
-                            });
-                            ro.observe(viewer.shadowRoot, { childList: true, subtree: true });
-                        }
-                    } catch (e) {
-                        // ignore - closed shadow root
-                    }
-                });
+  <p class="contact-small reveal">五 · お問い合わせ</p>
+  <h2 class="contact-title reveal reveal-delay-1">
+    Let's Build<br/><em>Something Great.</em>
+  </h2>
+  <p class="contact-sub reveal reveal-delay-2">
+    Open to Generative AI, Full-Stack & IoT roles.<br/>
+    Especially interested in opportunities in <strong style="color:var(--ink)">Japan</strong>.
+  </p>
+  <a href="mailto:himanshuxdei@gmail.com" class="contact-email reveal reveal-delay-3">
+    himanshuxdei@gmail.com
+  </a>
+  <div class="contact-socials reveal reveal-delay-4">
+    <a href="https://github.com/ohnohimanshu" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/ohnohimanshu/" target="_blank">LinkedIn</a>
+    <a href="tel:+919457139175">+91 945 713 9175</a>
+  </div>
+</section>
 
-                // periodic retries in case Spline does late-inits (small interval, stops after N tries)
-                let tries = 0;
-                const maxTries = 8;
-                const interval = setInterval(() => {
-                    tries++;
-                    document.querySelectorAll('spline-viewer').forEach(viewer => {
-                        const ok = tryHideBranding(viewer);
-                        if (!ok) createOverlayFor(viewer);
-                    });
-                    if (tries >= maxTries) clearInterval(interval);
-                }, 700);
-            }
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <p>© 2025 Himanshu Sharma · 開発者 · Agra, India</p>
+  <span>技術 · 創造 · 革新</span>
+</footer>
 
-            watchAndHide();
-        });
-    </script>
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+/* ── CURSOR ── */
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
 
+/* ── LOADER ── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('done');
+  }, 1400);
+});
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const hideSplineBranding = () => {
-                document.querySelectorAll('spline-viewer').forEach(viewer => {
-                    const shadow = viewer.shadowRoot;
-                    if (shadow) {
-                        const branding = shadow.querySelector('[slot="branding"], .branding, a[aria-label="Built with Spline"]');
-                        if (branding) {
-                            branding.style.display = "none";
-                        }
-                    }
-                });
-            };
-            // Try to hide immediately and also after a delay (in case Spline loads late)
-            hideSplineBranding();
-            setTimeout(hideSplineBranding, 1000);
-            setTimeout(hideSplineBranding, 3000);
-        });
-    </script>
+/* ── TEXT SCRAMBLE on name ── */
+const CHARS = 'アイウエオカキクケコ日本語技術開発！@#$%&';
+function scramble(el, finalText, duration = 1200) {
+  let start = null;
+  const chars = finalText.split('');
+  function step(ts) {
+    if (!start) start = ts;
+    const prog = Math.min((ts - start) / duration, 1);
+    const revealIdx = Math.floor(prog * chars.length);
+    el.textContent = chars.map((c, i) => {
+      if (i < revealIdx) return c;
+      return CHARS[Math.floor(Math.random() * CHARS.length)];
+    }).join('');
+    if (prog < 1) requestAnimationFrame(step);
+    else el.textContent = finalText;
+  }
+  requestAnimationFrame(step);
+}
+setTimeout(() => scramble(document.getElementById('scramble-name'), 'Himanshu', 1600), 1500);
 
+/* ── SCROLL REVEAL ── */
+const reveals = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(r => revObs.observe(r));
 
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── COUNTER ANIMATION ── */
+function animCount(el) {
+  const target = parseFloat(el.dataset.count);
+  const isFloat = target % 1 !== 0;
+  const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+  let start = 0, duration = 1500, begin = null;
+  function step(ts) {
+    if (!begin) begin = ts;
+    const prog = Math.min((ts - begin) / duration, 1);
+    const eased = 1 - Math.pow(1 - prog, 3);
+    const val = start + (target - start) * eased;
+    el.innerHTML = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+    if (prog < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const counters = document.querySelectorAll('[data-count]');
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); cntObs.unobserve(e.target); }});
+}, { threshold: 0.5 });
+counters.forEach(c => cntObs.observe(c));
+
+/* ── 3D CARD TILT ── */
+document.querySelectorAll('.tilt').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(8px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+/* ── FALLBACK: Show all content if animations haven't completed ── */
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (!el.classList.contains('visible')) {
+      el.classList.add('visible');
+    }
+  });
+}, 5000);
+</script>
 </body>
-
 </html>
