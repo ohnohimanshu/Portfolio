@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Himanshu Sharma | Backend Developer</title>
     <link rel="preload" href="https://prod.spline.design/KibUfnTIqpvEOIjh/scene.splinecode" as="fetch" crossorigin>
-    <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js" as="script" crossorigin>
+    <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js" as="script"
+        crossorigin>
+    <link rel="preload" href="https://prod.spline.design/KibUfnTIqpvEOIjh/scene.splinecode" as="fetch" crossorigin>
+    <link rel="preload" href="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js" as="script"
+        crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
@@ -17,6 +22,7 @@
     <script src="js/navbar.js"></script>
     <script src="js/animations.js"></script>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
@@ -27,32 +33,36 @@
             --text: #ccd6f6;
             --text-light: #8892b0;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--primary);
             color: var(--text);
             overflow-x: hidden;
         }
-        
-        h1, h2, h3, h4, h5 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
             font-family: 'Space Grotesk', sans-serif;
         }
-        
+
         .gradient-text {
             background: linear-gradient(90deg, #64ffda, #00bfff);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .gradient-border {
             border: 2px solid transparent;
             background: linear-gradient(var(--primary), var(--primary)) padding-box,
-                       linear-gradient(90deg, #64ffda, #00bfff) border-box;
+                linear-gradient(90deg, #64ffda, #00bfff) border-box;
             border-radius: 0.5rem;
         }
-        
+
         .glass-card {
             background: rgba(17, 34, 64, 0.7);
             backdrop-filter: blur(12px);
@@ -73,13 +83,13 @@
         .glow-effect {
             box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
         }
-        
+
         .glow-button {
             position: relative;
             z-index: 1;
             overflow: hidden;
         }
-        
+
         .glow-button:after {
             content: "";
             position: absolute;
@@ -92,7 +102,7 @@
             z-index: -1;
             transition: opacity 0.3s ease;
         }
-        
+
         .glow-button:hover:after {
             opacity: 0.15;
         }
@@ -103,7 +113,7 @@
             border: 1px solid rgba(100, 255, 218, 0.2);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .skill-badge:hover {
             box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
             border-color: rgba(100, 255, 218, 0.6);
@@ -113,16 +123,16 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
             background: var(--primary);
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: var(--secondary);
             border-radius: 4px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent);
         }
@@ -133,7 +143,7 @@
             opacity: 0;
             transition: visibility 0s, opacity 0.3s ease;
         }
-        
+
         .modal.active {
             visibility: visible;
             opacity: 1;
@@ -141,7 +151,7 @@
 
         /* Floating input labels */
         .float-label-input:focus-within label,
-        .float-label-input input:not(:placeholder-shown) + label {
+        .float-label-input input:not(:placeholder-shown)+label {
             transform: translateY(-1.5rem) scale(0.85);
             color: var(--accent);
         }
@@ -150,7 +160,7 @@
         .nav-link {
             position: relative;
         }
-        
+
         .nav-link:after {
             content: '';
             position: absolute;
@@ -161,7 +171,7 @@
             background: linear-gradient(90deg, #64ffda, #00bfff);
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover:after {
             width: 100%;
         }
@@ -176,7 +186,7 @@
             left: 0;
             z-index: 50;
         }
-        
+
         .progress-bar {
             height: 3px;
             background: linear-gradient(90deg, #64ffda, #00bfff);
@@ -203,22 +213,63 @@
 
         /* Add these animations to your existing style tag */
         @keyframes rotate-gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
-        
+
         #hero-image {
             background-size: 200% 200%;
             box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
             transition: all 0.3s ease;
         }
-        
+
         #hero-image:hover {
             transform: scale(1.05);
             box-shadow: 0 0 25px rgba(100, 255, 218, 0.5);
         }
-        
+
+        .float-label-input input:focus,
+        .float-label-input textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 4px 8px rgba(100, 255, 218, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* Add these animations to your existing style tag */
+        @keyframes rotate-gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #hero-image {
+            background-size: 200% 200%;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #hero-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.5);
+        }
+
         .float-label-input input:focus,
         .float-label-input textarea:focus {
             border-color: var(--accent);
@@ -251,6 +302,21 @@
             margin-bottom: 1.5rem;
         }
 
+        position: relative;
+        margin-bottom: 1.5rem;
+        }
+
+        .float-label-input label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            color: var(--accent);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
         .float-label-input label {
             position: absolute;
             left: 0;
@@ -263,11 +329,24 @@
         }
 
         .float-label-input.focused label,
-        .float-label-input input:not(:placeholder-shown) + label,
-        .float-label-input textarea:not(:placeholder-shown) + label {
+        .float-label-input input:not(:placeholder-shown)+label,
+        .float-label-input textarea:not(:placeholder-shown)+label {
             transform: translateY(-1.5rem) scale(0.85);
             color: var(--accent);
             opacity: 1;
+        }
+
+        .float-label-input.focused label,
+        .float-label-input input:not(:placeholder-shown)+label,
+        .float-label-input textarea:not(:placeholder-shown)+label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        .float-label-input input::placeholder,
+        .float-label-input textarea::placeholder {
+            color: transparent;
         }
 
         .float-label-input input::placeholder,
@@ -281,10 +360,40 @@
             box-shadow: 0 2px 4px rgba(100, 255, 218, 0.1);
         }
 
+        .float-label-input input:focus,
+        .float-label-input textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 2px 4px rgba(100, 255, 218, 0.1);
+        }
+
         /* Form success message animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form success message animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-center {
+            animation: fadeIn 0.3s ease-out;
         }
 
         .text-center {
@@ -293,8 +402,32 @@
 
         /* Add this inside your existing style tag */
         @keyframes fade-in {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Add this inside your existing style tag */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.3s ease-out forwards;
         }
 
         .animate-fade-in {
@@ -306,13 +439,38 @@
             animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
+        /* Add to your existing style tag */
+        .animate-pulse {
+            animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.5;
             }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        #gameBoard button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--accent);
         }
 
         #gameBoard button:hover {
@@ -327,8 +485,17 @@
         spline-viewer::part(branding) {
             display: none !important;
         }
+
+        #playerSequence button {
+            margin: 0 4px;
+        }
+
+        spline-viewer::part(branding) {
+            display: none !important;
+        }
     </style>
 </head>
+
 <body data-scroll-container>
     <!-- Progress bar -->
     <div class="progress-container">
@@ -341,13 +508,15 @@
     <div class="bg-element" style="width: 250px; height: 250px; bottom: 15%; left: 10%; filter: blur(70px);"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-opacity-80 backdrop-filter backdrop-blur-lg bg-gray-900 transition-all duration-300 transform" id="navbar" style="transition: transform 0.3s ease-in-out, background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-opacity-80 backdrop-filter backdrop-blur-lg bg-gray-900 transition-all duration-300 transform"
+        id="navbar"
+        style="transition: transform 0.3s ease-in-out, background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="text-xl font-bold">
                     <a href="#" class="gradient-text">HS.</a>
                 </div>
-                
+
                 <div class="hidden md:flex space-x-8">
                     <a href="#about" class="text-gray-300 hover:text-white nav-link">About</a>
                     <a href="#projects" class="text-gray-300 hover:text-white nav-link">Projects</a>
@@ -355,17 +524,19 @@
                     <a href="#contact" class="text-gray-300 hover:text-white nav-link">Contact</a>
                     <a href="#game" class="text-gray-300 hover:text-white nav-link">Game</a>
                 </div>
-                
+
                 <div class="md:hidden">
                     <button id="menuBtn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
-        
+
         <!-- Mobile menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-900 bg-opacity-95 py-4">
             <div class="container mx-auto px-6 flex flex-col space-y-4">
@@ -383,28 +554,31 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-2/3 space-y-6">
                     <p class="text-accent text-lg font-medium opacity-0" id="hero-intro">Hello, my name is</p>
-                    <h1 class="text-5xl md:text-7xl font-bold gradient-text opacity-0" id="hero-name">Himanshu Sharma</h1>
-                    <h2 class="text-3xl md:text-4xl font-semibold text-text-light opacity-0" id="hero-title">Backend Developer | Cloud & IoT Enthusiast</h2>
+                    <h1 class="text-5xl md:text-7xl font-bold gradient-text opacity-0" id="hero-name">Himanshu Sharma
+                    </h1>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-text-light opacity-0" id="hero-title">Fullstack
+                        Developer | IoT Engineer | Cloud Enthusiast</h2>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-text-light opacity-0" id="hero-title">Backend
+                        Developer | Cloud & IoT Enthusiast</h2>
                     <p class="text-xl text-text-light max-w-2xl opacity-0" id="hero-desc">
-                        Passionate about building scalable, AI-powered apps and real-time cloud systems.
+                        Passionate about building scalable, AI-powered apps and real-time IoT & cloud systems.
                     </p>
                     <div class="pt-4 flex space-x-4 opacity-0" id="hero-buttons">
-                        <a href="#projects" class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button">
+                        <a href="#projects"
+                            class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button">
                             View My Work
                         </a>
-                        <a href="#contact" class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
+                        <a href="#contact"
+                            class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
                             Contact Me
                         </a>
                     </div>
                 </div>
                 <div class="w-full md:w-1/3 flex justify-center mt-12 md:mt-0">
-                    <div class="w-[100] h-[100] rounded-full border-4 border-accent relative overflow-hidden opacity-0" id="hero-image">
-                    
-                        <img 
-                            src="assets/images/pfp.jpg" 
-                            alt="Himanshu Sharma" 
-                            class="w-full h-full object-cover"
-                        >
+                    <div class="w-[100] h-[100] rounded-full border-6 border-accent relative overflow-hidden opacity-0"
+                        id="hero-image">
+
+                        <img src="assets/images/pfp.jpg" alt="Himanshu Sharma" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -415,14 +589,15 @@
     <section id="about" class="py-24 relative">
         <div class="container mx-auto px-6 md:px-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>About Me</h2>
-            
+
             <div class="flex flex-col md:flex-row items-start gap-12">
                 <div class="w-full md:w-1/2 md:sticky md:top-32" data-scroll>
                     <div class="w-full relative" style="height: 600px;">
                         <div class="absolute bottom-0 right-0 bg-primary z-10 px-3 py-1 rounded"></div>
-                        <spline-viewer 
-                            url="https://prod.spline.design/KibUfnTIqpvEOIjh/scene.splinecode" 
-                            style="width: 100%; height: 100%; position: relative;"
+                        <spline-viewer url="https://prod.spline.design/Qs1PpD94YtTyjK99/scene.splinecode"
+                            style="width: 100%; height: 100%; position: relative;" loading="eager"
+                            events-target="canvas" camera-position="0,0,0" camera-target="0,0,0" shadow-intensity="0.5"
+                            shadow-type="soft" render-mode="optimized">
                             loading="eager"
                             events-target="canvas"
                             camera-position="0,0,0"
@@ -433,33 +608,60 @@
                         </spline-viewer>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="w-full md:w-1/2 space-y-6" data-scroll>
                     <p class="text-lg">
-                        Hi, I'm Himanshu Sharma, currently pursuing a Bachelor's in Internet of Things (IoT) at Dayalbagh Educational Institute, Agra. I'm passionate about cloud computing, web development, and the intersection of hardware and software systems.
+                        Hi, I'm Himanshu Sharma — a Cloud-Connected IoT and Full-Stack Web Developer currently pursuing
+                        a Bachelor's in Internet of Things (IoT) at Dayalbagh Educational Institute, Agra. I specialize
+                        in building scalable systems that seamlessly connect embedded hardware, cloud services, and
+                        user-facing web dashboards.
                     </p>
-                    
+
                     <p class="text-lg">
-                        With hands-on experience in building real-time web apps, deploying local AI solutions, and integrating embedded data visualizations, I enjoy crafting tech that's both smart and scalable. My toolkit includes Python, JavaScript, Django, AWS, and Docker, among others.
+                        I work extensively at the intersection of embedded systems, cloud computing, and full-stack
+                        development. My expertise includes Python, Django, MQTT, LoRa, Docker, AWS (EC2, S3, Lambda),
+                        ESP32, Raspberry Pi, and real-time communication systems. I love building end-to-end IoT
+                        products — from hardware prototypes to cloud infrastructure to production-ready web
+                        applications.
                     </p>
-                    
+
                     <p class="text-lg">
-                        Some notable projects I've worked on include:
+                        Some notable projects I've built include:
                     </p>
-                    
+
                     <ul class="text-lg list-disc list-inside space-y-2 ml-4">
-                        <li>A device management web app for LoRa-based IoT devices</li>
-                        <li>A local chatbot using Django and Ollama</li>
-                        <li>A mood-based music streaming platform using natural language processing</li>
+                        <li>
+                            <strong>IoT Device Management Platform</strong> — A college-deployed system built with
+                            Django, LoRa, MQTT, and Docker for real-time device monitoring, role-based access, sensor
+                            dashboards, and GPIO control.
+                        </li>
+                        <li>
+                            <strong>AI-Powered Resume Analyzer</strong> — A Gemini-based NLP application hosted on AWS
+                            EC2 that analyzes PDFs/DOCX files and provides intelligent suggestions for improvement.
+                        </li>
+                        <li>
+                            <strong>Multi-Camera Face Recognition Platform</strong> — A real-time security system using
+                            OpenCV, Django, Redis, and WebSockets to detect faces from multiple IP cameras and send
+                            instant email alerts.
+                        </li>
                     </ul>
-                    
+
                     <p class="text-lg">
-                        I've also built interactive systems using Arduino, ESP boards, MQTT, and Tailwind CSS to deliver responsive, engaging user experiences. Currently, I'm seeking an internship opportunity where I can apply my skills, collaborate on innovative projects, and continue to grow as a developer in the cloud and web tech space.
+                        Over the past two years, I have worked under a faculty mentor on real-world IoT and cloud
+                        projects involving LoRa, ESP32, Raspberry Pi, AWS, and Django, giving me hands-on experience
+                        with both backend systems and embedded development.
                     </p>
-                    
+
+                    <p class="text-lg">
+                        I’m now seeking an internship or developer role where I can contribute to IoT product
+                        development, cloud infrastructure, or full-stack engineering — and continue growing through
+                        impactful real-world projects.
+                    </p>
+
+
                     <h3 class="text-2xl font-semibold gradient-text">My Skills</h3>
-                    
+
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         <!-- Programming Languages -->
                         <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
@@ -478,7 +680,7 @@
                             <i class="fab fa-css3-alt text-blue-500"></i>
                             <span>CSS</span>
                         </div>
-                        
+
                         <!-- Frameworks & Libraries -->
                         <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
                             <i class="fas fa-fire text-green-400"></i>
@@ -488,7 +690,7 @@
                             <i class="fas fa-server text-purple-400"></i>
                             <span>REST API</span>
                         </div>
-                        
+
                         <!-- Tools -->
                         <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
                             <i class="fab fa-docker text-blue-400"></i>
@@ -502,7 +704,7 @@
                             <i class="fab fa-css3 text-blue-400"></i>
                             <span>TailwindCSS</span>
                         </div>
-                        
+
                         <!-- Cloud & AI -->
                         <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
                             <i class="fas fa-database text-green-500"></i>
@@ -532,25 +734,25 @@
                             <span>Bash Scripting</span>
                         </div>
 
-                        
+
                         <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
                             <i class="fas fa-robot text-teal-400"></i>
                             <span>Virtual Machines</span>
                         </div>
-                      
-                        
+
+
                         <!-- IoT -->
                         <div class="skill-badge px-4 py-3 rounded-lg flex items-center space-x-2">
                             <i class="fas fa-wifi text-blue-300"></i>
                             <span>IoT</span>
                         </div>
-                     
 
-                 
-                        </div>
+
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -558,127 +760,152 @@
     <section id="projects" class="py-24 bg-gray-900 bg-opacity-30 relative">
         <div class="container mx-auto px-6 md:px-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>My Projects</h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
                 <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
                     <div class="relative h-48">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-400 opacity-70"></div>
-                        <img 
-                            src="https://placehold.co/600x400/0a192f/64ffda?text=AI+Website+Builder" 
-                            alt="Project Preview" 
-                            class="w-full h-full object-cover mix-blend-overlay">
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=AI+Website+Builder"
+                            src="https://placehold.co/600x400/0a192f/64ffda?text=AI+Website+Builder"
+                            alt="Project Preview" class="w-full h-full object-cover mix-blend-overlay">
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-bold gradient-text">AI-Driven Website Builder</h3>
-                        <p class="text-text-light">An intelligent builder that uses the Google Gemini API to create website content and layouts.</p>
-                        
+                        <p class="text-text-light">An intelligent builder that uses the Google Gemini API to create
+                            website content and layouts.</p>
+
                         <div class="space-y-2">
                             <div class="text-sm font-medium text-accent">Features:</div>
                             <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Dashboard</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Template Switching</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-Time Preview</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> REST API</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Dashboard
+                                </li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Template
+                                    Switching</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-Time
+                                    Preview</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> REST API
+                                </li>
                             </ul>
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Google Gemini API</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">HTML</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">JS</span>
                         </div>
-                        
-                        <a href="https://github.com/ohnohimanshu/Web-Builder" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+
+                        <a href="https://github.com/ohnohimanshu/Web-Builder"
+                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-github mr-1"></i> View on GitHub
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Project 2 -->
                 <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
                     <div class="relative h-48">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="ABC Lighting Conversational Chatbot" class="w-full h-full object-cover mix-blend-overlay">
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=ABC Lighting Conversational Chatbot"
+                            alt="ABC Lighting Conversational Chatbot"
+                            class="w-full h-full object-cover mix-blend-overlay">
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-bold gradient-text">ABC Lighting Conversational Chatbot</h3>
-                        <p class="text-text-light">A Django-based chatbot for a solar light company. Rich UI with animated chat and REST API support.</p>
-                        
+                        <p class="text-text-light">A Django-based chatbot for a solar light company. Rich UI with
+                            animated chat and REST API support.</p>
+
                         <div class="space-y-2">
                             <div class="text-sm font-medium text-accent">Features:</div>
                             <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Smart Product Queries</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Django Admin</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Product Image Responses</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Smart
+                                    Product Queries</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Django Admin
+                                </li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Product
+                                    Image Responses</li>
                             </ul>
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">REST</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">TailwindCSS</span>
                         </div>
-                        
-                        <a href="https://github.com/ohnohimanshu/ABC-Lightning-Bot" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+
+                        <a href="https://github.com/ohnohimanshu/ABC-Lightning-Bot"
+                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-github mr-1"></i> View on GitHub
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Project 3 -->
                 <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
                     <div class="relative h-48">
                         <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-teal-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="AI-Powered Resume Analyzer" class="w-full h-full object-cover mix-blend-overlay">
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=AI-Powered Resume Analyzer"
+                            alt="AI-Powered Resume Analyzer" class="w-full h-full object-cover mix-blend-overlay">
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-bold gradient-text">AI-Powered Resume Analyzer</h3>
                         <p class="text-text-light">Enhances resumes with AI-generated feedback (LLM/NLP-based)</p>
-                        
+
                         <div class="space-y-2">
                             <div class="text-sm font-medium text-accent">Features:</div>
                             <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Resume Analysis</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> PDF/DOCX Support</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> LLM-powered NLP</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Resume
+                                    Analysis</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> PDF/DOCX
+                                    Support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> LLM-powered
+                                    NLP</li>
                             </ul>
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Google Gemini API</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">PyMuPDF</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
                         </div>
-                        
-                        <a href="https://github.com/ohnohimanshu/ResumePro-AI" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+
+                        <a href="https://github.com/ohnohimanshu/ResumePro-AI"
+                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-github mr-1"></i> View on GitHub
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Project 4 -->
                 <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
                     <div class="relative h-48">
                         <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="Device Management Dashboard" class="w-full h-full object-cover mix-blend-overlay">
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Device Management Web-app"
+                            alt="Device Management Dashboard" class="w-full h-full object-cover mix-blend-overlay">
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-bold gradient-text">Device Management Dashboard</h3>
-                        <p class="text-text-light">LoRa sensor monitoring with charts, real-time MQTT data, role-based login</p>
-                        
+                        <p class="text-text-light">LoRa sensor monitoring with charts, real-time MQTT data, role-based
+                            login</p>
+
                         <div class="space-y-2">
                             <div class="text-sm font-medium text-accent">Features:</div>
                             <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time Charts</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> MQTT Integration</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Multi-role Login</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time
+                                    Charts</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> MQTT
+                                    Integration</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Multi-role
+                                    Login</li>
                             </ul>
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Tailwind</span>
@@ -686,72 +913,88 @@
                             <span class="px-2 py-1 bg-secondary text-xs rounded">MQTT</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
                         </div>
-                        
-                        <a href="https://github.com/ohnohimanshu/IoT-Management-webapp" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+
+                        <a href="https://github.com/ohnohimanshu/IoT-management"
+                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-github mr-1"></i> View on GitHub
                         </a>
                     </div>
                 </div>
-                
+
+
                 <!-- Project 5 -->
                 <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
                     <div class="relative h-48">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-500 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="Chatbot with Ollama" class="w-full h-full object-cover mix-blend-overlay">
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=HMX Chatbot" alt="Chatbot with Ollama"
+                            class="w-full h-full object-cover mix-blend-overlay">
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-bold gradient-text">Chatbot with Ollama</h3>
                         <p class="text-text-light">Local LLM-based chatbot with real-time WebSocket support</p>
-                        
+
                         <div class="space-y-2">
                             <div class="text-sm font-medium text-accent">Features:</div>
                             <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Local LLM Integration</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> WebSocket Support</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Privacy-focused</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Local LLM
+                                    Integration</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> WebSocket
+                                    Support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>
+                                    Privacy-focused</li>
                             </ul>
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Django Channels</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Ollama</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Tailwind</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">JavaScript</span>
                         </div>
-                        
-                        <a href="https://github.com/ohnohimanshu/HMX-Chatbot" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+
+                        <a href="https://github.com/ohnohimanshu/HMX-Chatbot"
+                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-github mr-1"></i> View on GitHub
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Project 6 -->
                 <div class="project-card glass-card rounded-lg overflow-hidden" data-scroll>
                     <div class="relative h-48">
                         <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-400 opacity-70"></div>
-                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Project" alt="Music Mood Streaming App" class="w-full h-full object-cover mix-blend-overlay">
+                        <img src="https://placehold.co/600x400/0a192f/64ffda?text=Music Mood Streaming App"
+                            alt="Music Mood Streaming App" class="w-full h-full object-cover mix-blend-overlay">
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="text-xl font-bold gradient-text">Music Mood Streaming App</h3>
-                        <p class="text-text-light">Detects user mood from lyrics and plays relevant music using HuggingFace Transformers.</p>
-                        
+                        <p class="text-text-light">Detects user mood from lyrics and plays relevant music using
+                            HuggingFace Transformers.</p>
+
                         <div class="space-y-2">
                             <div class="text-sm font-medium text-accent">Features:</div>
                             <ul class="text-sm text-text-light space-y-1 feature-list">
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Mood Detection</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Music Recommendations</li>
-                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time Streaming</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Mood
+                                    Detection</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Music
+                                    Recommendations</li>
+                                <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i> Real-time
+                                    Streaming</li>
                             </ul>
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Django</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">AJAX</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">HuggingFace</span>
                             <span class="px-2 py-1 bg-secondary text-xs rounded">Docker</span>
                         </div>
-                        
-                        <a href="https://github.com/ohnohimanshu/mood-music" class="inline-block mt-4 text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+
+                        <a href="https://github.com/ohnohimanshu/Moodify"
+                            class="inline-block mt-4 text-accent hover:underline" target="_blank"
+                            rel="noopener noreferrer">
                             <i class="fab fa-github mr-1"></i> View on GitHub
                         </a>
                     </div>
@@ -764,31 +1007,34 @@
     <section id="game" class="py-24 bg-gray-900 bg-opacity-30 relative">
         <div class="container mx-auto px-6 md:px-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Take a Break!</h2>
-            
+
             <div class="max-w-2xl mx-auto glass-card p-8 rounded-lg">
                 <div class="text-center mb-8">
                     <h3 class="text-xl font-bold text-accent mb-4">Code Break</h3>
                     <p class="text-text-light mb-6">Crack the color code! Choose the correct sequence of colors.</p>
-                    
+
                     <div class="flex justify-center space-x-4 mb-8">
                         <div id="gameScore" class="text-accent">Score: 0</div>
                         <div id="gameTime" class="text-accent">Time: 60s</div>
                     </div>
                 </div>
-                
+
                 <div id="gameBoard" class="grid grid-cols-4 gap-4 mb-8">
                     <!-- Colors will be inserted here by JS -->
                 </div>
-                
+
                 <div id="playerSequence" class="flex justify-center space-x-4 mb-8">
                     <!-- Player's selected colors will appear here -->
                 </div>
-                
+
                 <div class="flex justify-center space-x-4">
-                    <button id="startGame" class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
+                    <button id="startGame"
+                        class="px-6 py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button">
                         Start Game
                     </button>
-                    <button id="checkSequence" class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button" disabled>
+                    <button id="checkSequence"
+                        class="px-6 py-3 border-2 border-accent text-accent rounded-md hover:bg-accent hover:bg-opacity-10 transition duration-300 glow-button"
+                        disabled>
                         Check Sequence
                     </button>
                 </div>
@@ -799,45 +1045,33 @@
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-gray-900 bg-opacity-30 relative">
         <div class="container mx-auto px-6 md:px-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Mail For Freelance Work</h2>
-            
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Mail For Freelance
+                Work</h2>
+
             <div class="max-w-2xl mx-auto glass-card p-8 rounded-lg">
                 <form id="contactForm" class="space-y-6" data-scroll>
                     <div class="float-label-input relative">
-                        <input 
-                            type="text" 
-                            id="name" 
-                            name="name" 
-                            placeholder=" "
+                        <input type="text" id="name" name="name" placeholder=" "
                             class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white"
                             required>
                         <label for="name" class="absolute left-0 -top-3.5 text-sm text-accent">Name</label>
                     </div>
-                    
+
                     <div class="float-label-input relative">
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            placeholder=" "
+                        <input type="email" id="email" name="email" placeholder=" "
                             class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white"
                             required>
                         <label for="email" class="absolute left-0 -top-3.5 text-sm text-accent">Email</label>
                     </div>
-                    
+
                     <div class="float-label-input relative">
-                        <textarea 
-                            id="message" 
-                            name="message" 
-                            placeholder=" " 
-                            rows="4"
+                        <textarea id="message" name="message" placeholder=" " rows="4"
                             class="w-full bg-transparent border-b-2 border-accent border-opacity-50 focus:border-opacity-100 outline-none py-2 transition duration-300 text-white resize-none"
                             required></textarea>
                         <label for="message" class="absolute left-0 -top-3.5 text-sm text-accent">Message</label>
                     </div>
-                    
-                    <button 
-                        type="submit" 
+
+                    <button type="submit"
                         class="w-full py-3 bg-accent bg-opacity-10 text-accent border-2 border-transparent rounded-md hover:bg-opacity-20 transition duration-300 glow-button flex items-center justify-center">
                         <span id="submitText">Send Message</span>
                         <div id="submitSpinner" class="hidden">
@@ -845,18 +1079,23 @@
                         </div>
                     </button>
                 </form>
-                
+
                 <!-- Social Links -->
                 <div class="mt-12 text-center" data-scroll>
                     <h3 class="text-xl font-semibold mb-6 gradient-text">Connect With Me</h3>
                     <div class="flex justify-center space-x-8">
-                        <a href="mailto:himanshusharma8888@gmail.com" class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="Email">
+                        <a href="mailto:himanshusharma8888@gmail.com"
+                            class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="https://github.com/ohnohimanshu" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="GitHub">
+                        <a href="https://github.com/ohnohimanshu" target="_blank" rel="noopener noreferrer"
+                            class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/himanshu-sharma-b6b0b7227/" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-white transition-colors duration-300 text-2xl" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/himanshu-sharma-b6b0b7227/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-accent hover:text-white transition-colors duration-300 text-2xl"
+                            title="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </div>
@@ -869,9 +1108,10 @@
     <section id="resume" class="py-24 relative">
         <div class="container mx-auto px-6 md:px-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text text-center" data-scroll>Resume</h2>
-            
+
             <div class="flex justify-center">
-                <button id="resumeBtn" class="px-8 py-4 gradient-border text-accent hover:glow-effect transition duration-300 flex items-center space-x-2">
+                <button id="resumeBtn"
+                    class="px-8 py-4 gradient-border text-accent hover:glow-effect transition duration-300 flex items-center space-x-2">
                     <i class="fas fa-external-link-alt mr-2"></i>
                     <span>View Resume</span>
                 </button>
@@ -879,17 +1119,21 @@
         </div>
     </section>
 
-    <div id="resumeModal" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex items-center justify-center backdrop-blur-sm">
-        <div class="w-full max-w-5xl mx-4 transition-all duration-500 ease-out transform scale-95 opacity-0" id="resumeContent">
+    <div id="resumeModal"
+        class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex items-center justify-center backdrop-blur-sm">
+        <div class="w-full max-w-5xl mx-4 transition-all duration-500 ease-out transform scale-95 opacity-0"
+            id="resumeContent">
             <div class="bg-gray-900 rounded-lg overflow-hidden shadow-2xl border border-accent border-opacity-20">
                 <!-- Modal Header -->
                 <div class="flex justify-between items-center p-4 border-b border-accent border-opacity-20">
                     <h3 class="text-xl font-bold gradient-text">My Resume</h3>
                     <div class="flex items-center space-x-4">
-                        <a href="assets/resume.pdf" download class="text-accent hover:text-white transition-colors duration-300">
+                        <a href="assets/resume.pdf" download
+                            class="text-accent hover:text-white transition-colors duration-300">
                             <i class="fas fa-download"></i>
                         </a>
-                        <button id="closeResumeBtn" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <button id="closeResumeBtn"
+                            class="text-gray-400 hover:text-white transition-colors duration-300">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -897,49 +1141,196 @@
                 <!-- Resume Content -->
                 <div class="h-[80vh]">
                     <div class="w-full h-full bg-white rounded-b-lg">
-                        <iframe 
-                            src="assets/resume.pdf#toolbar=0" 
-                            class="w-full h-full"
-                            title="Resume Preview">
+                        <iframe src="assets/resume.pdf#toolbar=0" class="w-full h-full" title="Resume Preview">
                         </iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  
+
 
     <!-- Scripts -->
 
-      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
-   
-  
-   
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.71/build/spline-viewer.js"></script>
+
+
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+
+
+
     <script src="js/main.js"></script>
     <script src="js/resume.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/game.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const hideSplineBranding = () => {
-        document.querySelectorAll('spline-viewer').forEach(viewer => {
-          const shadow = viewer.shadowRoot;
-          if (shadow) {
-            const branding = shadow.querySelector('[slot="branding"], .branding, a[aria-label="Built with Spline"]');
-            if (branding) {
-              branding.style.display = "none";
+        document.addEventListener("DOMContentLoaded", () => {
+            // configuration for overlay fallback (adjust size/position as needed)
+            const overlayConfig = {
+                bottom: 8,   // px from bottom
+                right: 8,    // px from right
+                width: 140,  // px width of overlay
+                height: 40,  // px height of overlay
+                borderRadius: 6,
+                background: 'transparent', // try transparent first; change to match background if needed
+                backdropFilter: 'blur(6px)', // subtle blur can hide logo while keeping scene visible
+                zIndex: 9999
+            };
+
+            function createOverlayFor(viewer) {
+                // only add if not already added
+                if (viewer._splineBrandOverlay) return;
+                const overlay = document.createElement('div');
+                overlay.style.position = 'absolute';
+                overlay.style.pointerEvents = 'none'; // allow clicks to pass through
+                overlay.style.zIndex = overlayConfig.zIndex;
+                overlay.style.bottom = overlayConfig.bottom + 'px';
+                overlay.style.right = overlayConfig.right + 'px';
+                overlay.style.width = overlayConfig.width + 'px';
+                overlay.style.height = overlayConfig.height + 'px';
+                overlay.style.borderRadius = overlayConfig.borderRadius + 'px';
+                overlay.style.background = overlayConfig.background;
+                overlay.style.backdropFilter = overlayConfig.backdropFilter;
+                // ensure it's positioned relative to viewer's container
+                // place overlay as sibling of viewer and position absolute within same positioned ancestor
+                const wrapper = viewer.parentElement || document.body;
+                // make wrapper a positioned container if it's not
+                const computed = getComputedStyle(wrapper);
+                if (computed.position === 'static') wrapper.style.position = 'relative';
+                overlay.classList.add('spline-brand-overlay');
+                wrapper.appendChild(overlay);
+                viewer._splineBrandOverlay = overlay;
             }
-          }
+
+            function tryHideBranding(viewer) {
+                try {
+                    const shadow = viewer.shadowRoot;
+                    if (!shadow) return false;
+                    // adjust queries to anything Spline might use
+                    const selectors = [
+                        '[slot="branding"]',
+                        '.branding',
+                        'a[aria-label*="Spline"]',
+                        'a[aria-label*="Built with Spline"]',
+                        'a[title*="Spline"]'
+                    ];
+                    let removed = false;
+                    selectors.forEach(sel => {
+                        const el = shadow.querySelector(sel);
+                        if (el) {
+                            // hide it, remove it, whatever you prefer
+                            el.style.display = 'none';
+                            // also remove in case display none is reset later
+                            try { el.remove(); } catch (e) { }
+                            removed = true;
+                        }
+                    });
+                    // If Spline places an iframe or different element, try generic approach:
+                    // hide any small anchor/branding near bottom-right inside shadow
+                    const anchors = shadow.querySelectorAll('a');
+                    anchors.forEach(a => {
+                        const rect = a.getBoundingClientRect ? a.getBoundingClientRect() : null;
+                        // heuristic: small element
+                        if (!rect || (rect.width <= 180 && rect.height <= 60)) {
+                            a.style.display = 'none';
+                            try { a.remove(); } catch (e) { }
+                            removed = true;
+                        }
+                    });
+                    return removed;
+                } catch (err) {
+                    // likely closed shadow root or access blocked
+                    return false;
+                }
+            }
+
+            // For robustness, observe added spline-viewer elements and content changes
+            function watchAndHide() {
+                // first attempt for any existing viewers
+                document.querySelectorAll('spline-viewer').forEach(viewer => {
+                    const ok = tryHideBranding(viewer);
+                    if (!ok) createOverlayFor(viewer);
+                });
+
+                // observe for new spline-viewer elements being added to DOM
+                const docObserver = new MutationObserver(muts => {
+                    muts.forEach(m => {
+                        m.addedNodes && m.addedNodes.forEach(node => {
+                            if (node.nodeType !== 1) return;
+                            if (node.matches && node.matches('spline-viewer')) {
+                                const succeeded = tryHideBranding(node);
+                                if (!succeeded) createOverlayFor(node);
+                            } else {
+                                // maybe a viewer nested inside the added subtree
+                                const found = node.querySelector && node.querySelector('spline-viewer');
+                                if (found) {
+                                    const succeeded = tryHideBranding(found);
+                                    if (!succeeded) createOverlayFor(found);
+                                }
+                            }
+                        });
+                    });
+                });
+
+                docObserver.observe(document.body, { childList: true, subtree: true });
+
+                // Also observe each existing viewer's shadow / subtree changes (best-effort)
+                document.querySelectorAll('spline-viewer').forEach(viewer => {
+                    // try to watch internal changes if shadowRoot is accessible
+                    try {
+                        if (viewer.shadowRoot) {
+                            const ro = new MutationObserver(() => {
+                                const ok = tryHideBranding(viewer);
+                                if (!ok) createOverlayFor(viewer);
+                            });
+                            ro.observe(viewer.shadowRoot, { childList: true, subtree: true });
+                        }
+                    } catch (e) {
+                        // ignore - closed shadow root
+                    }
+                });
+
+                // periodic retries in case Spline does late-inits (small interval, stops after N tries)
+                let tries = 0;
+                const maxTries = 8;
+                const interval = setInterval(() => {
+                    tries++;
+                    document.querySelectorAll('spline-viewer').forEach(viewer => {
+                        const ok = tryHideBranding(viewer);
+                        if (!ok) createOverlayFor(viewer);
+                    });
+                    if (tries >= maxTries) clearInterval(interval);
+                }, 700);
+            }
+
+            watchAndHide();
         });
-      };
-      // Try to hide immediately and also after a delay (in case Spline loads late)
-      hideSplineBranding();
-      setTimeout(hideSplineBranding, 1000);
-      setTimeout(hideSplineBranding, 3000);
-    });
     </script>
 
- 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const hideSplineBranding = () => {
+                document.querySelectorAll('spline-viewer').forEach(viewer => {
+                    const shadow = viewer.shadowRoot;
+                    if (shadow) {
+                        const branding = shadow.querySelector('[slot="branding"], .branding, a[aria-label="Built with Spline"]');
+                        if (branding) {
+                            branding.style.display = "none";
+                        }
+                    }
+                });
+            };
+            // Try to hide immediately and also after a delay (in case Spline loads late)
+            hideSplineBranding();
+            setTimeout(hideSplineBranding, 1000);
+            setTimeout(hideSplineBranding, 3000);
+        });
+    </script>
+
+
 </body>
+
 </html>
