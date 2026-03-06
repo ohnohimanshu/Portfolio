@@ -411,6 +411,27 @@
 </head>
 
 <body class="bg-background-dark text-[#F2EDE4] selection:bg-[#E53E3E] selection:text-white">
+  <!-- Background Audio -->
+  <audio id="bg-audio" src="Naruto Soundtrack- Sadness and Sorrow (FULL VERSION) - TheSideralninja.mp3" loop></audio>
+  <script>
+    // Start audio immediately on page load
+    const bgAudio = document.getElementById('bg-audio');
+    bgAudio.volume = 0.4;
+    const playAudio = () => {
+      bgAudio.play().catch(e => console.log('Audio autoplay blocked by browser'));
+      document.removeEventListener('click', playAudio);
+      document.removeEventListener('touchstart', playAudio);
+      document.removeEventListener('keydown', playAudio);
+    };
+    // Try immediate play
+    bgAudio.play().catch(() => {
+      // If blocked, play on first interaction
+      document.addEventListener('click', playAudio);
+      document.addEventListener('touchstart', playAudio);
+      document.addEventListener('keydown', playAudio);
+    });
+  </script>
+  
   <!-- Global Noise Overlay -->
   <div class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-[0.03] z-50 mix-blend-overlay"
     style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');">
@@ -424,11 +445,22 @@
       <div class="loader-bg-bottom w-full h-[50.2%] bg-background-dark"></div>
     </div>
 
-    <div class="katana-line-container absolute inset-0 z-10 flex items-center justify-center rotate-[-15deg]">
-      <div
-        class="katana-line w-0 h-[3px] bg-white shadow-[0_0_40px_10px_rgba(255,255,255,1),_0_0_20px_5px_rgba(229,62,62,0.8)] rounded-full">
-      </div>
+    <!-- Glitch Effect Loader -->
+    <div class="glitch-container absolute inset-0 z-10 flex items-center justify-center">
     </div>
+    
+    <style>
+      
+      @keyframes glitch-skew {
+        0% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      
+      
+      .glitch-text {
+        display: none;
+      }
+    </style>
 
     <div class="katana-flash absolute inset-0 bg-white opacity-0 z-[15] pointer-events-none mix-blend-overlay"></div>
 
@@ -823,7 +855,7 @@
             </div>
             <div class="pt-8 border-t border-white/5 flex items-center justify-between">
               <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="#">
+                href="https://github.com/ohnohimanshu/Ai-Powered-Course-Designer">
                 View Repository <span class="material-icons text-sm">north_east</span>
               </a>
               <span class="material-icons opacity-10 text-4xl transform -rotate-45">auto_awesome</span>
@@ -853,7 +885,7 @@
             </div>
             <div class="pt-8 border-t border-white/5">
               <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="#">
+                href="https://github.com/ohnohimanshu/HMX-Chatbot">
                 View Repository <span class="material-icons text-sm">north_east</span>
               </a>
             </div>
@@ -886,7 +918,7 @@
             </div>
             <div class="pt-8 border-t border-white/5">
               <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="#">
+                href="https://github.com/ohnohimanshu/IoT-Management">
                 View Repository <span class="material-icons text-sm">north_east</span>
               </a>
             </div>
@@ -916,7 +948,7 @@
             </div>
             <div class="pt-8 border-t border-white/5">
               <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="#">
+                href="https://github.com/ohnohimanshu/ResumePro-AI">
                 View Repository <span class="material-icons text-sm">north_east</span>
               </a>
             </div>
@@ -945,7 +977,7 @@
             </div>
             <div class="pt-8 border-t border-white/5">
               <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="#">
+                href="https://github.com/ohnohimanshu/FaceSecure">
                 View Repository <span class="material-icons text-sm">north_east</span>
               </a>
             </div>
@@ -964,7 +996,7 @@
             <span
               class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
-          <a class="group flex items-center gap-3" href="#">
+          <a class="group flex items-center gap-3" href="https://drive.google.com/file/d/1Q2Dd284Y1AtnIl-8lOy8ii3nKsiurrhn/view?usp=drive_link">
             <span
               class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Resume</span>
             <span
@@ -1161,10 +1193,9 @@
             </a>
           </div>
           <nav class="flex flex-wrap justify-center gap-x-12 gap-y-4">
-            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="#">Github</a>
-            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="#">LinkedIn</a>
-            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="#">+91 945
-              753 6575</a>
+            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="https://github.com/ohnohimanshu">Github</a>
+            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="https://www.linkedin.com/in/himanshu-sharma-5903612b9/">LinkedIn</a>
+            <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="tel:+919457139175">+91 9457139175</a>
           </nav>
         </div>
         <footer
@@ -1200,53 +1231,25 @@
           <div class="w-[1px] h-12 bg-[#F2EDE4]"></div>
         </div>
       </main>
-      <!-- Background Audio -->
-      <audio id="bg-audio" src="Naruto Soundtrack- Sadness and Sorrow (FULL VERSION) - TheSideralninja.mp3" loop
-        autoplay></audio>
-
       <script>
-        // Sound Toggle Interaction and Autoplay Fix
+        // Sound Toggle Interaction
         const bgAudio = document.getElementById('bg-audio');
-        bgAudio.volume = 0.4; // Slightly lower volume initially
 
         // Footer Sound Button
         const soundBtnFooter = document.querySelector('button[aria-label="Toggle Sound"]');
-        const soundTextFooter = soundBtnFooter.querySelector('span');
-        const soundBarsFooter = soundBtnFooter.querySelectorAll('.sound-bar');
+        const soundTextFooter = soundBtnFooter ? soundBtnFooter.querySelector('span') : null;
+        const soundBarsFooter = soundBtnFooter ? soundBtnFooter.querySelectorAll('.sound-bar') : [];
 
         // Loader Sound Button
         const loaderSoundToggle = document.getElementById('loader-sound-toggle');
         const loaderSoundOn = document.querySelector('.loader-sound-on');
         const loaderSoundOff = document.querySelector('.loader-sound-off');
 
-        let isPlaying = true; // Assume true since we set autoplay
-
-        // Browsers often block autoplay. Force it on first interaction.
-        const startAudio = () => {
-          if (isPlaying && bgAudio.paused) {
-            bgAudio.play().then(() => {
-              updateUI();
-              // Success, remove interacting listeners
-              document.removeEventListener('click', startAudio);
-              document.removeEventListener('touchstart', startAudio);
-              document.removeEventListener('keydown', startAudio);
-            }).catch(e => {
-              console.log("Autoplay prevented by browser. Audio will play on first interaction.");
-              // Avoid setting isPlaying to false, meaning it will attempt play on next user interaction!
-            });
-          }
-        };
-
-        // Try to startaudio immediately
-        startAudio();
-
-        document.addEventListener('click', startAudio);
-        document.addEventListener('touchstart', startAudio);
-        document.addEventListener('keydown', startAudio);
+        let isPlaying = true;
 
         function updateUI() {
           // Update Footer Button
-          if (soundTextFooter && soundBarsFooter) {
+          if (soundTextFooter && soundBarsFooter.length > 0) {
             soundTextFooter.textContent = isPlaying ? 'Sound On' : 'Sound Off';
             soundBarsFooter.forEach(bar => {
               bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
@@ -1269,11 +1272,11 @@
         function toggleAudio(e) {
           if (e) {
             e.preventDefault();
-            e.stopPropagation(); // prevent startAudio listener from immediately stopping it again
+            e.stopPropagation();
           }
           isPlaying = !isPlaying;
           if (isPlaying) {
-            bgAudio.play();
+            bgAudio.play().catch(e => console.log('Play failed:', e));
           } else {
             bgAudio.pause();
           }
@@ -1282,7 +1285,6 @@
 
         if (soundBtnFooter) soundBtnFooter.addEventListener('click', toggleAudio);
         if (loaderSoundToggle) loaderSoundToggle.addEventListener('click', toggleAudio);
-
       </script>
     </section>
 
@@ -1299,8 +1301,8 @@
       const locoScroll = new LocomotiveScroll({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,
-        lerp: 0.15, // Increased lerp for snappier scrolling as requested
-        multiplier: 1, // Adjust scroll speed
+        lerp: 0.1, // Reduced for smoother, more responsive scrolling
+        multiplier: 1,
         tablet: { smooth: true },
         smartphone: { smooth: true }
       });
@@ -1338,16 +1340,12 @@
         .to(".gs-line", { duration: 1.2, width: "200px", ease: "power4.inOut" }, "-=0.8")
         .to(".gs-reveal", { duration: 1, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" }, "-=0.4")
 
-        // slice buildup
+        // glitch effect
         .to(".loader-fade-out", { duration: 0.4, opacity: 0, ease: "power2.inOut", delay: 0.4 })
-        .to(".katana-line", { duration: 0.05, opacity: 1, ease: "none" })
-        .to(".katana-line", { duration: 0.15, width: "200vw", ease: "power4.in" })
-        .to(".katana-flash", { duration: 0.1, opacity: 1, yoyo: true, repeat: 1, ease: "none" }, "-=0.05")
 
         // vertical split and rotate
-        .to(".loader-bg-top", { duration: 1.2, yPercent: -100, ease: "power4.inOut" }, "+=0.1")
+        .to(".loader-bg-top", { duration: 1.2, yPercent: -100, ease: "power4.inOut" }, "+=0.2")
         .to(".loader-bg-bottom", { duration: 1.2, yPercent: 100, ease: "power4.inOut" }, "-=1.2")
-        .to(".katana-line", { duration: 0.3, opacity: 0, ease: "power2.out" }, "-=1.2")
         .to(".loader-rotator", { duration: 0.1, display: "none" })
 
         // Hero entrace overlapping with loader half separation

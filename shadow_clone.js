@@ -339,24 +339,26 @@ if(startBtn) {
         document.getElementById('clone-overlay-btn').classList.remove('hidden');
         confidenceContainer.classList.remove('hidden');
         
-        ScrollTrigger.create({
-          trigger: "#shadow_clone",
-          start: "top bottom",
-          end: "bottom top",
-          onToggle: self => {
-            if (!self.isActive && isCameraRunning) {
-              isCameraRunning = false;
-              camera.stop();
-              
-              cloneOverlay.style.pointerEvents = 'auto';
-              cloneOverlay.style.opacity = '1';
-              canvas.classList.add('hidden');
-              document.getElementById('clone-overlay-btn').classList.add('hidden');
-              confidenceContainer.classList.add('hidden');
-              
-              startBtn.querySelector('span').textContent = "Resume Training";
+        if (!ScrollTrigger.getAll().some(t => t.vars.trigger === "#shadow_clone")) {
+          ScrollTrigger.create({
+            trigger: "#shadow_clone",
+            start: "top bottom",
+            end: "bottom top",
+            onToggle: self => {
+              if (!self.isActive && isCameraRunning) {
+                isCameraRunning = false;
+                camera.stop();
+                
+                cloneOverlay.style.pointerEvents = 'auto';
+                cloneOverlay.style.opacity = '1';
+                canvas.classList.add('hidden');
+                document.getElementById('clone-overlay-btn').classList.add('hidden');
+                confidenceContainer.classList.add('hidden');
+                
+                startBtn.querySelector('span').textContent = "Resume Training";
+              }
             }
-          }
-        });
+          });
+        }
     });
 }
