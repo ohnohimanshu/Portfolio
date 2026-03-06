@@ -13,18 +13,22 @@ let modelsLoaded = false;
 let isCameraRunning = false;
 let selfie, holistic, camera;
 
-async function loadGestureModel() {
-  try {
-    // Get the current directory path from window.location
-    const currentPath = window.location.pathname;
-    const baseDir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-    const fullUrl = window.location.origin + baseDir + 'gesture-model.json';
-    
-    gestureModel = await tf.loadLayersModel(fullUrl);
-    console.log("Gesture model loaded from:", fullUrl);
-  } catch (e) {
-    console.error("Failed to load gesture model:", e);
+async function loadGestureModel(retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      gestureModel = await tf.loadLayersModel(
+        "https://raw.githubusercontent.com/ohnohimanshu/Portfolio/main/gesture-model.json"
+      );
+      console.log("Gesture model loaded successfully");
+      return true;
+    } catch (e) {
+      console.error(`Failed to load gesture model (attempt ${i + 1}/${retries}):`, e);
+      if (i < retries - 1) {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1s before retry
+      }
+    }
   }
+  return false;
 }
 
 function normalizeHand(lm) {
@@ -360,3 +364,4 @@ if(startBtn) {
         });
     });
 }
+
