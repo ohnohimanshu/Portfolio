@@ -57,6 +57,10 @@
       letter-spacing: 0.02em;
     }
 
+    * {
+      cursor: url("White Katana--cursor--SweezyCursors..cur"), auto !important;
+    }
+
     /* Scoped styles will be appended here */
     /* Styles from stitch_loader_navigation.html */
 
@@ -413,45 +417,61 @@
   </div>
 
   <!-- SECTION: loader_navigation -->
-  <section id="loader_navigation" class="fixed inset-0 z-[100] w-full h-screen bg-background-dark overflow-hidden">
-    <nav
-      class="absolute top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference opacity-0 gs-reveal">
-      <div class="flex items-center space-x-4">
-        <div class="hanko">
-          <span class="font-mono text-[8px] tracking-tighter">HS</span>
+  <section id="loader_navigation"
+    class="fixed inset-0 z-[100] w-full h-screen overflow-hidden flex items-center justify-center pointer-events-none">
+    <div class="loader-rotator absolute w-[200vw] h-[200vh] rotate-[-15deg] flex flex-col z-0 pointer-events-auto">
+      <div class="loader-bg-top w-full h-[50.2%] bg-background-dark"></div>
+      <div class="loader-bg-bottom w-full h-[50.2%] bg-background-dark"></div>
+    </div>
+
+    <div class="katana-line-container absolute inset-0 z-10 flex items-center justify-center rotate-[-15deg]">
+      <div
+        class="katana-line w-0 h-[3px] bg-white shadow-[0_0_40px_10px_rgba(255,255,255,1),_0_0_20px_5px_rgba(229,62,62,0.8)] rounded-full">
+      </div>
+    </div>
+
+    <div class="katana-flash absolute inset-0 bg-white opacity-0 z-[15] pointer-events-none mix-blend-overlay"></div>
+
+    <div class="loader-fade-out absolute inset-0 z-20 pointer-events-none">
+      <nav
+        class="absolute top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference opacity-0 gs-reveal pointer-events-auto">
+        <div class="flex items-center space-x-4">
+          <div class="hanko">
+            <span class="font-mono text-[8px] tracking-tighter">HS</span>
+          </div>
+          <span class="font-display text-[10px] tracking-[0.2em] uppercase opacity-80">Himanshu</span>
         </div>
-        <span class="font-display text-[10px] tracking-[0.2em] uppercase opacity-80">Himanshu</span>
+        <div class="flex space-x-8">
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">序文</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">経験</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">作品</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">連絡</a>
+        </div>
+      </nav>
+      <main class="relative h-screen w-full flex flex-col items-center justify-center">
+        <div class="loader-kanji font-display text-8xl md:text-9xl tracking-widest-jp mb-12 opacity-0 gs-reveal">
+          聖域
+        </div>
+        <div class="h-[1px] bg-[#f2ede4] opacity-20 gs-line w-0"></div>
+        <div class="mt-12 text-center opacity-0 gs-reveal">
+          <p class="font-mono text-[10px] tracking-[0.4em] opacity-40 uppercase">Generative AI Engineer</p>
+        </div>
+      </main>
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 font-mono text-[8px] tracking-[0.5em] uppercase pointer-events-none gs-reveal">
+        Scroll to Begin
       </div>
-      <div class="flex space-x-8">
-        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">序文</a>
-        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">経験</a>
-        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">作品</a>
-        <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">連絡</a>
+      <div id="loader-sound-toggle"
+        class="absolute bottom-8 right-8 flex items-center space-x-6 mix-blend-difference opacity-0 hover:opacity-100 transition-opacity cursor-pointer gs-reveal pointer-events-auto">
+        <span class="font-display text-[10px] tracking-widest">Sound</span>
+        <div class="flex space-x-3 font-mono text-[8px] tracking-widest uppercase">
+          <span class="loader-sound-on opacity-100">On</span>
+          <span class="loader-sound-off opacity-30">Off</span>
+        </div>
       </div>
-    </nav>
-    <main class="relative h-screen w-full flex flex-col items-center justify-center">
-      <div class="loader-kanji font-display text-8xl md:text-9xl tracking-widest-jp mb-12 opacity-0 gs-reveal">
-        聖域
+      <div class="absolute bottom-8 left-8 mix-blend-difference opacity-0 gs-reveal">
+        <span class="font-mono text-[8px] tracking-widest uppercase">Delhi / Tokyo</span>
       </div>
-      <div class="h-[1px] bg-[#f2ede4] opacity-20 gs-line w-0"></div>
-      <div class="mt-12 text-center opacity-0 gs-reveal">
-        <p class="font-mono text-[10px] tracking-[0.4em] opacity-40 uppercase">Generative AI Engineer</p>
-      </div>
-    </main>
-    <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 font-mono text-[8px] tracking-[0.5em] uppercase pointer-events-none gs-reveal">
-      Scroll to Begin
-    </div>
-    <div id="loader-sound-toggle"
-      class="absolute bottom-8 right-8 flex items-center space-x-6 mix-blend-difference opacity-0 hover:opacity-100 transition-opacity cursor-pointer gs-reveal">
-      <span class="font-display text-[10px] tracking-widest">Sound</span>
-      <div class="flex space-x-3 font-mono text-[8px] tracking-widest uppercase">
-        <span class="loader-sound-on opacity-100">On</span>
-        <span class="loader-sound-off opacity-30">Off</span>
-      </div>
-    </div>
-    <div class="absolute bottom-8 left-8 mix-blend-difference opacity-0 gs-reveal">
-      <span class="font-mono text-[8px] tracking-widest uppercase">Delhi / Tokyo</span>
     </div>
   </section>
   <div data-scroll-container>
@@ -594,138 +614,58 @@
       </main>
       <div
         class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer group">
-        <span class="font-mono text-[10px] uppercase tracking-[0.5em]">Scroll to Experience</span>
+
         <div class="w-[1px] h-8 bg-stone-900 dark:bg-stone-100 group-hover:h-12 transition-all duration-500"></div>
       </div>
-    </section><!-- SECTION: technical_stack -->
-    <section id="technical_stack" class="relative w-full min-h-screen overflow-hidden">
-      <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-        <h1 class="font-display text-[20vw] text-text-ghost whitespace-nowrap leading-none">
-          技術スタック
-        </h1>
+    </section><!-- SECTION: shadow_clone_jutsu -->
+    <section id="shadow_clone"
+      class="relative w-full min-h-screen overflow-hidden bg-black flex flex-col justify-center items-center">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-0 right-0 w-[50%] h-[50%] bg-[#B8312F]/10 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-0 left-0 w-[50%] h-[50%] bg-[#B8312F]/10 rounded-full blur-[150px]"></div>
       </div>
-      <main class="relative z-10 w-full h-screen flex flex-col justify-center px-8 md:px-24 lg:px-40">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-20 max-w-7xl mx-auto w-full">
-          <section>
-            <div class="flex items-center mb-6">
-              <span class="section-line"></span>
-              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Generative AI</h2>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">RAG
-                Pipelines</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">LangChain</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Ollama</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">ChromaDB</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">LLM
-                Agents</span>
-            </div>
-          </section>
-          <section>
-            <div class="flex items-center mb-6">
-              <span class="section-line"></span>
-              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Backend API</h2>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Python</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Django</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">FastAPI</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">REST
-                API</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">WebSockets</span>
-            </div>
-          </section>
-          <section>
-            <div class="flex items-center mb-6">
-              <span class="section-line"></span>
-              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Cloud DevOps</h2>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">AWS
-                EC2</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">S3</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Lambda</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Docker</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Nginx</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">CI/CD</span>
-            </div>
-          </section>
-          <section>
-            <div class="flex items-center mb-6">
-              <span class="section-line"></span>
-              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">IoT Hardware</h2>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">LoRa
-                SX1278</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">ESP32</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">MQTT</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Raspberry
-                Pi</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Arduino</span>
-            </div>
-          </section>
-          <section>
-            <div class="flex items-center mb-6">
-              <span class="section-line"></span>
-              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Frontend</h2>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">JavaScript</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">TailwindCSS</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">HTML/CSS</span>
-            </div>
-          </section>
-          <section>
-            <div class="flex items-center mb-6">
-              <span class="section-line"></span>
-              <h2 class="font-mono text-[0.7rem] uppercase text-[#E23E28] tracking-[0.2em]">Tools</h2>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Git</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Linux</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Bash</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">VMs</span>
-              <span
-                class="skill-pill border border-border-faint px-3 py-1.5 font-mono text-[0.62rem] text-text-dim uppercase tracking-wider">Prompt
-                Eng.</span>
-            </div>
-          </section>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.03] select-none z-0">
+        <span class="font-serif text-[35vw] leading-none text-white whitespace-nowrap">影分身</span>
+      </div>
+
+      <div id="clone-ui" class="absolute top-24 flex justify-between w-full px-12 md:px-24 z-20 pointer-events-none">
+        <div class="font-display text-4xl text-[#B8312F] tracking-widest hidden" id="clone-confidence-container">
+          Confidence: <span id="clone-confidence" class="text-white">0%</span>
         </div>
-      </main>
-      <div class="absolute bottom-12 left-0 w-full flex justify-center pointer-events-none">
-        <p class="font-mono text-[0.5rem] uppercase tracking-[0.4em] text-text-dim opacity-50">
-          Build with intention — © 2024
-        </p>
+        <div class="font-mono text-sm tracking-widest text-[#F2EDE4] opacity-50 uppercase text-right ml-auto">
+          Hidden Leaf Training<br /><span class="text-[10px] text-[#B8312F]">Perform the hand sign</span>
+        </div>
       </div>
+
+      <div id="clone-container"
+        class="relative w-full max-w-5xl h-[60vh] border border-white/10 rounded-sm overflow-hidden bg-black/40 shadow-inner z-10 backdrop-blur-sm">
+
+        <!-- Camera Elements -->
+        <video id="clone-video" class="hidden" autoplay playsinline></video>
+        <canvas id="clone-canvas" class="w-full h-full object-cover hidden"></canvas>
+
+        <div id="clone-start-overlay"
+          class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-30 transition-opacity duration-500">
+          <h2 class="font-display text-5xl md:text-7xl text-white mb-6 tracking-widest"
+            style="text-shadow: 0 0 20px rgba(255,255,255,0.3)">影分身の術</h2>
+          <p class="font-mono text-xs uppercase tracking-[0.4em] text-[#B8312F] mb-12">Kage Bunshin no Jutsu</p>
+          <button id="start-clone-btn"
+            class="px-8 py-4 border border-white/20 hover:border-[#B8312F] text-white hover:text-[#B8312F] font-mono text-xs uppercase tracking-widest transition-colors cursor-pointer bg-transparent relative overflow-hidden group pointer-events-auto">
+            <span class="relative z-10">Start Camera</span>
+            <div
+              class="absolute inset-0 bg-[#B8312F]/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out">
+            </div>
+          </button>
+        </div>
+
+        <button id="clone-overlay-btn"
+          class="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-transparent border-none cursor-pointer z-50 transition-transform duration-700 hidden">
+          <img id="clone-overlay-img" src="assets/state-1.png" data-state="1" alt="overlay button"
+            class="w-[120px] scale-x-[-1]" />
+        </button>
+      </div>
+    </section>
     </section><!-- SECTION: experience_chronology -->
     <section id="experience_chronology" class="relative w-full min-h-screen overflow-hidden">
       <div class="absolute left-8 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800 hidden lg:block opacity-30"></div>
@@ -1052,120 +992,150 @@
           text-orientation: mixed;
         }
       </style>
-    </section><!-- SECTION: continuous_growth -->
-    <section id="continuous_growth" class="relative w-full min-h-screen overflow-hidden">
-      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    </section>
+
+    <!-- SECTION: interactive_skills -->
+    <section id="interactive_skills" class="relative w-full min-h-screen overflow-hidden flex flex-col justify-center">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]">
-        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]"></div>
         <div
           class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
         </div>
       </div>
-      <main class="relative z-10 w-full max-w-5xl px-8 py-24 md:py-32">
+      <main class="relative z-10 w-full max-w-7xl mx-auto px-8 py-24 md:py-32">
         <header class="mb-20 relative">
-          <div class="japanese-sub hidden lg:block select-none">継続的な成長</div>
+          <div
+            class="japanese-sub hidden lg:block select-none absolute -left-16 top-0 text-white/5 font-serif text-5xl writing-vertical">
+            専門技術</div>
           <div class="flex items-center gap-4 mb-6">
             <div class="w-2 h-2 rounded-full bg-[#E53E3E] pulse-dot"></div>
-            <span
-              class="font-serif italic text-lg tracking-widest text-[#E53E3E] dark:text-[#E53E3E] uppercase opacity-90">
-              五 · Currently Learning
+            <span class="font-serif italic text-lg tracking-widest text-[#E53E3E] uppercase opacity-90">
+              五 · Arsenal
             </span>
           </div>
-          <h1 class="font-serif text-5xl md:text-7xl font-light tracking-tight leading-tight">
-            Leveling <span class="font-playfair italic text-[#E53E3E] dark:text-[#E53E3E]">Up</span> — <br
-              class="md:hidden" />
-            <span class="opacity-80">This Month</span>
+          <h1 class="font-serif text-5xl md:text-7xl font-light tracking-tight leading-tight mb-8">
+            Technical <span class="font-playfair italic text-[#E53E3E]">Proficiency</span>
           </h1>
           <div class="h-px w-24 bg-[#E53E3E]/40 mt-10"></div>
         </header>
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
-          <div class="space-y-0">
-            <div class="course-item flex items-center py-6 group">
-              <span class="red-italic-arrow text-xl">→</span>
-              <div>
-                <h3
-                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
-                  Python for AI &amp; Agents</h3>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Dave Ebbelaar
-                </p>
-              </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div
+            class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             </div>
-            <div class="course-item flex items-center py-6 group">
-              <span class="red-italic-arrow text-xl">→</span>
-              <div>
-                <h3
-                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
-                  Intro to LLMs</h3>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Andrej
-                  Karpathy</p>
-              </div>
+            <div
+              class="absolute top-0 left-0 w-1 h-0 bg-[#E53E3E] group-hover:h-full transition-all duration-500 ease-out">
             </div>
-            <div class="course-item flex items-center py-6 group border-b-0 md:border-b">
-              <span class="red-italic-arrow text-xl">→</span>
-              <div>
-                <h3
-                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
-                  AI Agents Course</h3>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Marina Wyss
-                </p>
-              </div>
+            <h3
+              class="font-display text-2xl mb-4 opacity-90 group-hover:text-[#E53E3E] transition-colors relative z-10">
+              Generative AI</h3>
+            <div class="flex flex-wrap gap-2 relative z-10 mt-6">
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">RAG
+                Pipelines</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">LangChain</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Ollama</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">ChromaDB</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">LLM
+                Agents</span>
             </div>
           </div>
-          <div class="space-y-0">
-            <div class="course-item flex items-center py-6 group">
-              <span class="red-italic-arrow text-xl">→</span>
-              <div>
-                <h3
-                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
-                  FastAPI Full Course</h3>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Corey Schafer
-                </p>
-              </div>
+
+          <div
+            class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
+            <div
+              class="absolute inset-0 bg-gradient-to-bl from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             </div>
-            <div class="course-item flex items-center py-6 group">
-              <span class="red-italic-arrow text-xl">→</span>
-              <div>
-                <h3
-                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
-                  RAG Crash Course</h3>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Krish Naik</p>
-              </div>
+            <div
+              class="absolute top-0 right-0 w-0 h-1 bg-[#E53E3E] group-hover:w-full transition-all duration-500 ease-out">
             </div>
-            <div class="course-item flex items-center py-6 group border-b">
-              <span class="red-italic-arrow text-xl">→</span>
-              <div>
-                <h3
-                  class="font-serif text-xl md:text-2xl font-light dark:text-gray-200 group-hover:text-white transition-colors">
-                  What is LLMOps?</h3>
-                <p class="font-mono text-[0.6rem] uppercase tracking-widest dimmed-text mt-1">Shantanu</p>
-              </div>
+            <h3
+              class="font-display text-2xl mb-4 opacity-90 group-hover:text-[#E53E3E] transition-colors relative z-10">
+              Backend API</h3>
+            <div class="flex flex-wrap gap-2 relative z-10 mt-6">
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Python
+                & Django</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">FastAPI</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">REST
+                Architecture</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">WebSockets</span>
             </div>
           </div>
-        </section>
-        <footer
-          class="mt-24 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-t border-white/5 pt-12">
-          <div class="font-serif italic text-sm opacity-40">
-            Continuous pursuit of knowledge in the age of intelligence.
+
+          <div
+            class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 w-0 h-1 bg-[#E53E3E] group-hover:w-full transition-all duration-500 ease-out">
+            </div>
+            <h3
+              class="font-display text-2xl mb-4 opacity-90 group-hover:text-[#E53E3E] transition-colors relative z-10">
+              Cloud DevOps</h3>
+            <div class="flex flex-wrap gap-2 relative z-10 mt-6">
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">AWS
+                Stack</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Docker</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Nginx
+                Server</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">CI/CD
+                Pipelines</span>
+            </div>
           </div>
-          <div class="flex items-center gap-8">
-            <a class="font-mono text-[0.65rem] uppercase tracking-[0.3em] opacity-60 hover:opacity-100 hover:text-[#E53E3E] transition-all duration-300"
-              href="#">Previous / Project</a>
-            <a class="font-mono text-[0.65rem] uppercase tracking-[0.3em] opacity-60 hover:opacity-100 hover:text-[#E53E3E] transition-all duration-300 underline underline-offset-8 decoration-[#E53E3E]/50"
-              href="#">Next / Achievement</a>
+
+          <div
+            class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
+            <div
+              class="absolute inset-0 bg-gradient-to-tl from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            </div>
+            <div
+              class="absolute top-0 right-0 w-1 h-0 bg-[#E53E3E] group-hover:h-full transition-all duration-500 ease-out">
+            </div>
+            <h3
+              class="font-display text-2xl mb-4 opacity-90 group-hover:text-[#E53E3E] transition-colors relative z-10">
+              IoT Elements</h3>
+            <div class="flex flex-wrap gap-2 relative z-10 mt-6">
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">ESP32
+                & Arduino</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Raspberry
+                Pi</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">LoRa
+                SX1278</span>
+              <span
+                class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">MQTT
+                Protocol</span>
+            </div>
           </div>
-        </footer>
+
+        </div>
       </main>
-      <div class="absolute top-8 left-8 mix-blend-difference pointer-events-none">
-        <span class="font-display text-xs tracking-[0.5em] text-white opacity-80">MILEZ</span>
-      </div>
-      <div class="absolute bottom-8 left-8 mix-blend-difference pointer-events-none">
-        <span class="font-mono text-[0.6rem] tracking-widest text-white opacity-40">08 / CONTINUOUS GROWTH</span>
-      </div>
-      <div
-        class="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-[0.02] select-none">
-        <span class="font-serif text-[40rem] leading-none text-white">学</span>
-      </div>
+      <style>
+        .writing-vertical {
+          writing-mode: vertical-rl;
+          text-orientation: upright;
+          display: block;
+        }
+      </style>
     </section><!-- SECTION: contact_footer -->
     <section id="contact_footer" class="relative w-full min-h-screen overflow-hidden">
       <main class="relative h-screen w-full flex flex-col items-center justify-center px-6 overflow-hidden">
@@ -1253,20 +1223,26 @@
 
         // Browsers often block autoplay. Force it on first interaction.
         const startAudio = () => {
-          if (isPlaying) {
-            bgAudio.play().catch(e => {
-              console.log("Autoplay prevented by browser. Audio will play on first interaction.");
-              isPlaying = false;
+          if (isPlaying && bgAudio.paused) {
+            bgAudio.play().then(() => {
               updateUI();
+              // Success, remove interacting listeners
+              document.removeEventListener('click', startAudio);
+              document.removeEventListener('touchstart', startAudio);
+              document.removeEventListener('keydown', startAudio);
+            }).catch(e => {
+              console.log("Autoplay prevented by browser. Audio will play on first interaction.");
+              // Avoid setting isPlaying to false, meaning it will attempt play on next user interaction!
             });
           }
-          document.removeEventListener('click', startAudio);
-          document.removeEventListener('touchstart', startAudio);
-          document.removeEventListener('scroll', startAudio);
         };
+
+        // Try to startaudio immediately
+        startAudio();
+
         document.addEventListener('click', startAudio);
         document.addEventListener('touchstart', startAudio);
-        document.addEventListener('scroll', startAudio);
+        document.addEventListener('keydown', startAudio);
 
         function updateUI() {
           // Update Footer Button
@@ -1323,7 +1299,7 @@
       const locoScroll = new LocomotiveScroll({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,
-        lerp: 0.08, // Adjust for smoothness
+        lerp: 0.15, // Increased lerp for snappier scrolling as requested
         multiplier: 1, // Adjust scroll speed
         tablet: { smooth: true },
         smartphone: { smooth: true }
@@ -1353,21 +1329,34 @@
       gsap.set("#loader_navigation", { display: "block" });
       gsap.set(".gs-reveal", { opacity: 0, y: 20 });
       gsap.set(".gs-line", { width: 0 });
+      gsap.set(".katana-line", { opacity: 0, width: 0 });
       locoScroll.stop(); // Prevent scroll during loader
 
       loaderAnim
+        // standard entry
         .to(".loader-kanji", { duration: 1.5, opacity: 1, y: 0, ease: "power3.out", delay: 0.5 })
         .to(".gs-line", { duration: 1.2, width: "200px", ease: "power4.inOut" }, "-=0.8")
         .to(".gs-reveal", { duration: 1, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" }, "-=0.4")
-        .to("#loader_navigation", { duration: 1.2, yPercent: -100, ease: "power4.inOut", delay: 0.8 })
 
-        // Hero entrace overlapping with loader exit
-        .from("#hero_section .japanese-bg", { duration: 1.5, opacity: 0, scale: 0.9, ease: "power3.out" }, "-=0.8")
-        .from("#hero_section header", { duration: 1, opacity: 0, x: -30, ease: "power3.out" }, "-=1")
-        .from("#hero_section h1", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=0.8")
-        .from("#hero_section h2", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=0.8")
-        .from("#hero_section p, #hero_section .flex.gap-6", { duration: 1, opacity: 0, y: 20, stagger: 0.2, ease: "power3.out" }, "-=0.6")
-        .from("#hero_section .absolute.bottom-12", { duration: 1, opacity: 0, y: 30, ease: "power3.out" }, "-=0.4");
+        // slice buildup
+        .to(".loader-fade-out", { duration: 0.4, opacity: 0, ease: "power2.inOut", delay: 0.4 })
+        .to(".katana-line", { duration: 0.05, opacity: 1, ease: "none" })
+        .to(".katana-line", { duration: 0.15, width: "200vw", ease: "power4.in" })
+        .to(".katana-flash", { duration: 0.1, opacity: 1, yoyo: true, repeat: 1, ease: "none" }, "-=0.05")
+
+        // vertical split and rotate
+        .to(".loader-bg-top", { duration: 1.2, yPercent: -100, ease: "power4.inOut" }, "+=0.1")
+        .to(".loader-bg-bottom", { duration: 1.2, yPercent: 100, ease: "power4.inOut" }, "-=1.2")
+        .to(".katana-line", { duration: 0.3, opacity: 0, ease: "power2.out" }, "-=1.2")
+        .to(".loader-rotator", { duration: 0.1, display: "none" })
+
+        // Hero entrace overlapping with loader half separation
+        .from("#hero_section .japanese-bg", { duration: 1.5, opacity: 0, scale: 0.9, ease: "power3.out" }, "-=1.0")
+        .from("#hero_section header", { duration: 1, opacity: 0, x: -30, ease: "power3.out" }, "-=1.2")
+        .from("#hero_section h1", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=1")
+        .from("#hero_section h2", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=1")
+        .from("#hero_section p, #hero_section .flex.gap-6", { duration: 1, opacity: 0, y: 20, stagger: 0.2, ease: "power3.out" }, "-=0.8")
+        .from("#hero_section .absolute.bottom-12", { duration: 1, opacity: 0, y: 30, ease: "power3.out" }, "-=0.6");
 
       // --- ScrollTriggers ---
 
@@ -1417,27 +1406,42 @@
         ease: "power2.out"
       });
 
-      // Technical Stack
-      gsap.from("#technical_stack h1", {
+      // Interactive Skills
+      gsap.from("#interactive_skills h1, #interactive_skills header span", {
         scrollTrigger: {
-          trigger: "#technical_stack",
+          trigger: "#interactive_skills",
+          start: "top 75%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+
+      const skillCards = gsap.utils.toArray("#interactive_skills .skill-card");
+      skillCards.forEach((card, i) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%"
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: i * 0.1
+        });
+      });
+
+      gsap.from("#interactive_skills .japanese-sub", {
+        scrollTrigger: {
+          trigger: "#interactive_skills",
           start: "top bottom",
           end: "bottom top",
           scrub: 1
         },
-        x: "-10%"
-      });
-
-      const techSections = gsap.utils.toArray("#technical_stack section");
-      techSections.forEach((sec) => {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sec,
-            start: "top 85%"
-          }
-        });
-        tl.from(sec, { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" })
-          .from(sec.querySelectorAll('.skill-pill'), { scale: 0.8, opacity: 0, duration: 0.5, stagger: 0.05, ease: "back.out(1.5)" }, "-=0.4");
+        y: -150
       });
 
       // Experience Chronology
@@ -1509,32 +1513,7 @@
         }
       );
 
-      // Continuous Growth
-      gsap.from("#continuous_growth h1", {
-        scrollTrigger: {
-          trigger: "#continuous_growth",
-          start: "top 75%"
-        },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-
-      const courses = gsap.utils.toArray(".course-item");
-      courses.forEach((course, i) => {
-        gsap.from(course, {
-          scrollTrigger: {
-            trigger: course,
-            start: "top 90%"
-          },
-          x: -30,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          delay: i % 2 === 0 ? 0 : 0.2
-        });
-      });
+      // (Deprecated Continuous Growth animation removed)
 
       // Contact
       gsap.from("#contact_footer h1, #contact_footer p:not(.opacity-30)", {
@@ -1570,7 +1549,18 @@
       });
     });
 
+
+
+    ScrollTrigger.refresh();
+
   </script>
+  <!-- TensorFlow.js and MediaPipe for Shadow Clone Jutsu -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js"></script>
+  <script src="shadow_clone.js"></script>
 </body>
 
 </html>
