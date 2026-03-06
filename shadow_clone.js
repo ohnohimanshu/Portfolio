@@ -15,10 +15,13 @@ let selfie, holistic, camera;
 
 async function loadGestureModel() {
   try {
-    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    const modelPath = basePath ? `${basePath}/gesture-model.json` : './gesture-model.json';
-    gestureModel = await tf.loadLayersModel(modelPath);
-    console.log("Gesture model loaded from:", modelPath);
+    // Get the current directory path from window.location
+    const currentPath = window.location.pathname;
+    const baseDir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+    const fullUrl = window.location.origin + baseDir + 'gesture-model.json';
+    
+    gestureModel = await tf.loadLayersModel(fullUrl);
+    console.log("Gesture model loaded from:", fullUrl);
   } catch (e) {
     console.error("Failed to load gesture model:", e);
   }
@@ -102,11 +105,12 @@ function spawnSmoke(x, y, scale) {
   const folder = SMOKE_FOLDERS[Math.floor(Math.random() * SMOKE_FOLDERS.length)];
 
   const frames = [];
-  const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+  const currentPath = window.location.pathname;
+  const baseDir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
   for (let i = 1; i <= SMOKE_FRAME_COUNT; i++) {
     const img = new Image();
-    const assetPath = basePath ? `${basePath}/assets/${folder}/${i}.png` : `./assets/${folder}/${i}.png`;
-    img.src = assetPath;
+    const fullUrl = window.location.origin + baseDir + `assets/${folder}/${i}.png`;
+    img.src = fullUrl;
     frames.push(img);
   }
 
