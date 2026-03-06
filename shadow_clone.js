@@ -15,8 +15,10 @@ let selfie, holistic, camera;
 
 async function loadGestureModel() {
   try {
-    gestureModel = await tf.loadLayersModel("gesture-model.json");
-    console.log("Gesture model loaded");
+    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    const modelPath = basePath ? `${basePath}/gesture-model.json` : './gesture-model.json';
+    gestureModel = await tf.loadLayersModel(modelPath);
+    console.log("Gesture model loaded from:", modelPath);
   } catch (e) {
     console.error("Failed to load gesture model:", e);
   }
@@ -100,9 +102,11 @@ function spawnSmoke(x, y, scale) {
   const folder = SMOKE_FOLDERS[Math.floor(Math.random() * SMOKE_FOLDERS.length)];
 
   const frames = [];
+  const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
   for (let i = 1; i <= SMOKE_FRAME_COUNT; i++) {
     const img = new Image();
-    img.src = `assets/${folder}/${i}.png`;
+    const assetPath = basePath ? `${basePath}/assets/${folder}/${i}.png` : `./assets/${folder}/${i}.png`;
+    img.src = assetPath;
     frames.push(img);
   }
 
