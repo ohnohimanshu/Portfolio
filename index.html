@@ -57,6 +57,13 @@
       letter-spacing: 0.02em;
     }
 
+    * {
+      cursor: url("White Katana--cursor--SweezyCursors..cur"), auto !important;
+    }
+
+    /* Scoped styles will be appended here */
+    /* Styles from stitch_loader_navigation.html */
+
     .loader-kanji {
       color: rgba(242, 237, 228, 0.08);
       font-weight: 200;
@@ -81,6 +88,17 @@
       height: 30px;
     }
 
+    to {
+      opacity: 1;
+    }
+
+
+    to {
+      width: 200px;
+    }
+
+    /* Styles from stitch_hero_section.html */
+
     .outline-text {
       -webkit-text-stroke: 1px rgba(242, 237, 228, 0.15);
       color: transparent;
@@ -99,16 +117,33 @@
     }
 
     @keyframes scroll-anim {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
     }
 
     .noise-overlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       opacity: 0.03;
       z-index: 50;
@@ -128,6 +163,8 @@
       pointer-events: none;
     }
 
+
+    /* Styles from stitch_about_philosophy.html */
     .ghost-numeral {
       font-size: 65vh;
       line-height: 1;
@@ -150,7 +187,12 @@
       color: #B8312F;
     }
 
-    .kerning-wide { letter-spacing: 0.2em; }
+
+    /* Styles from stitch_technical_stack.html */
+
+    .kerning-wide {
+      letter-spacing: 0.2em;
+    }
 
     .skill-pill {
       transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
@@ -171,9 +213,20 @@
       margin-right: 0.75rem;
     }
 
-    .im-fell { font-family: 'IM Fell English', serif; }
-    .japanese-text { font-family: 'Noto Serif JP', serif; }
-    .fragment-mono { font-family: 'Fragment Mono', monospace; }
+
+    /* Styles from stitch_experience_chronology.html */
+
+    .im-fell {
+      font-family: 'IM Fell English', serif;
+    }
+
+    .japanese-text {
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .fragment-mono {
+      font-family: 'Fragment Mono', monospace;
+    }
 
     .hairline-separator {
       height: 1px;
@@ -185,8 +238,20 @@
       transition: color 0.4s ease;
     }
 
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Styles from stitch_projects_track.html */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
     .project-card {
       background: #09090A;
@@ -209,19 +274,45 @@
       line-height: 1;
     }
 
-    .featured-border { border-top: 2px solid #E53E3E; }
-
-    .drag-track { cursor: grab; }
-    .drag-track:active { cursor: grabbing; }
-
-    @keyframes pulse-red {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(229, 62, 62, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 62, 62, 0); }
+    .featured-border {
+      border-top: 2px solid #E53E3E;
     }
 
-    .pulse-dot { animation: pulse-red 2s infinite; }
-    .dimmed-text { color: rgba(255, 255, 255, 0.4); }
+    .drag-track {
+      cursor: grab;
+    }
+
+    .drag-track:active {
+      cursor: grabbing;
+    }
+
+
+
+    /* Styles from stitch_continuous_growth.html */
+    @keyframes pulse-red {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
+      }
+    }
+
+    .pulse-dot {
+      animation: pulse-red 2s infinite;
+    }
+
+    .dimmed-text {
+      color: rgba(255, 255, 255, 0.4);
+    }
 
     .course-item {
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -233,7 +324,25 @@
       padding-left: 0.5rem;
     }
 
-    .red-italic-arrow { font-style: italic; color: #E53E3E; margin-right: 1rem; }
+    .red-italic-arrow {
+      font-style: italic;
+      color: #E53E3E;
+      margin-right: 1rem;
+    }
+
+    .japanese-sub {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      position: absolute;
+      left: -4rem;
+      top: 0;
+      font-family: serif;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 2.5rem;
+    }
+
+
+    /* Styles from stitch_contact_footer.html */
 
     .kanji-bg {
       font-size: 40vw;
@@ -259,7 +368,9 @@
       transition: background-color 0.3s ease;
     }
 
-    .email-link:hover::after { background-color: #E23E28; }
+    .email-link:hover::after {
+      background-color: #E23E28;
+    }
 
     .social-link {
       font-variant: small-caps;
@@ -267,9 +378,16 @@
       transition: opacity 0.3s ease;
     }
 
-    .social-link:hover { opacity: 1 !important; }
+    .social-link:hover {
+      opacity: 1 !important;
+    }
 
-    .sound-wave { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+    .sound-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
 
     .sound-bar {
       width: 1px;
@@ -278,8 +396,15 @@
     }
 
     @keyframes wave {
-      0%, 100% { height: 4px; }
-      50% { height: 12px; }
+
+      0%,
+      100% {
+        height: 4px;
+      }
+
+      50% {
+        height: 12px;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
@@ -289,21 +414,24 @@
   <!-- Background Audio -->
   <audio id="bg-audio" src="bg_song.mp3" loop></audio>
   <script>
+    // Start audio immediately on page load
     const bgAudio = document.getElementById('bg-audio');
     bgAudio.volume = 0.4;
     const playAudio = () => {
-      bgAudio.play().catch(e => console.log('Audio autoplay blocked'));
+      bgAudio.play().catch(e => console.log('Audio autoplay blocked by browser'));
       document.removeEventListener('click', playAudio);
       document.removeEventListener('touchstart', playAudio);
       document.removeEventListener('keydown', playAudio);
     };
+    // Try immediate play
     bgAudio.play().catch(() => {
+      // If blocked, play on first interaction
       document.addEventListener('click', playAudio);
       document.addEventListener('touchstart', playAudio);
       document.addEventListener('keydown', playAudio);
     });
   </script>
-
+  
   <!-- Global Noise Overlay -->
   <div class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-[0.03] z-50 mix-blend-overlay"
     style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');">
@@ -317,17 +445,28 @@
       <div class="loader-bg-bottom w-full h-[50.2%] bg-background-dark"></div>
     </div>
 
-    <div class="glitch-container absolute inset-0 z-10 flex items-center justify-center"></div>
-
+    <!-- Glitch Effect Loader -->
+    <div class="glitch-container absolute inset-0 z-10 flex items-center justify-center">
+    </div>
+    
     <style>
-      @keyframes glitch-skew { 0% { opacity: 0; } 100% { opacity: 0; } }
-      .glitch-text { display: none; }
+      
+      @keyframes glitch-skew {
+        0% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      
+      
+      .glitch-text {
+        display: none;
+      }
     </style>
 
     <div class="katana-flash absolute inset-0 bg-white opacity-0 z-[15] pointer-events-none mix-blend-overlay"></div>
 
     <div class="loader-fade-out absolute inset-0 z-20 pointer-events-none">
-      <nav class="absolute top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference opacity-0 gs-reveal pointer-events-auto">
+      <nav
+        class="absolute top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference opacity-0 gs-reveal pointer-events-auto">
         <div class="flex items-center space-x-4">
           <div class="hanko">
             <span class="font-mono text-[8px] tracking-tighter">HS</span>
@@ -335,22 +474,23 @@
           <span class="font-display text-[10px] tracking-[0.2em] uppercase opacity-80">Himanshu</span>
         </div>
         <div class="flex space-x-8">
-          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">About</a>
-          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">Experience</a>
-          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">Projects</a>
-          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">Contact</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">序文</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">経験</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">作品</a>
+          <a class="nav-link font-mono text-[0.55rem] tracking-ui uppercase" href="#">連絡</a>
         </div>
       </nav>
       <main class="relative h-screen w-full flex flex-col items-center justify-center">
         <div class="loader-kanji font-display text-8xl md:text-9xl tracking-widest-jp mb-12 opacity-0 gs-reveal">
-          開発
+          雲技
         </div>
         <div class="h-[1px] bg-[#f2ede4] opacity-20 gs-line w-0"></div>
         <div class="mt-12 text-center opacity-0 gs-reveal">
           <p class="font-mono text-[10px] tracking-[0.4em] opacity-40 uppercase">Backend & Cloud Developer</p>
         </div>
       </main>
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 font-mono text-[8px] tracking-[0.5em] uppercase pointer-events-none gs-reveal">
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 font-mono text-[8px] tracking-[0.5em] uppercase pointer-events-none gs-reveal">
         Scroll to Begin
       </div>
       <div id="loader-sound-toggle"
@@ -362,11 +502,10 @@
         </div>
       </div>
       <div class="absolute bottom-8 left-8 mix-blend-difference opacity-0 gs-reveal">
-        <span class="font-mono text-[8px] tracking-widest uppercase">Agra, India / Remote</span>
+        <span class="font-mono text-[8px] tracking-widest uppercase">Japan / India / Remote</span>
       </div>
     </div>
   </section>
-
   <div data-scroll-container>
     <!-- SECTION: hero_section -->
     <section id="hero_section" class="relative w-full min-h-screen overflow-hidden">
@@ -374,7 +513,7 @@
       <main class="relative min-h-screen w-full flex flex-col justify-center px-8 md:px-20 lg:px-32">
         <header class="absolute top-12 left-8 md:left-20 lg:left-32 flex flex-col gap-1">
           <span class="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#B8312F]">
-            Django Backend · Cloud Developer · IoT Engineer
+             Django Backend · Cloud Developer · IoT Engineer
           </span>
         </header>
         <div class="z-10 mt-12">
@@ -386,7 +525,7 @@
           </h2>
           <div class="mt-12 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
             <p class="font-japanese text-sm md:text-base tracking-widest text-accent/80 font-extralight">
-              AWS EC2 · S3 · Docker · CI/CD · REST APIs · Open to Remote 🌍
+              AWS EC2 · S3 · Docker · CI/CD · REST APIs · Open to Remote
             </p>
             <div class="h-[1px] w-12 bg-[#B8312F]/40 hidden md:block"></div>
             <div class="flex gap-6 font-mono text-[0.7rem] uppercase tracking-widest text-accent/50">
@@ -397,7 +536,8 @@
           </div>
         </div>
         <div class="absolute bottom-12 right-8 md:right-20 lg:right-32 flex flex-col items-center gap-6">
-          <span class="font-mono text-[0.55rem] uppercase tracking-[0.4em] rotate-180 [writing-mode:vertical-lr] text-accent/40">
+          <span
+            class="font-mono text-[0.55rem] uppercase tracking-[0.4em] rotate-180 [writing-mode:vertical-lr] text-accent/40">
             Scroll to explore
           </span>
           <div class="scroll-line"></div>
@@ -409,7 +549,7 @@
         </div>
       </main>
       <section class="min-h-screen px-8 md:px-20 lg:px-32 py-32 flex flex-col justify-start">
-        <div class="max-w-4xl">
+    <div class="max-w-4xl">
           <h3 class="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#B8312F] mb-8">About — 概要</h3>
           <p class="font-display text-4xl md:text-5xl leading-tight text-accent/90 mb-12">
             I build <span class="text-[#B8312F] italic">production systems</span> — not just local demos. APIs, cloud infrastructure, and IoT — all deployed and running.
@@ -425,28 +565,29 @@
         </div>
       </section>
       <footer class="p-12 border-t border-accent/5 flex justify-between items-center">
-        <span class="font-mono text-[0.6rem] text-accent/20 uppercase tracking-widest">© 2025 Himanshu Sharma</span>
+        <span class="font-mono text-[0.6rem] text-accent/20 uppercase tracking-widest">© 2024 Himanshu Sharma</span>
         <div class="flex gap-4">
           <div class="w-1.5 h-1.5 rounded-full bg-[#B8312F] animate-pulse"></div>
         </div>
       </footer>
-    </section>
-
-    <!-- SECTION: about_philosophy -->
+    </section><!-- SECTION: about_philosophy -->
     <section id="about_philosophy" class="relative w-full min-h-screen overflow-hidden">
       <main class="relative min-h-screen flex items-center justify-center px-8 md:px-20 py-20">
-        <div class="absolute left-0 top-0 h-full w-1/2 flex items-center justify-center opacity-20 md:opacity-100 overflow-hidden pointer-events-none">
-          <div class="ghost-numeral font-display italic text-[#00000008] dark:text-[rgba(242,237,228,0.04)] absolute left-10 md:left-20 top-1/2 -translate-y-1/2">
+        <div
+          class="absolute left-0 top-0 h-full w-1/2 flex items-center justify-center opacity-20 md:opacity-100 overflow-hidden pointer-events-none">
+          <div
+            class="ghost-numeral font-display italic text-[#00000008] dark:text-[rgba(242,237,228,0.04)] absolute left-10 md:left-20 top-1/2 -translate-y-1/2">
             I
           </div>
-          <div class="kanji-vertical absolute left-12 md:left-40 top-1/2 -translate-y-1/2 font-display text-2xl md:text-3xl tracking-widest text-[#B8312F]/40 dark:text-[#B8312F]/30 uppercase">
+          <div
+            class="kanji-vertical absolute left-12 md:left-40 top-1/2 -translate-y-1/2 font-display text-2xl md:text-3xl tracking-widest text-[#B8312F]/40 dark:text-[#B8312F]/30 uppercase">
             自己紹介
           </div>
         </div>
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 relative z-10">
           <div class="hidden md:block md:col-span-5"></div>
           <div class="md:col-span-7 flex flex-col justify-center space-y-8 max-w-2xl">
-            <div class="font-mono text-xs uppercase tracking-[0.3em] text-stone-500 dark:text-stone-500 flex items-center gap-4">
+             <div class="font-mono text-xs uppercase tracking-[0.3em] text-stone-500 dark:text-stone-500 flex items-center gap-4">
               <span>一 · About</span>
               <div class="h-[1px] w-12 bg-stone-300 dark:bg-stone-800"></div>
             </div>
@@ -461,7 +602,8 @@
                 My edge: I combine strong backend engineering (Django, REST APIs, PostgreSQL) with real cloud infrastructure skills (AWS EC2, S3, IAM, GitHub Actions) and two years of production IoT development. Everything on this portfolio is deployed and running — not just screenshots.
               </p>
             </div>
-            <div class="pt-12 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-12 border-t border-stone-200 dark:border-stone-800">
+            <div
+              class="pt-12 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-12 border-t border-stone-200 dark:border-stone-800">
               <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
                 <span class="text-[#B8312F]">—</span>
                 <span class="text-stone-700 dark:text-stone-300 uppercase">Agra, India</span>
@@ -472,7 +614,7 @@
               </div>
               <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
                 <span class="text-[#B8312F]">—</span>
-                <span class="text-stone-700 dark:text-stone-300 uppercase">AWS · Docker · CI/CD</span>
+                <span class="text-stone-700 dark:text-stone-300 uppercase">AWS · Docker · CI/CD · Django </span>
               </div>
               <div class="flex items-center gap-3 font-mono text-sm tracking-wide">
                 <span class="text-[#B8312F]">—</span>
@@ -482,20 +624,73 @@
           </div>
         </div>
         <div class="absolute top-20 right-20 pointer-events-none opacity-10">
-          <svg class="stroke-stone-900 dark:stroke-stone-100" fill="none" height="200" viewBox="0 0 100 100" width="200" xmlns="http://www.w3.org/2000/svg">
+          <svg class="stroke-stone-900 dark:stroke-stone-100" fill="none" height="200" viewBox="0 0 100 100" width="200"
+            xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="48" stroke-dasharray="2 4" stroke-width="0.5"></circle>
             <path d="M50 0V100M0 50H100" stroke-width="0.2"></path>
           </svg>
         </div>
       </main>
-    </section>
+      <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer group">
 
-    <!-- SECTION: experience_chronology -->
+        <div class="w-[1px] h-8 bg-stone-900 dark:bg-stone-100 group-hover:h-12 transition-all duration-500"></div>
+      </div>
+    </section><!-- SECTION: shadow_clone_jutsu -->
+    <section id="shadow_clone"
+      class="relative w-full min-h-screen overflow-hidden bg-black flex flex-col justify-center items-center">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-0 right-0 w-[50%] h-[50%] bg-[#B8312F]/10 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-0 left-0 w-[50%] h-[50%] bg-[#B8312F]/10 rounded-full blur-[150px]"></div>
+      </div>
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.03] select-none z-0">
+        <span class="font-serif text-[35vw] leading-none text-white whitespace-nowrap">影分身</span>
+      </div>
+
+      <div id="clone-ui" class="absolute top-24 flex justify-between w-full px-12 md:px-24 z-20 pointer-events-none">
+        <div class="font-display text-4xl text-[#B8312F] tracking-widest hidden" id="clone-confidence-container">
+          Confidence: <span id="clone-confidence" class="text-white">0%</span>
+        </div>
+        <div class="font-mono text-sm tracking-widest text-[#F2EDE4] opacity-50 uppercase text-right ml-auto">
+          Hidden Leaf Training<br /><span class="text-[10px] text-[#B8312F]">Perform the hand sign</span>
+        </div>
+      </div>
+
+      <div id="clone-container"
+        class="relative w-full max-w-5xl h-[60vh] border border-white/10 rounded-sm overflow-hidden bg-black/40 shadow-inner z-10 backdrop-blur-sm">
+
+        <!-- Camera Elements -->
+        <video id="clone-video" class="hidden" autoplay playsinline></video>
+        <canvas id="clone-canvas" class="w-full h-full object-cover hidden"></canvas>
+
+        <div id="clone-start-overlay"
+          class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-30 transition-opacity duration-500">
+          <h2 class="font-display text-5xl md:text-7xl text-white mb-6 tracking-widest"
+            style="text-shadow: 0 0 20px rgba(255,255,255,0.3)">影分身の術</h2>
+          <p class="font-mono text-xs uppercase tracking-[0.4em] text-[#B8312F] mb-12">Kage Bunshin no Jutsu</p>
+          <button id="start-clone-btn"
+            class="px-8 py-4 border border-white/20 hover:border-[#B8312F] text-white hover:text-[#B8312F] font-mono text-xs uppercase tracking-widest transition-colors cursor-pointer bg-transparent relative overflow-hidden group pointer-events-auto">
+            <span class="relative z-10">Start Camera</span>
+            <div
+              class="absolute inset-0 bg-[#B8312F]/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out">
+            </div>
+          </button>
+        </div>
+
+        <button id="clone-overlay-btn"
+          class="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-transparent border-none cursor-pointer z-50 transition-transform duration-700 hidden">
+          <img id="clone-overlay-img" src="assets/state-1.png" data-state="1" alt="overlay button"
+            class="w-[120px] scale-x-[-1]" />
+        </button>
+      </div>
+    </section>
+    </section><!-- SECTION: experience_chronology -->
     <section id="experience_chronology" class="relative w-full min-h-screen overflow-hidden">
       <div class="absolute left-8 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800 hidden lg:block opacity-30"></div>
       <div class="absolute right-8 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800 hidden lg:block opacity-30"></div>
       <main class="min-h-screen flex flex-col justify-center items-center px-6 lg:px-24 py-20 relative">
-        <div class="w-full max-w-5xl mb-24">
+        <div class="w-full max-w-5xl mb-24 ">
           <div class="flex items-center gap-4 mb-4">
             <span class="fragment-mono text-[10px] tracking-[0.3em] uppercase text-[#A82B2B]">06</span>
             <div class="h-px w-8 bg-[#A82B2B]"></div>
@@ -508,14 +703,17 @@
             <p class="fragment-mono text-[10px] tracking-widest hidden md:block">CHRONOLOGY / 2024 — PRESENT</p>
           </div>
         </div>
-        <div class="w-full max-w-5xl space-y-0" style="animation-delay: 0.2s;">
+        <div class="w-full max-w-5xl space-y-0 " style="animation-delay: 0.2s;">
           <article class="experience-entry group py-12 border-b border-zinc-200 dark:border-zinc-800">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
               <div class="md:col-span-4 space-y-2">
                 <div class="flex items-center gap-3">
-                  <span class="fragment-mono text-[10px] border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-sm">NOV 2025 — PRESENT</span>
+                  <span
+                    class="fragment-mono text-[10px] border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-sm">NOV
+                    2025 — PRESENT</span>
                 </div>
-                <h3 class="role-title im-fell text-2xl md:text-3xl text-slate-900 dark:text-zinc-100 transition-colors duration-500">
+                <h3
+                  class="role-title im-fell text-2xl md:text-3xl text-slate-900 dark:text-zinc-100 transition-colors duration-500">
                   Intern — 5G Virtual Lab
                 </h3>
                 <p class="japanese-text text-[#A82B2B] text-sm font-light tracking-wide">
@@ -526,11 +724,13 @@
                 <ul class="space-y-6 text-sm md:text-base leading-relaxed max-w-2xl">
                   <li class="flex gap-4">
                     <span class="text-[#A82B2B] mt-1">—</span>
-                    <span>Developing a 5G Virtual Lab under India's national Virtual Labs initiative — Python backend, simulation modules, and 5G architecture experiments for remote student access.</span>
+                    <span>Developing a 5G Virtual Lab under the national Virtual Labs initiative,
+                      enabling practical experimentation through simulation and remote access.</span>
                   </li>
                   <li class="flex gap-4">
                     <span class="text-[#A82B2B] mt-1">—</span>
-                    <span>Implementing lab modules covering 5G architecture, protocols, performance metrics, and real-world use cases.</span>
+                    <span>Implementing lab modules covering 5G architecture, protocols, performance
+                      metrics, and real-world use cases.</span>
                   </li>
                 </ul>
               </div>
@@ -540,10 +740,13 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
               <div class="md:col-span-4 space-y-2">
                 <div class="flex items-center gap-3">
-                  <span class="fragment-mono text-[10px] border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-sm">MAY 2024 — OCT 2025</span>
+                  <span
+                    class="fragment-mono text-[10px] border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-sm">MAY
+                    2024 — OCT 2025</span>
                 </div>
-                <h3 class="role-title im-fell text-2xl md:text-3xl text-slate-900 dark:text-zinc-100 transition-colors duration-500">
-                  Project Intern — Web Dev & IoT
+                <h3
+                  class="role-title im-fell text-2xl md:text-3xl text-slate-900 dark:text-zinc-100 transition-colors duration-500">
+                  Project Intern — Web Dev &amp; IoT
                 </h3>
                 <p class="japanese-text text-[#A82B2B] text-sm font-light tracking-wide">
                   Dayalbagh Educational Institute
@@ -553,34 +756,50 @@
                 <ul class="space-y-6 text-sm md:text-base leading-relaxed max-w-2xl">
                   <li class="flex gap-4">
                     <span class="text-[#A82B2B] mt-1">—</span>
-                    <span>Built and deployed production Django applications on AWS EC2 with Docker and NGINX under direct faculty mentorship across 18 months.</span>
+                    <span>Built production-deployed web applications using Django and AWS under direct
+                      faculty mentorship across 18 months.</span>
                   </li>
                   <li class="flex gap-4">
                     <span class="text-[#A82B2B] mt-1">—</span>
-                    <span>Developed cloud-integrated IoT solutions using LoRa, Raspberry Pi, ESP32, and Arduino — systems deployed and running in real college laboratory environments.</span>
+                    <span>Developed cloud-integrated IoT solutions using LoRa, Raspberry Pi, ESP32, and
+                      Arduino — systems deployed in real college laboratory environments.</span>
                   </li>
                 </ul>
               </div>
             </div>
           </article>
         </div>
-        <div class="w-full max-w-5xl mt-24 flex justify-between items-center" style="animation-delay: 0.4s;">
+        <div class="w-full max-w-5xl mt-24 flex justify-between items-center " style="animation-delay: 0.4s;">
           <div class="group cursor-pointer flex items-center gap-4">
-            <span class="fragment-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-[#A82B2B] transition-colors">PREVIOUS — 05</span>
+            <span
+              class="fragment-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-[#A82B2B] transition-colors">PREVIOUS
+              — 05</span>
           </div>
           <div class="group cursor-pointer flex items-center gap-4 text-right">
-            <span class="fragment-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-[#A82B2B] transition-colors">NEXT — 07 PROJECTS</span>
+            <span
+              class="fragment-mono text-[10px] tracking-widest text-zinc-500 group-hover:text-[#A82B2B] transition-colors">NEXT
+              — 07 PROJECTS</span>
           </div>
         </div>
       </main>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.02] dark:opacity-[0.03] select-none">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.02] dark:opacity-[0.03] select-none">
         <span class="japanese-text text-[30vw] leading-none font-bold">開発</span>
       </div>
-    </section>
-
-    <!-- SECTION: projects_track -->
+      <div
+        class="absolute inset-0 pointer-events-none opacity-[0.015] dark:opacity-[0.03] contrast-150 brightness-100 mix-blend-overlay">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <filter id="noise">
+            <feTurbulence baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" type="fractalNoise">
+            </feTurbulence>
+          </filter>
+          <rect filter="url(#noise)" height="100%" width="100%"></rect>
+        </svg>
+      </div>
+    </section><!-- SECTION: projects_track -->
     <section id="projects_track" class="relative w-full min-h-screen overflow-hidden">
-      <header class="pt-24 pb-12 px-8 md:px-20 max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <header
+        class="pt-24 pb-12 px-8 md:px-20 max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <span class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 mb-2 block">Section 03</span>
           <h1 class="text-6xl md:text-8xl font-display italic leading-none dark:text-[#F2EDE4]">
@@ -595,10 +814,9 @@
       </header>
       <main class="relative w-full overflow-hidden select-none" id="scroll-track">
         <div class="flex gap-8 px-8 md:px-20 pb-24 min-w-max">
-
-          <!-- Project 1: File Storage API — FEATURED -->
-          <article class="project-card featured-border relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
-            <div class="ghost-kanji font-display">雲</div>
+          <article
+            class="project-card featured-border relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">知</div>
             <div>
               <div class="flex justify-between items-start mb-12">
                 <span class="font-mono text-[10px] tracking-widest opacity-40">01 / FEATURED</span>
@@ -607,96 +825,49 @@
                   <span class="font-mono text-[10px] tracking-widest text-[#E53E3E]">LIVE</span>
                 </div>
               </div>
-              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Cloud File Storage API</h2>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">AI Smart Learning
+                Platform</h2>
               <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
-                Production-ready file storage API — a mini Google Drive backend. Files in private S3, accessed via presigned URLs. Full CI/CD: every git push auto-builds, pushes to Docker Hub, and redeploys on EC2.
+                Adaptive learning platform powered by a full RAG pipeline. Generates personalized courses
+                based on user goals and skill level.
               </p>
               <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">AWS S3</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Docker</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">GitHub Actions</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Django</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">LangChain</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">ChromaDB</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Python</span>
               </div>
             </div>
             <div class="pt-8 border-t border-white/5 flex items-center justify-between">
               <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="https://github.com/ohnohimanshu/file-storage-api">
+                href="https://github.com/ohnohimanshu/Ai-Powered-Course-Designer">
                 View Repository <span class="material-icons text-sm">north_east</span>
               </a>
-              <span class="material-icons opacity-10 text-4xl transform -rotate-45">cloud</span>
+              <span class="material-icons opacity-10 text-4xl transform -rotate-45">auto_awesome</span>
             </div>
           </article>
-
-          <!-- Project 2: Smart Lab Monitoring -->
-          <article class="project-card featured-border relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
-            <div class="ghost-kanji font-display">計</div>
-            <div>
-              <div class="flex justify-between items-start mb-12">
-                <span class="font-mono text-[10px] tracking-widest opacity-40">02 / IOT & HW</span>
-                <div class="flex gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <span class="font-mono text-[10px] tracking-widest text-emerald-500 opacity-60">STABLE</span>
-                </div>
-              </div>
-              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Smart Lab Monitoring System</h2>
-              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
-                Hybrid Wi-Fi + LoRa IoT platform deployed in real college laboratories. Fault-tolerant dual gateway setup, real-time MQTT dashboards, WebSocket alerts, and role-based access control.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">LoRa</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">MQTT</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">ESP32</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Docker</span>
-              </div>
-            </div>
-            <div class="pt-8 border-t border-white/5">
-              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="https://github.com/ohnohimanshu/IoT-Management">
-                View Repository <span class="material-icons text-sm">north_east</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- Project 3: AI Resume Analyzer -->
-          <article class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
-            <div class="ghost-kanji font-display">解</div>
-            <div>
-              <div class="flex justify-between items-start mb-12">
-                <span class="font-mono text-[10px] tracking-widest opacity-40">03 / CLOUD AI</span>
-              </div>
-              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">AI Resume Analyzer</h2>
-              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
-                Gemini-powered PDF/DOCX resume analysis with structured AI feedback. Deployed on AWS EC2 with Docker + NGINX reverse proxy. Provides improvement suggestions on skills, formatting, and job fit.
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Gemini API</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Docker</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">AWS EC2</span>
-              </div>
-            </div>
-            <div class="pt-8 border-t border-white/5">
-              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
-                href="https://github.com/ohnohimanshu/ResumePro-AI">
-                View Repository <span class="material-icons text-sm">north_east</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- Project 4: HMX Chatbot -->
-          <article class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+          <article
+            class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
             <div class="ghost-kanji font-display">話</div>
             <div>
               <div class="flex justify-between items-start mb-12">
-                <span class="font-mono text-[10px] tracking-widest opacity-40">04 / LOCAL LLM</span>
+                <span class="font-mono text-[10px] tracking-widest opacity-40">02 / LOCAL LLM</span>
               </div>
-              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">HMX Chatbot</h2>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">HMX Chatbot — Private
+                Intelligence</h2>
               <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
-                Privacy-first chatbot powered by Ollama local LLM. Real-time WebSocket conversations via Django Channels with zero cloud dependency — everything runs on local hardware.
+                Privacy-first chatbot powered by Ollama. Real-time WebSocket conversations with zero cloud
+                dependency — everything runs locally on your hardware.
               </p>
               <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Ollama</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Django</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">WebSockets</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Ollama</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Django</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">WebSockets</span>
               </div>
             </div>
             <div class="pt-8 border-t border-white/5">
@@ -706,22 +877,89 @@
               </a>
             </div>
           </article>
-
-          <!-- Project 5: Face Recognition -->
-          <article class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+          <article
+            class="project-card featured-border relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">計</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">03 / IOT &amp; HW</span>
+                <div class="flex gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span class="font-mono text-[10px] tracking-widest text-emerald-500 opacity-60">STABLE</span>
+                </div>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Smart Lab Monitoring
+                System</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Hybrid Wi-Fi + LoRa IoT platform deployed in real college laboratories for fault tolerance,
+                real-time MQTT dashboards, and role-based access control.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">LoRa</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">MQTT</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">ESP32</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="https://github.com/ohnohimanshu/IoT-Management">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+            </div>
+          </article>
+          <article
+            class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
+            <div class="ghost-kanji font-display">解</div>
+            <div>
+              <div class="flex justify-between items-start mb-12">
+                <span class="font-mono text-[10px] tracking-widest opacity-40">04 / CLOUD AI</span>
+              </div>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">AI Resume Analyzer</h2>
+              <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
+                Gemini-powered PDF/DOCX resume analysis with intelligent NLP feedback. Deployed on AWS EC2
+                with Docker. Provides structured improvement suggestions.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Gemini
+                  API</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Docker</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">AWS
+                  EC2</span>
+              </div>
+            </div>
+            <div class="pt-8 border-t border-white/5">
+              <a class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#E53E3E] hover:opacity-80 transition-opacity flex items-center gap-2"
+                href="https://github.com/ohnohimanshu/ResumePro-AI">
+                View Repository <span class="material-icons text-sm">north_east</span>
+              </a>
+            </div>
+          </article>
+          <article
+            class="project-card relative w-[420px] h-[580px] p-10 flex flex-col justify-between overflow-hidden group">
             <div class="ghost-kanji font-display">像</div>
             <div>
               <div class="flex justify-between items-start mb-12">
                 <span class="font-mono text-[10px] tracking-widest opacity-40">05 / COMPUTER VISION</span>
               </div>
-              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Face Recognition Platform</h2>
+              <h2 class="text-4xl font-display dark:text-[#F2EDE4] mb-6 leading-tight">Face Recognition
+                Platform</h2>
               <p class="text-sm leading-relaxed opacity-60 mb-8 max-w-[320px]">
-                Real-time security system supporting multiple IP cameras with face detection and instant email alerts with snapshots. Scalable multi-camera architecture via Django + Redis.
+                Real-time security system supporting multiple IP cameras. Instant email alerts with face
+                snapshots via OpenCV and Redis. Scalable multi-camera architecture.
               </p>
               <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">OpenCV</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Redis</span>
-                <span class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Python</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">OpenCV</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Redis</span>
+                <span
+                  class="px-3 py-1 bg-stone-100 dark:bg-white/5 border border-black/5 dark:border-white/5 font-mono text-[10px] tracking-wider uppercase">Python</span>
               </div>
             </div>
             <div class="pt-8 border-t border-white/5">
@@ -731,7 +969,6 @@
               </a>
             </div>
           </article>
-
         </div>
       </main>
       <footer class="mt-12 mb-32 px-8 md:px-20 max-w-[1440px] mx-auto flex flex-col items-center">
@@ -741,17 +978,23 @@
         </p>
         <div class="mt-12 flex gap-8">
           <a class="group flex items-center gap-3" href="#">
-            <span class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Contact</span>
-            <span class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <span
+              class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Contact</span>
+            <span
+              class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
           <a class="group flex items-center gap-3" href="https://drive.google.com/file/d/1Q2Dd284Y1AtnIl-8lOy8ii3nKsiurrhn/view?usp=drive_link">
-            <span class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Resume</span>
-            <span class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <span
+              class="font-mono text-[10px] tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Resume</span>
+            <span
+              class="material-icons text-[#E53E3E] group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
         </div>
       </footer>
       <aside class="absolute right-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-12 z-50">
-        <span class="font-mono text-[9px] vertical-text tracking-[0.5em] opacity-30 uppercase whitespace-nowrap">Himanshu Sharma Portfolio</span>
+        <span
+          class="font-mono text-[9px] vertical-text tracking-[0.5em] opacity-30 uppercase whitespace-nowrap">Himanshu
+          Sharma Portfolio</span>
         <div class="flex flex-col gap-4 items-center">
           <div class="w-0.5 h-12 bg-[#E53E3E]/20 relative">
             <div class="absolute top-0 left-0 w-full h-1/3 bg-[#E53E3E]"></div>
@@ -759,8 +1002,14 @@
           <span class="font-mono text-[10px] text-[#E53E3E]">03</span>
         </div>
       </aside>
+      <script>
+
+      </script>
       <style>
-        .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; }
+        .vertical-text {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
       </style>
     </section>
 
@@ -769,9 +1018,15 @@
       <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#E53E3E]/5 rounded-full blur-[120px]"></div>
+        <div
+          class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
+        </div>
       </div>
       <main class="relative z-10 w-full max-w-7xl mx-auto px-8 py-24 md:py-32">
         <header class="mb-20 relative">
+          <div
+            class="japanese-sub hidden lg:block select-none absolute -left-16 top-0 text-white/5 font-serif text-5xl writing-vertical">
+            専門技術</div>
           <div class="flex items-center gap-4 mb-6">
             <div class="w-2 h-2 rounded-full bg-[#E53E3E] pulse-dot"></div>
             <span class="font-serif italic text-lg tracking-widest text-[#E53E3E] uppercase opacity-90">
@@ -798,7 +1053,7 @@
               <span class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Linux</span>
             </div>
           </div>
-
+ 
           <div class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
             <div class="absolute inset-0 bg-gradient-to-bl from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute top-0 right-0 w-0 h-1 bg-[#E53E3E] group-hover:w-full transition-all duration-500 ease-out"></div>
@@ -811,7 +1066,7 @@
               <span class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">boto3</span>
             </div>
           </div>
-
+ 
           <div class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
             <div class="absolute inset-0 bg-gradient-to-tr from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute bottom-0 left-0 w-0 h-1 bg-[#E53E3E] group-hover:w-full transition-all duration-500 ease-out"></div>
@@ -823,7 +1078,7 @@
               <span class="px-3 py-1 bg-white/5 border border-white/10 font-mono text-xs uppercase tracking-widest text-white/60 group-hover:text-white/90 group-hover:border-white/30 transition-all hover:bg-[#E53E3E]/20">Semantic Search</span>
             </div>
           </div>
-
+ 
           <div class="skill-card group relative p-8 border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-500 overflow-hidden cursor-crosshair">
             <div class="absolute inset-0 bg-gradient-to-tl from-[#E53E3E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div class="absolute top-0 right-0 w-1 h-0 bg-[#E53E3E] group-hover:h-full transition-all duration-500 ease-out"></div>
@@ -838,22 +1093,27 @@
 
         </div>
       </main>
-    </section>
-
-    <!-- SECTION: contact_footer -->
+      <style>
+        .writing-vertical {
+          writing-mode: vertical-rl;
+          text-orientation: upright;
+          display: block;
+        }
+      </style>
+    </section><!-- SECTION: contact_footer -->
     <section id="contact_footer" class="relative w-full min-h-screen overflow-hidden">
       <main class="relative h-screen w-full flex flex-col items-center justify-center px-6 overflow-hidden">
         <div class="absolute inset-0 flex items-center justify-center z-0">
           <span class="kanji-bg font-display font-bold">連絡</span>
         </div>
         <div class="relative z-10 text-center flex flex-col items-center max-w-4xl">
-          <p class="font-mono text-[10px] uppercase tracking-[0.3em] opacity-40 mb-12">五 · Contact</p>
+          <p class="font-mono text-[10px] uppercase tracking-[0.3em] opacity-40 mb-12">五 ・ お問い合わせ</p>
           <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-extralight leading-tight mb-8">
             Let's Build <br />
-            <span class="italic text-[#E23E28]">Something</span> Real.
+            <span class="italic text-[#E23E28]">Something</span> Great.
           </h1>
           <div class="max-w-md mx-auto mb-16">
-            <p class="font-display font-extralight text-sm md:text-base opacity-60 leading-relaxed">
+             <p class="font-display font-extralight text-sm md:text-base opacity-60 leading-relaxed">
               Open to remote backend and cloud engineering roles.<br />
               Startups and product companies worldwide 🌍
             </p>
@@ -870,14 +1130,26 @@
             <a class="social-link font-mono text-[11px] opacity-40 uppercase tracking-widest" href="tel:+919457139175">+91 9457139175</a>
           </nav>
         </div>
-        <footer class="absolute bottom-0 left-0 w-full px-8 py-10 flex flex-col md:flex-row justify-between items-end md:items-center">
+        <footer
+          class="absolute bottom-0 left-0 w-full px-8 py-10 flex flex-col md:flex-row justify-between items-end md:items-center">
           <div class="flex flex-col gap-1 order-2 md:order-1 mt-6 md:mt-0">
-            <p class="font-mono text-[9px] opacity-30 uppercase tracking-widest">© 2025 Himanshu Sharma — Backend & Cloud Developer</p>
-            <p class="font-mono text-[9px] opacity-30 uppercase tracking-widest">Agra, India — Open to Remote</p>
+            <p class="font-mono text-[9px] opacity-30 uppercase tracking-widest">
+              © 2025 Himanshu Sharma — 開発者
+            </p>
+            <p class="font-mono text-[9px] opacity-30 uppercase tracking-widest">
+              Agra, India
+            </p>
           </div>
           <div class="flex items-center gap-12 order-1 md:order-2">
+            <div class="hidden md:block">
+              <span class="font-display text-[10px] opacity-[0.08] tracking-[0.5em] whitespace-nowrap">
+                技術 · 創造 · 革新
+              </span>
+            </div>
             <button aria-label="Toggle Sound" class="flex items-center gap-3 group focus:outline-none">
-              <span class="font-mono text-[9px] opacity-40 uppercase tracking-widest group-hover:opacity-100 transition-opacity">Sound On</span>
+              <span
+                class="font-mono text-[9px] opacity-40 uppercase tracking-widest group-hover:opacity-100 transition-opacity">Sound
+                On</span>
               <div class="sound-wave text-[#F2EDE4] opacity-40 group-hover:opacity-100 transition-opacity">
                 <div class="sound-bar" style="animation-delay: 0.1s"></div>
                 <div class="sound-bar" style="animation-delay: 0.3s"></div>
@@ -887,23 +1159,37 @@
             </button>
           </div>
         </footer>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
+          <div class="w-[1px] h-12 bg-[#F2EDE4]"></div>
+        </div>
       </main>
       <script>
-        const bgAudioFooter = document.getElementById('bg-audio');
+        // Sound Toggle Interaction
+        const bgAudio = document.getElementById('bg-audio');
+
+        // Footer Sound Button
         const soundBtnFooter = document.querySelector('button[aria-label="Toggle Sound"]');
         const soundTextFooter = soundBtnFooter ? soundBtnFooter.querySelector('span') : null;
         const soundBarsFooter = soundBtnFooter ? soundBtnFooter.querySelectorAll('.sound-bar') : [];
+
+        // Loader Sound Button
         const loaderSoundToggle = document.getElementById('loader-sound-toggle');
         const loaderSoundOn = document.querySelector('.loader-sound-on');
         const loaderSoundOff = document.querySelector('.loader-sound-off');
+
         let isPlaying = true;
 
         function updateUI() {
-          if (soundTextFooter) soundTextFooter.textContent = isPlaying ? 'Sound On' : 'Sound Off';
-          soundBarsFooter.forEach(bar => {
-            bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
-            bar.style.height = isPlaying ? '' : '2px';
-          });
+          // Update Footer Button
+          if (soundTextFooter && soundBarsFooter.length > 0) {
+            soundTextFooter.textContent = isPlaying ? 'Sound On' : 'Sound Off';
+            soundBarsFooter.forEach(bar => {
+              bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
+              bar.style.height = isPlaying ? '' : '2px';
+            });
+          }
+
+          // Update Loader Button
           if (loaderSoundOn && loaderSoundOff) {
             if (isPlaying) {
               loaderSoundOn.classList.replace('opacity-30', 'opacity-100');
@@ -916,9 +1202,16 @@
         }
 
         function toggleAudio(e) {
-          if (e) { e.preventDefault(); e.stopPropagation(); }
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
           isPlaying = !isPlaying;
-          if (isPlaying) { bgAudioFooter.play().catch(e => {}); } else { bgAudioFooter.pause(); }
+          if (isPlaying) {
+            bgAudio.play().catch(e => console.log('Play failed:', e));
+          } else {
+            bgAudio.pause();
+          }
           updateUI();
         }
 
@@ -940,7 +1233,7 @@
       const locoScroll = new LocomotiveScroll({
         el: document.querySelector("[data-scroll-container]"),
         smooth: true,
-        lerp: 0.1,
+        lerp: 0.1, // Reduced for smoother, more responsive scrolling
         multiplier: 1,
         tablet: { smooth: true },
         smartphone: { smooth: true }
@@ -957,9 +1250,12 @@
       });
       ScrollTrigger.defaults({ scroller: "[data-scroll-container]" });
 
+
+      // --- Loader Sequence ---
       const loaderAnim = gsap.timeline({
         onComplete: () => {
           locoScroll.start();
+          // Hide loader completely from DOM flow after animation
           document.getElementById('loader_navigation').style.display = 'none';
         }
       });
@@ -967,16 +1263,24 @@
       gsap.set("#loader_navigation", { display: "block" });
       gsap.set(".gs-reveal", { opacity: 0, y: 20 });
       gsap.set(".gs-line", { width: 0 });
-      locoScroll.stop();
+      gsap.set(".katana-line", { opacity: 0, width: 0 });
+      locoScroll.stop(); // Prevent scroll during loader
 
       loaderAnim
+        // standard entry
         .to(".loader-kanji", { duration: 1.5, opacity: 1, y: 0, ease: "power3.out", delay: 0.5 })
         .to(".gs-line", { duration: 1.2, width: "200px", ease: "power4.inOut" }, "-=0.8")
         .to(".gs-reveal", { duration: 1, opacity: 1, y: 0, stagger: 0.1, ease: "power2.out" }, "-=0.4")
+
+        // glitch effect
         .to(".loader-fade-out", { duration: 0.4, opacity: 0, ease: "power2.inOut", delay: 0.4 })
+
+        // vertical split and rotate
         .to(".loader-bg-top", { duration: 1.2, yPercent: -100, ease: "power4.inOut" }, "+=0.2")
         .to(".loader-bg-bottom", { duration: 1.2, yPercent: 100, ease: "power4.inOut" }, "-=1.2")
         .to(".loader-rotator", { duration: 0.1, display: "none" })
+
+        // Hero entrace overlapping with loader half separation
         .from("#hero_section .japanese-bg", { duration: 1.5, opacity: 0, scale: 0.9, ease: "power3.out" }, "-=1.0")
         .from("#hero_section header", { duration: 1, opacity: 0, x: -30, ease: "power3.out" }, "-=1.2")
         .from("#hero_section h1", { duration: 1, opacity: 0, y: 50, ease: "power3.out" }, "-=1")
@@ -984,42 +1288,135 @@
         .from("#hero_section p, #hero_section .flex.gap-6", { duration: 1, opacity: 0, y: 20, stagger: 0.2, ease: "power3.out" }, "-=0.8")
         .from("#hero_section .absolute.bottom-12", { duration: 1, opacity: 0, y: 30, ease: "power3.out" }, "-=0.6");
 
-      gsap.from("#about_philosophy h2, #about_philosophy p.drop-cap, #about_philosophy p:not(.drop-cap)", {
-        scrollTrigger: { trigger: "#about_philosophy", start: "top 70%" },
-        y: 40, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out"
+      // --- ScrollTriggers ---
+
+      // About / Philosophy Section
+      gsap.to(".ghost-numeral", {
+        scrollTrigger: {
+          trigger: "#about_philosophy",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        y: 100,
+        opacity: 0.08
       });
 
+      gsap.to(".kanji-vertical", {
+        scrollTrigger: {
+          trigger: "#about_philosophy",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        y: -50
+      });
+
+      gsap.from("#about_philosophy h2, #about_philosophy p.drop-cap, #about_philosophy p:not(.drop-cap)", {
+        scrollTrigger: {
+          trigger: "#about_philosophy",
+          start: "top 70%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power3.out"
+      });
+
+      gsap.from("#about_philosophy .grid > div", {
+        scrollTrigger: {
+          trigger: "#about_philosophy .grid",
+          start: "top 85%",
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+      // Interactive Skills
       gsap.from("#interactive_skills h1, #interactive_skills header span", {
-        scrollTrigger: { trigger: "#interactive_skills", start: "top 75%" },
-        y: 40, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: {
+          trigger: "#interactive_skills",
+          start: "top 75%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out"
       });
 
       const skillCards = gsap.utils.toArray("#interactive_skills .skill-card");
       skillCards.forEach((card, i) => {
         gsap.from(card, {
-          scrollTrigger: { trigger: card, start: "top 85%" },
-          y: 40, opacity: 0, duration: 0.8, ease: "power3.out", delay: i * 0.1
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%"
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: i * 0.1
         });
       });
 
+      gsap.from("#interactive_skills .japanese-sub", {
+        scrollTrigger: {
+          trigger: "#interactive_skills",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        y: -150
+      });
+
+      // Experience Chronology
+      gsap.from("#experience_chronology .japanese-text.text-\\[30vw\\]", {
+        scrollTrigger: {
+          trigger: "#experience_chronology",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        scale: 1.1,
+        opacity: 0.04
+      });
+
       gsap.from("#experience_chronology h2", {
-        scrollTrigger: { trigger: "#experience_chronology", start: "top 75%" },
-        x: -50, opacity: 0, duration: 1, ease: "power3.out"
+        scrollTrigger: {
+          trigger: "#experience_chronology",
+          start: "top 75%"
+        },
+        x: -50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
       });
 
       const entries = gsap.utils.toArray(".experience-entry");
       entries.forEach((entry) => {
         gsap.from(entry, {
-          scrollTrigger: { trigger: entry, start: "top 85%" },
-          y: 40, opacity: 0, duration: 1, ease: "power3.out"
+          scrollTrigger: {
+            trigger: entry,
+            start: "top 85%"
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out"
         });
       });
 
+      // Projects Track - Horizontal Scroll Pin
       let projectContainer = document.getElementById("scroll-track");
       let projectSlider = projectContainer.querySelector(".flex");
 
-      gsap.to(projectSlider, {
-        x: () => -(projectSlider.scrollWidth - window.innerWidth + 100),
+      let projTween = gsap.to(projectSlider, {
+        x: () => -(projectSlider.scrollWidth - window.innerWidth + 100), // 100px buffer to ensure we can see the end
         ease: "none",
         scrollTrigger: {
           trigger: "#projects_track",
@@ -1029,23 +1426,71 @@
         }
       });
 
+      // Animate cards on appear inside the pinned section
       gsap.fromTo(".project-card",
         { y: 100, opacity: 0 },
         {
-          scrollTrigger: { trigger: "#projects_track", start: "top 50%" },
-          y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out", clearProps: "y,opacity"
+          scrollTrigger: {
+            trigger: "#projects_track",
+            start: "top 50%", // Trigger slightly earlier
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+          clearProps: "y,opacity"
         }
       );
 
+      // (Deprecated Continuous Growth animation removed)
+
+      // Contact
       gsap.from("#contact_footer h1, #contact_footer p:not(.opacity-30)", {
-        scrollTrigger: { trigger: "#contact_footer", start: "top 70%" },
-        y: 40, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: {
+          trigger: "#contact_footer",
+          start: "top 70%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out"
       });
 
+      gsap.from(".kanji-bg", {
+        scrollTrigger: {
+          trigger: "#contact_footer",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        },
+        scale: 1.2,
+        opacity: 0.03
+      });
+
+      // Refresh ScrollTrigger and LocomotiveScroll
       ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
       ScrollTrigger.refresh();
-      window.addEventListener('resize', () => { ScrollTrigger.refresh(); });
+
+      // Update locomotive on window resize
+      window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+      });
     });
+
+
+
+    ScrollTrigger.refresh();
+
   </script>
+  <!-- TensorFlow.js and MediaPipe for Shadow Clone Jutsu -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js"></script>
+  <script src="shadow_clone.js"></script>
 </body>
+
 </html>
